@@ -48,6 +48,8 @@ void MAIN::run()
 			CurrentGameId = NextGameId;
 			GameBase = GameFactory->create(CurrentGameId);
 			GameBase->create();
+			//マウスカーソル表示
+			showCursor();
 			//切り替え効果スタート
 			Transition->inStart();
 		}
