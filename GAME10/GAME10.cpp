@@ -19,6 +19,7 @@ namespace GAME10
 		textSize(50);
 		fill(255, 255, 0);
 		text("GAME10", 0, 100);
+		text("kazuのGAME",0,150);
 		fill(255);
 		text("ENTERキーでメニューに戻る", 0, 1080);
 		if (isTrigger(KEY_ENTER)) {
