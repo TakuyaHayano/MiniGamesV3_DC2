@@ -12,7 +12,7 @@ namespace GAME01
 	{
 
 	}
-
+	//aaa
 	void GAME::proc()
 	{
 		clear(0, 0, 64);
