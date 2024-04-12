@@ -1,7 +1,7 @@
 #pragma once
 #include "TITLE.h"
 //#include "TRANSITION.h"
-//#include "BACKGROUND.h"
+#include "BACKGROUND.h"
 
 namespace GAME09
 {
@@ -9,6 +9,7 @@ namespace GAME09
 	{
 		struct DATA {
 			TITLE::DATA title;
+			BACKGROUND::DATA backG;
 		};
 		DATA Data;
 	public:

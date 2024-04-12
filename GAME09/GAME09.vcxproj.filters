@@ -6,6 +6,7 @@
     <ClCompile Include="GAME_OBJECT.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
     <ClCompile Include="TITLE.cpp" />
+    <ClCompile Include="BACKGROUND.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -13,6 +14,7 @@
     <ClInclude Include="GAME_OBJECT.h" />
     <ClInclude Include="CONTAINER.h" />
     <ClInclude Include="TITLE.h" />
+    <ClInclude Include="BACKGROUND.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

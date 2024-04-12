@@ -18,6 +18,8 @@ namespace GAME09
 		Title = game()->container()->data().title;
 	}
 	void TITLE::draw() {
+		clear(128);
+		game()->backGround()->draw();
 		fill(0);
 		print("スイカゲーム");
 	}

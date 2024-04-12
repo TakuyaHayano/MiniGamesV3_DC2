@@ -12,6 +12,7 @@ namespace GAME09
 		//new
 		Container = new CONTAINER;
 		Scenes[TITLE_ID] = new TITLE(this);
+		BackGround = new BACKGROUND(this);
 
 		//load
 		Container->load();
@@ -22,6 +23,7 @@ namespace GAME09
 				Scenes[i]->create();
 			}
 		}
+		BackGround->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -31,6 +33,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete BackGround;
 		for (int i = 0; i < NUM_SCENES; i++) {
 			if (Scenes[i] != nullptr) {
 				delete Scenes[i];
@@ -41,7 +44,6 @@ namespace GAME09
 
 	void GAME::proc()
 	{
-		clear(128);
 		Scenes[CurSceneId]->proc();
 	}
 
