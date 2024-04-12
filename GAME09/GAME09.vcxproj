@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BACKGROUND.cpp" />
+    <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
     <ClCompile Include="GAME09.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BACKGROUND.h" />
+    <ClInclude Include="BUTTON.h" />
     <ClInclude Include="CONTAINER.h" />
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />
