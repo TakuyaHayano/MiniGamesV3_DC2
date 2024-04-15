@@ -19,9 +19,18 @@ namespace GAME09
     }
     void BUTTON::init() {
         AnimeTime = Button.selectAnimeTime;
+        Time = Button.startTime;
         Select = false;
+        StandbyMotion = Button.initStandbyMotion;
+        SelectMotion = Button.initSelectMotion;
     }
     void BUTTON::update() {
+        if (StandbyMotion) {
+            Time += delta;
+            if (Time > Button.standbyAnimeCycleTime) {
+                Time -= Button.standbyAnimeCycleTime;
+            }
+        }
         if (AnimeTime < Button.selectAnimeTime) {
             AnimeTime += delta;
             if (AnimeTime > Button.selectAnimeTime) AnimeTime = Button.selectAnimeTime;
@@ -30,14 +39,20 @@ namespace GAME09
     void BUTTON::draw() {
         angleMode(DEGREES);
         rectMode(CENTER);
-        float ratio = AnimeTime / Button.selectAnimeTime;
+        VECTOR2 pos = Button.pos;
+        if (StandbyMotion) {
+            if (Time < Button.standbyAnimeTime) {
+                float ratio = Time / Button.standbyAnimeTime;
+                pos.y += Sin(180 * ratio) * Button.standbyAnimeOfstY;
+            }
+        }
         if (Select) {
-            image(Button.selectedImg, Button.pos.x, Button.pos.y, 0, Button.imgSize);
+            image(Button.selectedImg, pos.x, pos.y, 0, Button.imgSize);
         }
         else {
-            image(Button.notSelectedImg, Button.pos.x, Button.pos.y, 0, Button.imgSize);
+            image(Button.notSelectedImg, pos.x, pos.y, 0, Button.imgSize);
         }
-        print(Select);
+        fill(0);
     }
     void BUTTON::setSelect(bool select, bool anime){
         Select = select;

@@ -63,6 +63,19 @@ namespace GAME09
 		image(Title.titleImg, Title.titlePos.x, Title.titlePos.y, 0, Title.imgSize);
 	}
 	void TITLE::nextScene() {
+		if (isPress(KEY_ENTER) || isPress(KEY_SPACE)) {
+			switch (SelectButton)
+			{
+			case START:
+				break;
+			case HELP:
+				break;
+			case END:
 
+				break;
+			default:
+				break;
+			}
+		}
 	}
 }

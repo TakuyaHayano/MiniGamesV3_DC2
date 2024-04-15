@@ -16,8 +16,14 @@ namespace GAME09
 		Data.backG.pos = VECTOR2(width / 2, height / 2);
 
 		Data.startButton.pos = VECTOR2(960, 540);
-		Data.helpButton.pos = VECTOR2(960, 740);
-		Data.endButton.pos = VECTOR2(960, 940);
+		Data.startButton.initStandbyMotion = true;
+		Data.startButton.startTime = 0.15f;
+		Data.helpButton.pos = VECTOR2(960, 730);
+		Data.helpButton.initStandbyMotion = true;
+		Data.helpButton.startTime = 0.075f;
+		Data.endButton.pos = VECTOR2(960, 920);
+		Data.endButton.initStandbyMotion = true;
+		Data.endButton.startTime = 0.0f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
