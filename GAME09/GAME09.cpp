@@ -52,4 +52,8 @@ namespace GAME09
 		CurSceneId = sceneId;
 		Scenes[CurSceneId]->init();
 	}
+
+	void GAME::backToMenu() {
+		main()->backToMenu();
+	}
 }

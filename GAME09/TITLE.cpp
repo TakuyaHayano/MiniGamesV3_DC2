@@ -71,7 +71,7 @@ namespace GAME09
 			case HELP:
 				break;
 			case END:
-
+				game()->backToMenu();
 				break;
 			default:
 				break;
