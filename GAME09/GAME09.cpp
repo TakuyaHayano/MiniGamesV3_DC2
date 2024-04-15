@@ -27,6 +27,7 @@ namespace GAME09
 
 		//init
 		CurSceneId = TITLE_ID;
+		Scenes[CurSceneId]->init();
 
 		return 0;
 	}

@@ -8,6 +8,9 @@
     <ClCompile Include="TITLE.cpp" />
     <ClCompile Include="BACKGROUND.cpp" />
     <ClCompile Include="BUTTON.cpp" />
+    <ClCompile Include="BUTTON_START.cpp" />
+    <ClCompile Include="BUTTON_HELP.cpp" />
+    <ClCompile Include="BUTTON_END.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -17,6 +20,9 @@
     <ClInclude Include="TITLE.h" />
     <ClInclude Include="BACKGROUND.h" />
     <ClInclude Include="BUTTON.h" />
+    <ClInclude Include="BUTTON_START.h" />
+    <ClInclude Include="BUTTON_HELP.h" />
+    <ClInclude Include="BUTTON_END.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

@@ -2,6 +2,7 @@
 #include "TITLE.h"
 //#include "TRANSITION.h"
 #include "BACKGROUND.h"
+#include "BUTTON.h"
 
 namespace GAME09
 {
@@ -10,6 +11,9 @@ namespace GAME09
 		struct DATA {
 			TITLE::DATA title;
 			BACKGROUND::DATA backG;
+			BUTTON::DATA startButton;
+			BUTTON::DATA helpButton;
+			BUTTON::DATA endButton;
 		};
 		DATA Data;
 	public:

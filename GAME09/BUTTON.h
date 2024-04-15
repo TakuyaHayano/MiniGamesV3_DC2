@@ -10,7 +10,7 @@ namespace GAME09
     public:
         struct DATA {
             int notSelectedImg;
-            int SelectedImg;
+            int selectedImg;
             float imgSize = 1;
             VECTOR2 pos;
             float selectAnimeTime = 0.15f;
@@ -18,7 +18,7 @@ namespace GAME09
         };
     protected:
         DATA Button;
-        bool Select;
+        bool Select = false;
         float AnimeTime;
     public:
         BUTTON(class GAME* game);
@@ -27,6 +27,6 @@ namespace GAME09
         virtual void init();
         virtual void update();
         virtual void draw();
-        virtual void setSelect(bool select);
+        virtual void setSelect(bool select, bool anime = true);
     };
 }
