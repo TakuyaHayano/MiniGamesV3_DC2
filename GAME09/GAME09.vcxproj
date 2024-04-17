@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -134,26 +134,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BACKGROUND.cpp" />
+    <ClCompile Include="BOX.cpp" />
     <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="BUTTON_END.cpp" />
     <ClCompile Include="BUTTON_HELP.cpp" />
     <ClCompile Include="BUTTON_START.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="FRUITS.cpp" />
     <ClCompile Include="GAME09.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
+    <ClCompile Include="PHYSICS_ENGINE.cpp" />
     <ClCompile Include="SCENE.cpp" />
+    <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="TITLE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BACKGROUND.h" />
+    <ClInclude Include="BOX.h" />
     <ClInclude Include="BUTTON.h" />
     <ClInclude Include="BUTTON_END.h" />
     <ClInclude Include="BUTTON_HELP.h" />
     <ClInclude Include="BUTTON_START.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="FRUITS.h" />
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />
+    <ClInclude Include="PHYSICS_ENGINE.h" />
     <ClInclude Include="SCENE.h" />
+    <ClInclude Include="STAGE.h" />
     <ClInclude Include="TITLE.h" />
   </ItemGroup>
   <ItemGroup>

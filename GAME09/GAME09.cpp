@@ -3,6 +3,8 @@
 #include "GAME09.h"
 #include "CONTAINER.h"
 #include "TITLE.h"
+#include "STAGE.h"
+#include "PHYSICS_ENGINE.h"
 
 namespace GAME09
 {
@@ -12,7 +14,9 @@ namespace GAME09
 		//new
 		Container = new CONTAINER;
 		Scenes[TITLE_ID] = new TITLE(this);
+		Scenes[STAGE_ID] = new STAGE(this);
 		BackGround = new BACKGROUND(this);
+		Physics = new PHYSICS_ENGINE(this);
 
 		//load
 		Container->load();
@@ -24,6 +28,7 @@ namespace GAME09
 			}
 		}
 		BackGround->create();
+		Physics->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -34,6 +39,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Physics;
 		delete BackGround;
 		for (int i = 0; i < NUM_SCENES; i++) {
 			if (Scenes[i] != nullptr) {

@@ -67,6 +67,7 @@ namespace GAME09
 			switch (SelectButton)
 			{
 			case START:
+				game()->changeScene(GAME::STAGE_ID);
 				break;
 			case HELP:
 				break;

@@ -11,6 +11,9 @@
     <ClCompile Include="BUTTON_START.cpp" />
     <ClCompile Include="BUTTON_HELP.cpp" />
     <ClCompile Include="BUTTON_END.cpp" />
+    <ClCompile Include="STAGE.cpp" />
+    <ClCompile Include="PHYSICS_ENGINE.cpp" />
+    <ClCompile Include="BOX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -23,6 +26,9 @@
     <ClInclude Include="BUTTON_START.h" />
     <ClInclude Include="BUTTON_HELP.h" />
     <ClInclude Include="BUTTON_END.h" />
+    <ClInclude Include="STAGE.h" />
+    <ClInclude Include="PHYSICS_ENGINE.h" />
+    <ClInclude Include="BOX.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />
