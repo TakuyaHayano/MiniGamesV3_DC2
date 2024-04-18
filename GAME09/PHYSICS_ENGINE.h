@@ -26,7 +26,8 @@ namespace GAME09
 
 		void updatePos(float dt);
 		void applyGravity();
-		void applyConstraint();
+        void applyConstraint();
+        void applyConstraintIndividual(class FRUITS* fruits);
         void solveCollisions();
     };
 }

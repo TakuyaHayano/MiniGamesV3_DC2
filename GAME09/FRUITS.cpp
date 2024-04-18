@@ -8,10 +8,12 @@
 
 namespace GAME09
 {
-	FRUITS::FRUITS(GAME* game, VECTOR2 pos) :
+	FRUITS::FRUITS(GAME* game, VECTOR2 pos, FRUITS_KINDS kinds, bool inflate) :
 		GAME_OBJECT(game) {
 		Pos_current = pos;
 		Pos_old = pos;
+		Kinds = kinds;
+		Inflate = inflate;
 	}
 	FRUITS::~FRUITS() {
 
@@ -25,10 +27,24 @@ namespace GAME09
 		Acc = VECTOR2(0, 0);
 		Omega = 0;
 		Theta = 0;
-		Radius = 50;
+		float rate = Pow(Fruits.nextFruitsSizeRate, Kinds);
+		MaxRadius = Fruits.cherryRadius * rate;
+		if (!Inflate) Radius = MaxRadius;
+		ImgSize = Fruits.cherryImgSize * rate;
+		InflateTime = 0;
 	}
 
 	void FRUITS::update(float dt) {
+		if (Inflate && InflateTime < Fruits.inflateMaxTime) {
+			InflateTime += dt;
+			if (InflateTime < Fruits.inflateMaxTime) {
+				float ratio = InflateTime / Fruits.inflateMaxTime;
+				Radius = MaxRadius * (Fruits.initValue + (1 - Fruits.initValue) * ratio);
+			}
+			else {
+				Radius = MaxRadius;
+			}
+		}
 		VECTOR2 Vel = Pos_current - Pos_old;
 		if (Touch) {
 			Vel *= Fruits.attenuationRate;
@@ -46,11 +62,12 @@ namespace GAME09
 		Acc += acc;
 	}
 	void FRUITS::draw() {
-		strokeWeight(Fruits.sw);
-		stroke(0);
+		strokeWeight(4);
+		stroke(0,180,0);
 		fill(255, 255, 255, 0);
 		angleMode(RADIANS);
-		circle(Pos_current.x, Pos_current.y, Radius * 2);
-		line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
+		image(Fruits.imgs[Kinds], Pos_current.x, Pos_current.y, Theta, ImgSize);
+		//circle(Pos_current.x, Pos_current.y, Radius * 2);
+		//line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
 	}
 }

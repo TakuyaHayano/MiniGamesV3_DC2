@@ -26,7 +26,13 @@ namespace GAME09
             float sw;
             float attenuationRate; //â^ìÆó ÇÃå∏êäó¶(ínñ Ç≈ìôë¨â^ìÆÇÇ∑ÇÈÇÃÇîÇØÇÈÇΩÇﬂ)
 
-            float cherrySize;
+            int imgs[NUM_FRUITS_KINDS];
+            float cherryImgSize;
+            float cherryRadius;
+            float nextFruitsSizeRate;
+
+            float inflateMaxTime;
+            float initValue;
         };
     private:
         DATA Fruits;
@@ -40,8 +46,12 @@ namespace GAME09
         float Theta; //äpìx(ÉâÉWÉAÉì)
 
         float Radius;
+        float ImgSize;
+        float InflateTime;
+        float MaxRadius;
+        bool Inflate;
     public:
-        FRUITS(class GAME* game, VECTOR2 pos);
+        FRUITS(class GAME* game, VECTOR2 pos, FRUITS_KINDS kinds, bool inflate = false);
         ~FRUITS();
         void create();
         void init();
@@ -50,9 +60,12 @@ namespace GAME09
         void draw();
 
         const VECTOR2& getPosC() { return Pos_current; }
+        const VECTOR2& getPosO() { return Pos_old; }
         float getRadius() { return Radius; }
+        FRUITS_KINDS getKinds() { return Kinds; }
 
         void setPosC(const VECTOR2& newPos) { Pos_current = newPos; }
+        void setPosO(const VECTOR2& newPos) { Pos_old = newPos; }
         void setTouch(bool touch) { Touch = touch; }
     };
 }

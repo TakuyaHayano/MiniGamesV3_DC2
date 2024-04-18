@@ -1,5 +1,5 @@
 #include "CONTAINER.h"
-#include <string.h>
+#include <string>
 #include "../../libOne/inc/graphic.h"
 
 namespace GAME09
@@ -35,6 +35,11 @@ namespace GAME09
 
 		Data.fruits.sw = 2;
 		Data.fruits.attenuationRate = 0.998f;
+		Data.fruits.cherryRadius = 24;
+		Data.fruits.cherryImgSize = 0.062f;
+		Data.fruits.nextFruitsSizeRate = 1.232f;
+		Data.fruits.inflateMaxTime = 0.1f;
+		Data.fruits.initValue = 0.45f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -46,5 +51,11 @@ namespace GAME09
 		Data.endButton.selectedImg = loadImage("..\\main\\assets\\game09\\end_button.png");
 		Data.endButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\end_button_gray.png");
 		Data.box.img = loadImage("..\\main\\assets\\game09\\box.png");
+		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
+			std::string path = "..\\main\\assets\\game09\\";
+			path += std::to_string(i);
+			path += ".png";
+			Data.fruits.imgs[i] = loadImage(path.c_str());
+		}
 	}
 }
