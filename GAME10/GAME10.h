@@ -7,6 +7,12 @@ namespace GAME10
         public GAME_BASE
     {
     private:
+        enum {
+            TITLE,
+            PLAY,
+            RESULT
+        };
+        int STATE;
         const char* fileName;
         FILE* fp;
         int fileSize;
@@ -44,8 +50,6 @@ namespace GAME10
                 Right
             };
         };
-        //goal関連
-        int goalImg = 0;
         struct Map {
             //画面関連
             int Xsize = 192;
@@ -68,10 +72,23 @@ namespace GAME10
             int Ysize = 216;
             int YharfSize = Ysize / 2;
         };
+        struct Item {
+            VECTOR2 ItemCore;
+            float Iradius = 20;
+            float HIradius = Iradius / 2;
+            int ItemKind;
+        };
+        //マップ関連
         Map Wmap;
-        HITBOX HitBox;
         wall* Wall;
         wall* Goal;
+        //当たり判定関係
+        HITBOX HitBox;
+        //アイテム関連
+        Item Gun;
+        Item Key;
+        //goal関連
+        int goalImg = 0;
         struct character {
             float Cpx = 0;
             float Cpy = 0;
@@ -82,6 +99,9 @@ namespace GAME10
             float length = 300;
             float radius = 50;
             float Hradius = radius / 2;
+            //プレイヤーのみ使用する変数
+            bool GunFlag;
+            bool KeyFlag;
         };
         //プレイヤー
         character player;
@@ -91,10 +111,14 @@ namespace GAME10
         ~GAME() {};
         int create();
         void proc();
+        void title();
+        void play();
+        void result();
             void move();
             void stageChange();
             void collision();
                 void hitbox(int w);
+                    void playerHitBox();
             void draw();
         void destroy();
     };

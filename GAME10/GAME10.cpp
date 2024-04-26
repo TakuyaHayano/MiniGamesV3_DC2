@@ -5,6 +5,7 @@ namespace GAME10
 {
 	int GAME::create()
 	{
+		STATE = TITLE;
 		//fileスキャン
 		fileName = "..\\main\\assets\\game10\\map.txt";
 		wallImg = loadImage("..\\main\\assets\\game10\\wall.png");
@@ -47,16 +48,19 @@ namespace GAME10
 			for (int r = 0; r < row; r++) {
 				Wmap.py = Wmap.worldY + r * Wmap.Ysize;
 				Wmap.mIdx = r * col + c;
+				//壁
 				if (map[Wmap.mIdx] == 'a') {
 					Wall[Wcnt].WaPx = Wmap.px;//実際にはオーバーランしていない
 					Wall[Wcnt].WaPy = Wmap.py;
 					Wcnt++;
 				}
+				//ゴール
 				if (map[Wmap.mIdx] == 'g') {
 					Goal[Gcnt].WaPx = Wmap.px;//実際にはオーバーランしていない
 					Goal[Gcnt].WaPy = Wmap.py;
 					Gcnt++;
 				}
+				//プレイヤー
 				if (map[Wmap.mIdx] == 'p') {
 					player.Cpx = Wmap.px + Wmap.XharfSize;
 					player.Cpy = Wmap.py + Wmap.YharfSize;
@@ -66,6 +70,11 @@ namespace GAME10
 
 		fclose(fp);
 
+		//初期表示位置をプレイヤーに変更
+		while (player.Cpy + Wmap.worldY > height) {
+			Wmap.worldY -= height;
+		}
+		player.Cpy += Wmap.worldY;
 		return 0;
 	}
 
@@ -78,13 +87,34 @@ namespace GAME10
 
 	void GAME::proc()
 	{	
+		if (STATE == TITLE) { title(); }
+		else if (STATE == PLAY) { play(); }
+		else if (STATE == RESULT) { result(); }
+
+	}
+
+	void GAME::title() {
+		clear(0);
+		text("ENTERキーでメニューに戻る", 0, 1080);
+		if (isTrigger(KEY_ENTER)) {
+			main()->backToMenu();
+		}
+		if (isTrigger(KEY_K)) {
+ 			STATE = PLAY;
+		}
+	}
+
+	void GAME::play() {
 		draw();
 		move();
 		collision();
 		stageChange();
-		text("ENTERキーでメニューに戻る", 0, 1080);
-		if (isTrigger(KEY_ENTER)) {
-			main()->backToMenu();
+	}
+
+	void GAME::result() {
+		clear(0);
+		if (isTrigger(KEY_SPACE)) {
+			STATE = TITLE;
 		}
 	}
 
@@ -129,11 +159,12 @@ namespace GAME10
 
 	void GAME::collision() {
 		//壁の当たり判定
+
 		for (int w = 0; w < wallCnt; w++) {
-			if (Wall[w].WaPx + Wmap.worldX >= 0 
-				&& Wall[w].WaPx + Wmap.worldX < width 
-				&& Wall[w].WaPy + Wmap.worldY >= 0 
-				&& Wall[w].WaPy + Wmap.worldY < height) {
+			if (Wall[w].WaPx + Wmap.worldX >= -Wmap.Xsize
+				&& Wall[w].WaPx + Wmap.worldX < width + Wmap.Xsize 
+				&& Wall[w].WaPy + Wmap.worldY >= -Wmap.Ysize
+				&& Wall[w].WaPy + Wmap.worldY < height + Wmap.Ysize) {
 				hitbox(w);
 				switch (HitBox.PointFlag) {
 				case HitBox.Up://壁から見て上側の判定
@@ -173,7 +204,18 @@ namespace GAME10
 
 		}
 		for (int g = 0; g < goalCnt; g++) {
-			if () {}
+			if (Goal[g].WaPx + Wmap.worldX >= 0
+				&& Goal[g].WaPx + Wmap.worldX < width
+				&& Goal[g].WaPy + Wmap.worldY >= 0
+				&& Goal[g].WaPy + Wmap.worldY < height) { 
+				playerHitBox();
+				if (HitBox.Punder.y >= Goal[g].WaPy + Wmap.worldY
+					&& HitBox.Punder.y <= Goal[g].WaPy + Wmap.worldY + Wmap.Ysize
+					&& HitBox.Pleft.x <= Goal[g].WaPx + Wmap.worldX + Wmap.Xsize
+					&& HitBox.Pright.x >= Goal[g].WaPx + Wmap.worldX) {
+					STATE = RESULT;
+				}
+			}
 		}
 	}
 
@@ -194,19 +236,7 @@ namespace GAME10
 
 		HitBox.Wright.x = Wall[w].WaPx + Wall[w].Xsize + Wmap.worldX;
 		HitBox.Wright.y = Wall[w].WaPy + Wmap.worldY;
-		//プレイヤーの上下左右の当たり判定
-		HitBox.Pup.x = player.Cpx;
-		HitBox.Pup.y = player.Cpy - player.Hradius;
-
-		HitBox.Punder.x = player.Cpx;
-		HitBox.Punder.y = player.Cpy + player.Hradius;
-
-		HitBox.Pleft.x = player.Cpx - player.Hradius;
-		HitBox.Pleft.y = player.Cpy;
-
-		HitBox.Pright.x = player.Cpx + player.Hradius;
-		HitBox.Pright.y = player.Cpy;
-
+		playerHitBox();
 		HitBox.UpDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Punder.x) * (HitBox.Wcore.x - HitBox.Punder.x)) + Abs((HitBox.Wcore.y - HitBox.Punder.y) * (HitBox.Wcore.y - HitBox.Punder.y)));
 		HitBox.UnderDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Pup.x) * (HitBox.Wcore.x - HitBox.Pup.x)) + Abs((HitBox.Wcore.y - HitBox.Pup.y) * (HitBox.Wcore.y - HitBox.Pup.y)));
 		HitBox.LeftDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Pright.x) * (HitBox.Wcore.x - HitBox.Pright.x)) + Abs((HitBox.Wcore.y - HitBox.Pright.y) * (HitBox.Wcore.y - HitBox.Pright.y)));
@@ -225,11 +255,28 @@ namespace GAME10
 		}
 	}
 
+	void GAME::playerHitBox() {
+		//プレイヤーの上下左右の当たり判定
+		HitBox.Pup.x = player.Cpx;
+		HitBox.Pup.y = player.Cpy - player.Hradius;
+
+		HitBox.Punder.x = player.Cpx;
+		HitBox.Punder.y = player.Cpy + player.Hradius;
+
+		HitBox.Pleft.x = player.Cpx - player.Hradius;
+		HitBox.Pleft.y = player.Cpy;
+
+		HitBox.Pright.x = player.Cpx + player.Hradius;
+		HitBox.Pright.y = player.Cpy;
+	}
+
 	void GAME::draw() {
 		rectMode(CORNER);
 		clear(255);
-		text(player.Cpy,600,700);
-		//ただ、それぞれの座標にイメージを書き込んでいるだけ
+		text(Wmap.worldY,600,700);
+		text(player.Cpx, 600, 800);
+		text(player.Cpy, 600, 900);
+		//それぞれの座標にイメージを書き込んでいるだけ
 		for (int c = 0; c < col; c++) {
 			Wmap.px = Wmap.worldX + c * Wmap.Xsize;
 			for (int r = 0; r < row; r++) {
