@@ -21,10 +21,19 @@ namespace GAME10
         int row = 0;//行
         int col = 0;//列
         int cnt = 0;
-        int wallCnt = 0;
-        int goalCnt = 0;
+        int WallCnt = 0;
+        int GoalCnt = 0;
+        int InvisibleWallCnt = 0;
         //壁関連
-        int wallImg = 0;
+        int WallImg = 0;
+        int WallLeftImg = 0;
+        int WallRightImg = 0;
+        int WallUpImg = 0;
+        int WallUnderImg = 0;
+        int WallUpLeftCornerImg = 0;
+        int WallUnderLeftCornerImg = 0;
+        int WallUpRightCornerImg = 0;
+        int WallUnderRightCornerImg = 0;
         //当たり判定用
         struct HITBOX {
             VECTOR2 Wup;
@@ -81,6 +90,7 @@ namespace GAME10
         //マップ関連
         Map Wmap;
         wall* Wall;
+        wall* WallCorner;
         wall* Goal;
         //当たり判定関係
         HITBOX HitBox;
@@ -100,8 +110,8 @@ namespace GAME10
             float radius = 50;
             float Hradius = radius / 2;
             //プレイヤーのみ使用する変数
-            bool GunFlag;
-            bool KeyFlag;
+            bool GunFlag = false;
+            bool KeyFlag = false;
         };
         //プレイヤー
         character player;
@@ -112,6 +122,7 @@ namespace GAME10
         int create();
         void proc();
         void title();
+        void init();
         void play();
         void result();
             void move();

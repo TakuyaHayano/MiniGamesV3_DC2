@@ -8,8 +8,16 @@ namespace GAME10
 		STATE = TITLE;
 		//fileスキャン
 		fileName = "..\\main\\assets\\game10\\map.txt";
-		wallImg = loadImage("..\\main\\assets\\game10\\wall.png");
+		WallImg = loadImage("..\\main\\assets\\game10\\wall.png");
 		goalImg = loadImage("..\\main\\assets\\game10\\goal.png");
+		WallUpImg = loadImage("..\\main\\assets\\game10\\up.png");
+		WallUnderImg = loadImage("..\\main\\assets\\game10\\under.png");
+		WallRightImg = loadImage("..\\main\\assets\\game10\\right.png");
+		WallLeftImg = loadImage("..\\main\\assets\\game10\\left.png");
+		WallUpLeftCornerImg = loadImage("..\\main\\assets\\game10\\upLeftCorner.png");
+		WallUnderLeftCornerImg = loadImage("..\\main\\assets\\game10\\underLeftCorner.png");
+		WallUpRightCornerImg = loadImage("..\\main\\assets\\game10\\upRightCorner.png");
+		WallUnderRightCornerImg = loadImage("..\\main\\assets\\game10\\underRightCorner.png");
 		fopen_s(&fp, fileName, "rb");
 		fseek(fp,0,SEEK_END);
 		fileSize = ftell(fp);
@@ -18,16 +26,42 @@ namespace GAME10
 		map = new char[fileSize];
 		fread(map,sizeof(char),fileSize,fp);
 
+		fclose(fp);
+
 		//行列の計算
 		for (int i = 0; i < fileSize; i++) {
 			cnt++;
 			if (map[i] == 'g') {
-				goalCnt++;
+				GoalCnt ++;
 			}
-			if (map[i] == 'a') {
-				wallCnt++;
+			else if (map[i] == 'a') {
+				WallCnt++;
 			}
-			if (map[i] == '\n') {
+			else if (map[i] == '1') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '2') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '3') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '4') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '5') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '6') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '7') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '8') {
+				InvisibleWallCnt++;
+			}
+			else if (map[i] == '\n') {
 				if (row == 0) {
 					col = cnt;
 				}
@@ -35,46 +69,11 @@ namespace GAME10
 			}
 		}
 
-		//壁・goalの動的確保
-		Wall = new wall[wallCnt];
-		Goal = new wall[goalCnt];
+		//壁・goal・見えない壁の動的確保
+		Wall = new wall[WallCnt];
+		WallCorner = new wall[InvisibleWallCnt];
+		Goal = new wall[GoalCnt ];
 
-		//配列の数を抑制するための数
-		int Wcnt = 0;
-		int Gcnt = 0;
-		//プレイヤーと敵の初期位置設定・壁の情報の保存
-		for (int c = 0; c < col; c++) {
-			Wmap.px = Wmap.worldX + c * Wmap.Xsize;
-			for (int r = 0; r < row; r++) {
-				Wmap.py = Wmap.worldY + r * Wmap.Ysize;
-				Wmap.mIdx = r * col + c;
-				//壁
-				if (map[Wmap.mIdx] == 'a') {
-					Wall[Wcnt].WaPx = Wmap.px;//実際にはオーバーランしていない
-					Wall[Wcnt].WaPy = Wmap.py;
-					Wcnt++;
-				}
-				//ゴール
-				if (map[Wmap.mIdx] == 'g') {
-					Goal[Gcnt].WaPx = Wmap.px;//実際にはオーバーランしていない
-					Goal[Gcnt].WaPy = Wmap.py;
-					Gcnt++;
-				}
-				//プレイヤー
-				if (map[Wmap.mIdx] == 'p') {
-					player.Cpx = Wmap.px + Wmap.XharfSize;
-					player.Cpy = Wmap.py + Wmap.YharfSize;
-				}
-			}
-		}
-
-		fclose(fp);
-
-		//初期表示位置をプレイヤーに変更
-		while (player.Cpy + Wmap.worldY > height) {
-			Wmap.worldY -= height;
-		}
-		player.Cpy += Wmap.worldY;
 		return 0;
 	}
 
@@ -100,8 +99,95 @@ namespace GAME10
 			main()->backToMenu();
 		}
 		if (isTrigger(KEY_K)) {
+			init();
  			STATE = PLAY;
 		}
+	}
+
+	void GAME::init() {
+		//配列の数を抑制するための数
+		int Wcnt = 0;
+		int Gcnt = 0;
+		int WCcnt = 0;
+		//プレイヤーと敵の初期位置設定・壁の情報の保存
+		for (int c = 0; c < col; c++) {
+			Wmap.px = Wmap.worldX + c * Wmap.Xsize;
+			for (int r = 0; r < row; r++) {
+				Wmap.py = Wmap.worldY + r * Wmap.Ysize;
+				Wmap.mIdx = r * col + c;
+				//壁
+				if (map[Wmap.mIdx] == 'a') {
+					Wall[Wcnt].WaPx = Wmap.px;//実際にはオーバーランしていない
+					Wall[Wcnt].WaPy = Wmap.py;
+					Wcnt++;
+				}
+				else if (map[Wmap.mIdx] == '1') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '2') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '3') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '4') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '5') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '6') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '7') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				else if (map[Wmap.mIdx] == '8') {
+					Wall[WCcnt].WaPx = Wmap.px;
+					Wall[WCcnt].WaPy = Wmap.py;
+					WCcnt++;
+				}
+				//ゴール
+				else if (map[Wmap.mIdx] == 'g') {
+					Goal[Gcnt].WaPx = Wmap.px;//実際にはオーバーランしていない
+					Goal[Gcnt].WaPy = Wmap.py;
+					Gcnt++;
+				}
+				//プレイヤー
+				else if (map[Wmap.mIdx] == 'p') {
+					player.Cpx = Wmap.px + Wmap.XharfSize;
+					player.Cpy = Wmap.py + Wmap.YharfSize;
+				}
+				//鍵
+				else if (map[Wmap.mIdx] == 'k') {
+					Key.ItemCore.x = Wmap.px + Wmap.XharfSize;
+					Key.ItemCore.y = Wmap.py + Wmap.YharfSize;
+				}
+			}
+		}
+
+		//初期表示位置をプレイヤーに変更
+		while (player.Cpy + Wmap.worldY > height) {
+			Wmap.worldY -= height;
+		}
+		player.Cpy += Wmap.worldY;
+		//鍵取得の初期化
+		player.KeyFlag = false;
+		player.GunFlag = false;
 	}
 
 	void GAME::play() {
@@ -160,7 +246,7 @@ namespace GAME10
 	void GAME::collision() {
 		//壁の当たり判定
 
-		for (int w = 0; w < wallCnt; w++) {
+		for (int w = 0; w < WallCnt; w++) {
 			if (Wall[w].WaPx + Wmap.worldX >= -Wmap.Xsize
 				&& Wall[w].WaPx + Wmap.worldX < width + Wmap.Xsize 
 				&& Wall[w].WaPy + Wmap.worldY >= -Wmap.Ysize
@@ -203,7 +289,7 @@ namespace GAME10
 			}
 
 		}
-		for (int g = 0; g < goalCnt; g++) {
+		for (int g = 0; g < GoalCnt ; g++) {
 			if (Goal[g].WaPx + Wmap.worldX >= 0
 				&& Goal[g].WaPx + Wmap.worldX < width
 				&& Goal[g].WaPy + Wmap.worldY >= 0
@@ -273,9 +359,10 @@ namespace GAME10
 	void GAME::draw() {
 		rectMode(CORNER);
 		clear(255);
+		fill(0);
 		text(Wmap.worldY,600,700);
-		text(player.Cpx, 600, 800);
-		text(player.Cpy, 600, 900);
+		text(Key.ItemCore.x + Wmap.worldX, 600, 800);
+		text(Key.ItemCore.y + Wmap.worldY, 600, 900);
 		//それぞれの座標にイメージを書き込んでいるだけ
 		for (int c = 0; c < col; c++) {
 			Wmap.px = Wmap.worldX + c * Wmap.Xsize;
@@ -283,14 +370,19 @@ namespace GAME10
 				Wmap.py = Wmap.worldY + r * Wmap.Ysize;
 				Wmap.mIdx = r * col + c;
 				if (map[Wmap.mIdx] == 'a') {
-					image(wallImg, Wmap.px, Wmap.py);
+					image(WallImg, Wmap.px, Wmap.py);
 				}
-				if (map[Wmap.mIdx] == 'g') {
+				else if (map[Wmap.mIdx] == '1') {
+					
+				}
+				else if (map[Wmap.mIdx] == 'g') {
 					image(goalImg, Wmap.px, Wmap.py);
 				}
 			}
 		}
 		fill(0);
 		circle(player.Cpx, player.Cpy, player.radius);
+		fill(255,0,0);
+		circle(Key.ItemCore.x + Wmap.worldX, Key.ItemCore.y + Wmap.worldY, Key.Iradius);
 	}
 }
