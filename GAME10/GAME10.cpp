@@ -122,43 +122,43 @@ namespace GAME10
 					Wcnt++;
 				}
 				else if (map[Wmap.mIdx] == '1') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '2') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '3') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '4') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '5') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '6') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '7') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				else if (map[Wmap.mIdx] == '8') {
-					Wall[WCcnt].WaPx = Wmap.px;
-					Wall[WCcnt].WaPy = Wmap.py;
+					WallCorner[WCcnt].WaPx = Wmap.px;
+					WallCorner[WCcnt].WaPy = Wmap.py;
 					WCcnt++;
 				}
 				//ÉSÅ[Éã
@@ -184,7 +184,11 @@ namespace GAME10
 		while (player.Cpy + Wmap.worldY > height) {
 			Wmap.worldY -= height;
 		}
+		while (player.Cpx + Wmap.worldX > width) {
+			Wmap.worldX -= width;
+		}
 		player.Cpy += Wmap.worldY;
+		player.Cpx += Wmap.worldX;
 		//åÆéÊìæÇÃèâä˙âª
 		player.KeyFlag = false;
 		player.GunFlag = false;
@@ -372,8 +376,30 @@ namespace GAME10
 				if (map[Wmap.mIdx] == 'a') {
 					image(WallImg, Wmap.px, Wmap.py);
 				}
-				else if (map[Wmap.mIdx] == '1') {
-					
+				else if (map[Wmap.mIdx] == '1' || map[Wmap.mIdx] == 'p') {
+					image(WallUpImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '2') {
+					image(WallUnderImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '3') {
+					image(WallLeftImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '4') {
+					image(WallRightImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '5') {
+					image(WallUpLeftCornerImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '6') {
+					image(WallUnderLeftCornerImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '7') {
+					image(WallUnderRightCornerImg, Wmap.px, Wmap.py);
+				}
+				else if (map[Wmap.mIdx] == '8') {
+					image(WallUpRightCornerImg, Wmap.px, Wmap.py);
+
 				}
 				else if (map[Wmap.mIdx] == 'g') {
 					image(goalImg, Wmap.px, Wmap.py);
