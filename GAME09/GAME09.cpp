@@ -4,7 +4,6 @@
 #include "CONTAINER.h"
 #include "TITLE.h"
 #include "STAGE.h"
-#include "PHYSICS_ENGINE.h"
 
 namespace GAME09
 {
@@ -17,6 +16,8 @@ namespace GAME09
 		Scenes[STAGE_ID] = new STAGE(this);
 		BackGround = new BACKGROUND(this);
 		Physics = new PHYSICS_ENGINE(this);
+		Box = new BOX(this);
+		Cloud = new CLOUD(this);
 
 		//load
 		Container->load();
@@ -29,6 +30,8 @@ namespace GAME09
 		}
 		BackGround->create();
 		Physics->create();
+		Box->create();
+		Cloud->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -39,6 +42,8 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Cloud;
+		delete Box;
 		delete Physics;
 		delete BackGround;
 		for (int i = 0; i < NUM_SCENES; i++) {

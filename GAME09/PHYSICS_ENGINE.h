@@ -14,7 +14,6 @@ namespace GAME09
         };
     private:
         DATA Physics;
-        class BOX* Box;
         std::vector<class FRUITS*> Fruits;
     public:
         PHYSICS_ENGINE(class GAME* game);

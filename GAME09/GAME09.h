@@ -24,10 +24,14 @@ namespace GAME09
 		SCENE_ID CurSceneId;
 		class BACKGROUND* BackGround;
 		class PHYSICS_ENGINE* Physics;
+		class BOX* Box;
+		class CLOUD* Cloud;
 	public:
 		class SCENE* getScene(SCENE_ID sceneId) { return Scenes[sceneId]; }
 		class BACKGROUND* backGround() { return BackGround; }
 		class PHYSICS_ENGINE* physics() { return Physics; }
+		class BOX* box() { return Box; }
+		class CLOUD* cloud() { return Cloud; }
     public:
         GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};

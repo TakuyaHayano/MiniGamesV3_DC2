@@ -14,14 +14,11 @@ namespace GAME09
 
 	}
 	PHYSICS_ENGINE::~PHYSICS_ENGINE() {
-		delete Box;
+
 	}
 
 	void PHYSICS_ENGINE::create() {
 		Physics = game()->container()->data().physics;
-		Box = new BOX(game());
-
-		Box->create();
 	}
 
 	void PHYSICS_ENGINE::init() {
@@ -49,12 +46,8 @@ namespace GAME09
 
 	void PHYSICS_ENGINE::draw() {
 		rectMode(CENTER);
-		Box->draw();
 		for (auto it = Fruits.begin(); it != Fruits.end(); it++) {
 			(*it)->draw();
-			fill(0);
-			print((*it)->getPosC().x);
-			print((*it)->getPosC().y);
 		}
 	}
 
@@ -77,19 +70,19 @@ namespace GAME09
 	}
 
 	void PHYSICS_ENGINE::applyConstraintIndividual(class FRUITS* fruits){
-		if (fruits->getPosC().y + fruits->getRadius() > Box->under()) {
-			fruits->setPosC(VECTOR2(fruits->getPosC().x, Box->under() - fruits->getRadius()));
-			fruits->setPosO(VECTOR2(fruits->getPosO().x, Box->under() - fruits->getRadius()));
+		if (fruits->getPosC().y + fruits->getRadius() > game()->box()->under()) {
+			fruits->setPosC(VECTOR2(fruits->getPosC().x, game()->box()->under() - fruits->getRadius()));
+			fruits->setPosO(VECTOR2(fruits->getPosO().x, game()->box()->under() - fruits->getRadius()));
 			fruits->setTouch(true);
 		}
-		if (fruits->getPosC().x + fruits->getRadius() > Box->right()) {
-			fruits->setPosC(VECTOR2(Box->right() - fruits->getRadius() - 0.01f, fruits->getPosC().y));
-			fruits->setPosO(VECTOR2(Box->right() - fruits->getRadius() - 0.01f, fruits->getPosO().y));
+		if (fruits->getPosC().x + fruits->getRadius() > game()->box()->right()) {
+			fruits->setPosC(VECTOR2(game()->box()->right() - fruits->getRadius() - 0.01f, fruits->getPosC().y));
+			fruits->setPosO(VECTOR2(game()->box()->right() - fruits->getRadius() - 0.01f, fruits->getPosO().y));
 			//fruits->setTouch(true);
 		}
-		if (fruits->getPosC().x - fruits->getRadius() < Box->left()) {
-			fruits->setPosC(VECTOR2(Box->left() + fruits->getRadius() + 0.01f, fruits->getPosC().y));
-			fruits->setPosO(VECTOR2(Box->left() + fruits->getRadius() + 0.01f, fruits->getPosO().y));
+		if (fruits->getPosC().x - fruits->getRadius() < game()->box()->left()) {
+			fruits->setPosC(VECTOR2(game()->box()->left() + fruits->getRadius() + 0.01f, fruits->getPosC().y));
+			fruits->setPosO(VECTOR2(game()->box()->left() + fruits->getRadius() + 0.01f, fruits->getPosO().y));
 			//fruits->setTouch(true);
 		}
 	}

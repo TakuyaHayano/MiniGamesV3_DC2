@@ -25,7 +25,7 @@ namespace GAME09
 		Data.endButton.initStandbyMotion = true;
 		Data.endButton.startTime = 0.0f;
 
-		Data.physics.gravity = VECTOR2(0.0f, 1500.0f);
+		Data.physics.gravity = VECTOR2(0.0f, 1800.0f);
 
 		Data.box.pos = VECTOR2(width / 2, height / 2);
 		Data.box.imgSize = 1;
@@ -39,7 +39,15 @@ namespace GAME09
 		Data.fruits.cherryImgSize = 0.062f;
 		Data.fruits.nextFruitsSizeRate = 1.232f;
 		Data.fruits.inflateMaxTime = 0.1f;
-		Data.fruits.initValue = 0.45f;
+		Data.fruits.initValue = 0.5f;
+
+		Data.cloud.fruitsInitPos = VECTOR2(width / 2, 100);
+		Data.cloud.fruitsImgSize = 1;
+		Data.cloud.cloudPosOfst = VECTOR2(100, -50);
+		Data.cloud.cloudImgSize = 0.45f;
+		Data.cloud.left = 660;
+		Data.cloud.right = 1260;
+		Data.cloud.moveSpeed = 200;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -57,5 +65,6 @@ namespace GAME09
 			path += ".png";
 			Data.fruits.imgs[i] = loadImage(path.c_str());
 		}
+		Data.cloud.cloudImg = loadImage("..\\main\\assets\\game09\\cloud.png");
 	}
 }

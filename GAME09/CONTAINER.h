@@ -7,6 +7,7 @@
 #include "PHYSICS_ENGINE.h"
 #include "BOX.h"
 #include "FRUITS.h"
+#include "CLOUD.h"
 
 namespace GAME09
 {
@@ -22,6 +23,7 @@ namespace GAME09
 			PHYSICS_ENGINE::DATA physics;
 			BOX::DATA box;
 			FRUITS::DATA fruits;
+			CLOUD::DATA cloud;
 		};
 		DATA Data;
 	public:

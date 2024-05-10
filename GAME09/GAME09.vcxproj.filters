@@ -14,6 +14,8 @@
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="PHYSICS_ENGINE.cpp" />
     <ClCompile Include="BOX.cpp" />
+    <ClCompile Include="FRUITS.cpp" />
+    <ClCompile Include="CLOUD.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -29,6 +31,8 @@
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="PHYSICS_ENGINE.h" />
     <ClInclude Include="BOX.h" />
+    <ClInclude Include="FRUITS.h" />
+    <ClInclude Include="CLOUD.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />
