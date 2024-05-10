@@ -27,11 +27,11 @@ namespace GAME09
 
 	void PHYSICS_ENGINE::update() {
 		//ƒtƒ‹[ƒc‚ð‘‚â‚·ˆ—
-		if (isTrigger(MOUSE_LBUTTON)) {
-			Fruits.emplace_back(new FRUITS(game(), VECTOR2(mouseX, mouseY), (FRUITS::FRUITS_KINDS)random(0, 4)));
-			Fruits.back()->create();
-			Fruits.back()->init();
-		}
+		//if (isTrigger(MOUSE_LBUTTON)) {
+		//	Fruits.emplace_back(new FRUITS(game(), VECTOR2(mouseX, mouseY), (FRUITS::FRUITS_KINDS)random(0, 4)));
+		//	Fruits.back()->create();
+		//	Fruits.back()->init();
+		//}
 
 		//•¨—‰‰ŽZ
 		const int subSteps = 8;
@@ -48,6 +48,9 @@ namespace GAME09
 		rectMode(CENTER);
 		for (auto it = Fruits.begin(); it != Fruits.end(); it++) {
 			(*it)->draw();
+			fill(0);
+			print((*it)->getPosC().x);
+			print((*it)->getPosC().y);
 		}
 	}
 
@@ -67,6 +70,10 @@ namespace GAME09
 		for (auto it = Fruits.begin(); it != Fruits.end(); it++) {
 			applyConstraintIndividual(*it);
 		}
+	}
+
+	void PHYSICS_ENGINE::addFruits(FRUITS* fruits){
+		Fruits.emplace_back(fruits);
 	}
 
 	void PHYSICS_ENGINE::applyConstraintIndividual(class FRUITS* fruits){

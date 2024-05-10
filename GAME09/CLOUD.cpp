@@ -4,6 +4,7 @@
 #include "../../libOne/inc/graphic.h"
 #include "../../libOne/inc/window.h"
 #include "../../libOne/inc/input.h"
+#include "../../libOne/inc/rand.h"
 
 namespace GAME09
 {
@@ -21,15 +22,43 @@ namespace GAME09
 
 	void CLOUD::init() {
 		FruitsPos = Cloud.fruitsInitPos;
+		CreateFruits();
+	}
+
+	void CLOUD::CreateFruits() {
+		Fruits = new FRUITS(game(), FruitsPos, (FRUITS::FRUITS_KINDS)random(0, 4));
+		Fruits->create();
+		Fruits->init();
+		State = MOVE;
 	}
 
 	void CLOUD::update() {
-
+		if (isPress(KEY_LEFT)) {
+			FruitsPos.x -= Cloud.moveSpeed * delta;
+			if (FruitsPos.x < Cloud.left) {
+				FruitsPos.x = Cloud.left;
+			}
+		}
+		if (isPress(KEY_RIGHT)) {
+			FruitsPos.x += Cloud.moveSpeed * delta;
+			if (FruitsPos.x > Cloud.right) {
+				FruitsPos.x = Cloud.right;
+			}
+		}
+		if (State == MOVE) {
+			Fruits->setPosC(FruitsPos);
+			Fruits->setPosO(FruitsPos);
+		}
+		if (isTrigger(KEY_SPACE)) {
+			game()->physics()->addFruits(Fruits);
+			State = FALL;
+		}
 	}
 
 	void CLOUD::draw() {
 		rectMode(CENTER);
 		VECTOR2 pos = FruitsPos + Cloud.cloudPosOfst;
 		image(Cloud.cloudImg, pos.x, pos.y, 0, Cloud.cloudImgSize);
+		Fruits->draw();
 	}
 }

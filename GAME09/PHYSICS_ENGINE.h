@@ -28,5 +28,7 @@ namespace GAME09
         void applyConstraint();
         void applyConstraintIndividual(class FRUITS* fruits);
         void solveCollisions();
+
+        void addFruits(class FRUITS* fruits);
     };
 }

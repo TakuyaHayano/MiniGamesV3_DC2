@@ -9,6 +9,10 @@ namespace GAME09
         public GAME_OBJECT
     {
     public:
+        enum STATE {
+            MOVE,
+            FALL
+        };
         struct DATA {
             VECTOR2 fruitsInitPos;
             float   fruitsImgSize;
@@ -21,8 +25,11 @@ namespace GAME09
         };
     private:
         DATA Cloud;
-        FRUITS::FRUITS_KINDS CurKind;
+        class FRUITS* Fruits;
         VECTOR2 FruitsPos;
+        STATE State;
+
+        void CreateFruits();
     public:
         CLOUD(class GAME* game);
         ~CLOUD();

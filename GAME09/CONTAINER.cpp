@@ -41,9 +41,9 @@ namespace GAME09
 		Data.fruits.inflateMaxTime = 0.1f;
 		Data.fruits.initValue = 0.5f;
 
-		Data.cloud.fruitsInitPos = VECTOR2(width / 2, 100);
+		Data.cloud.fruitsInitPos = VECTOR2(width / 2, 150);
 		Data.cloud.fruitsImgSize = 1;
-		Data.cloud.cloudPosOfst = VECTOR2(100, -50);
+		Data.cloud.cloudPosOfst = VECTOR2(50, -50);
 		Data.cloud.cloudImgSize = 0.45f;
 		Data.cloud.left = 660;
 		Data.cloud.right = 1260;
