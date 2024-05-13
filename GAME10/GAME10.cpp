@@ -5,6 +5,7 @@ namespace GAME10
 {
 	int GAME::create()
 	{
+
 		STATE = TITLE;
 		//fileスキャン
 		fileName = "..\\main\\assets\\game10\\map.txt";
@@ -28,7 +29,7 @@ namespace GAME10
 
 		fclose(fp);
 
-		//行列の計算
+		//行列の計算・マップの記号の数
 		for (int i = 0; i < fileSize; i++) {
 			cnt++;
 			if (map[i] == 'g') {
@@ -61,6 +62,9 @@ namespace GAME10
 			else if (map[i] == '8') {
 				InvisibleWallCnt++;
 			}
+			else if (map[i] == 's' || map[i] == 'h' || map[i] == 'e') {
+				EnemyCnt++;
+			}
 			else if (map[i] == '\n') {
 				if (row == 0) {
 					col = cnt;
@@ -69,11 +73,11 @@ namespace GAME10
 			}
 		}
 
-		//壁・goal・見えない壁の動的確保
+		//壁・goal・見えない壁・敵の動的確保
 		Wall = new wall[WallCnt];
 		WallCorner = new wall[InvisibleWallCnt];
 		Goal = new wall[GoalCnt ];
-
+		Enemys = new character[EnemyCnt];
 		return 0;
 	}
 
@@ -109,6 +113,9 @@ namespace GAME10
 		int Wcnt = 0;
 		int Gcnt = 0;
 		int WCcnt = 0;
+		Wmap.worldX = 0;
+		Wmap.worldY = 0;
+		Ecnt = 0;
 		//プレイヤーと敵の初期位置設定・壁の情報の保存
 		for (int c = 0; c < col; c++) {
 			Wmap.px = Wmap.worldX + c * Wmap.Xsize;
@@ -172,6 +179,22 @@ namespace GAME10
 					player.Cpx = Wmap.px + Wmap.XharfSize;
 					player.Cpy = Wmap.py + Wmap.YharfSize;
 				}
+				//敵
+				else if (map[Wmap.mIdx] == 's'|| map[Wmap.mIdx] == 'h' || map[Wmap.mIdx] == 'e') {
+					Enemys[Ecnt].Cpx = Wmap.px + Wmap.XharfSize;;
+					Enemys[Ecnt].Cpy = Wmap.py + Wmap.YharfSize;
+					//動きの種類を決定
+					if (map[Wmap.mIdx] == 's') {
+						Enemys[Ecnt].Mkind = RightLeft;
+					}
+					else if (map[Wmap.mIdx] == 'h'){
+						Enemys[Ecnt].Mkind = UpDown;
+					}
+					else if (map[Wmap.mIdx] == 'e') {
+						Enemys[Ecnt].Mkind = NoMove;
+					}
+					Ecnt++;
+				}
 				//鍵
 				else if (map[Wmap.mIdx] == 'k') {
 					Key.ItemCore.x = Wmap.px + Wmap.XharfSize;
@@ -196,7 +219,8 @@ namespace GAME10
 
 	void GAME::play() {
 		draw();
-		move();
+		Pmove();
+		Emove();
 		collision();
 		stageChange();
 	}
@@ -208,7 +232,7 @@ namespace GAME10
 		}
 	}
 
-	void GAME::move() {
+	void GAME::Pmove() {
 		if (isPress(KEY_D)) {
 			player.Cpx += player.Mx;
 		}
@@ -408,6 +432,10 @@ namespace GAME10
 		}
 		fill(0);
 		circle(player.Cpx, player.Cpy, player.radius);
+		for (int enemy = 0; enemy < Ecnt; enemy++) {
+			fill(255, 0, 0);
+			circle(Enemys[enemy].Cpx + Wmap.worldX, Enemys[enemy].Cpy + Wmap.worldY, Enemys[enemy].radius);
+		}
 		fill(255,0,0);
 		circle(Key.ItemCore.x + Wmap.worldX, Key.ItemCore.y + Wmap.worldY, Key.Iradius);
 	}

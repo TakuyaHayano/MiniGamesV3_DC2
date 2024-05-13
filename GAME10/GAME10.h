@@ -24,6 +24,7 @@ namespace GAME10
         int WallCnt = 0;
         int GoalCnt = 0;
         int InvisibleWallCnt = 0;
+        int EnemyCnt = 0;
         //壁関連
         int WallImg = 0;
         int WallLeftImg = 0;
@@ -87,11 +88,6 @@ namespace GAME10
             float HIradius = Iradius / 2;
             int ItemKind;
         };
-        //マップ関連
-        Map Wmap;
-        wall* Wall;
-        wall* WallCorner;
-        wall* Goal;
         //当たり判定関係
         HITBOX HitBox;
         //アイテム関連
@@ -104,18 +100,31 @@ namespace GAME10
             float Cpy = 0;
             float Mx = 5;
             float My = 5;
-            //視界
-            float VisionAngle = 60;
+            //視界(敵のみが使用)
             float length = 300;
             float radius = 50;
             float Hradius = radius / 2;
+            //敵の動きの種類
+            char Mkind;
             //プレイヤーのみ使用する変数
             bool GunFlag = false;
             bool KeyFlag = false;
         };
+        enum  {
+            UpDown,
+            RightLeft,
+            NoMove
+        };
+        //動的確保用の変数
+        Map Wmap;
+        wall* Wall;
+        wall* WallCorner;
+        wall* Goal;
+        //敵
+        character* Enemys;
+        int Ecnt = 0;
         //プレイヤー
         character player;
-        //エネミー関連
     public:
         GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};
@@ -125,7 +134,8 @@ namespace GAME10
         void init();
         void play();
         void result();
-            void move();
+            void Pmove();
+            void Emove();
             void stageChange();
             void collision();
                 void hitbox(int w);
