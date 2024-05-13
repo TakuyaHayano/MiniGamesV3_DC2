@@ -61,10 +61,11 @@ namespace GAME09
 		VECTOR2 pos = FruitsPos + Cloud.cloudPosOfst;
 		image(Cloud.cloudImg, pos.x, pos.y, 0, Cloud.cloudImgSize);
 		if (State == MOVE) {
+			strokeWeight(Cloud.lineWidth);
+			stroke(255);
+			line(FruitsPos.x, FruitsPos.y, FruitsPos.x, game()->box()->under());
 			Fruits->draw();
 		}
-		fill(0);
-		print(State);
 	}
 	void CLOUD::setMove(){
 		State = MOVE;

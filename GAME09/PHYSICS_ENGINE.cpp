@@ -54,12 +54,6 @@ namespace GAME09
 			//print((*it)->getPosC().x);
 			//print((*it)->getPosC().y);
 		}
-		if (isSetMove) {
-			print("true");
-		}
-		else {
-			print("false");
-		}
 	}
 
 	void PHYSICS_ENGINE::updatePos(float dt) {

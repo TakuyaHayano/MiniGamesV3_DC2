@@ -45,9 +45,10 @@ namespace GAME09
 		Data.cloud.fruitsImgSize = 1;
 		Data.cloud.cloudPosOfst = VECTOR2(50, -50);
 		Data.cloud.cloudImgSize = 0.45f;
-		Data.cloud.left = 660;
-		Data.cloud.right = 1260;
-		Data.cloud.moveSpeed = 200;
+		Data.cloud.left = 672;
+		Data.cloud.right = 1228;
+		Data.cloud.moveSpeed = 340;
+		Data.cloud.lineWidth = 4;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

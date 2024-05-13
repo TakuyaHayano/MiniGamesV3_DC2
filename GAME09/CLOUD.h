@@ -22,6 +22,7 @@ namespace GAME09
             float   left;
             float   right;
             float   moveSpeed;
+            float   lineWidth;
         };
     private:
         DATA Cloud;
