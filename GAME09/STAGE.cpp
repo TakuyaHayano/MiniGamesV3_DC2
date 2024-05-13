@@ -19,6 +19,7 @@ namespace GAME09
 	}
 	void STAGE::init() {
 		game()->cloud()->init();
+		game()->physics()->init();
 	}
 	void STAGE::update() {
 		game()->cloud()->update();

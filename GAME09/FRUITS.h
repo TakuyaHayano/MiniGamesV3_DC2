@@ -50,6 +50,8 @@ namespace GAME09
         float InflateTime;
         float MaxRadius;
         bool Inflate;
+        bool TouchedAny = false;
+        bool Last = false;
     public:
         FRUITS(class GAME* game, VECTOR2 pos, FRUITS_KINDS kinds, bool inflate = false);
         ~FRUITS();
@@ -66,6 +68,10 @@ namespace GAME09
 
         void setPosC(const VECTOR2& newPos) { Pos_current = newPos; }
         void setPosO(const VECTOR2& newPos) { Pos_old = newPos; }
-        void setTouch(bool touch) { Touch = touch; }
+        void setTouch(bool touch);
+        void setLast(bool last) { Last = last; }
+        
+        bool getTouchedAny() { return TouchedAny; }
+        bool getLast() { return Last; }
     };
 }

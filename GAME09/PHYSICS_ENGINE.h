@@ -15,6 +15,7 @@ namespace GAME09
     private:
         DATA Physics;
         std::vector<class FRUITS*> Fruits;
+        bool isSetMove;
     public:
         PHYSICS_ENGINE(class GAME* game);
         ~PHYSICS_ENGINE();

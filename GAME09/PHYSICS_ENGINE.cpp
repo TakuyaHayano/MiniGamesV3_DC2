@@ -6,6 +6,7 @@
 #include "../../libOne/inc/window.h"
 #include "../../libOne/inc/input.h"
 #include "../../libOne/inc/rand.h"
+#include "myFunc.h"
 
 namespace GAME09
 {
@@ -14,7 +15,7 @@ namespace GAME09
 
 	}
 	PHYSICS_ENGINE::~PHYSICS_ENGINE() {
-
+		safe_clear(Fruits);
 	}
 
 	void PHYSICS_ENGINE::create() {
@@ -22,16 +23,17 @@ namespace GAME09
 	}
 
 	void PHYSICS_ENGINE::init() {
-
+		isSetMove = true;
 	}
 
 	void PHYSICS_ENGINE::update() {
+
 		//フルーツを増やす処理
-		//if (isTrigger(MOUSE_LBUTTON)) {
-		//	Fruits.emplace_back(new FRUITS(game(), VECTOR2(mouseX, mouseY), (FRUITS::FRUITS_KINDS)random(0, 4)));
-		//	Fruits.back()->create();
-		//	Fruits.back()->init();
-		//}
+		if (isTrigger(MOUSE_LBUTTON)) {
+			Fruits.emplace_back(new FRUITS(game(), VECTOR2(mouseX, mouseY), (FRUITS::FRUITS_KINDS)random(0, 4)));
+			Fruits.back()->create();
+			Fruits.back()->init();
+		}
 
 		//物理演算
 		const int subSteps = 8;
@@ -48,9 +50,15 @@ namespace GAME09
 		rectMode(CENTER);
 		for (auto it = Fruits.begin(); it != Fruits.end(); it++) {
 			(*it)->draw();
-			fill(0);
-			print((*it)->getPosC().x);
-			print((*it)->getPosC().y);
+			//fill(0);
+			//print((*it)->getPosC().x);
+			//print((*it)->getPosC().y);
+		}
+		if (isSetMove) {
+			print("true");
+		}
+		else {
+			print("false");
 		}
 	}
 
@@ -74,6 +82,8 @@ namespace GAME09
 
 	void PHYSICS_ENGINE::addFruits(FRUITS* fruits){
 		Fruits.emplace_back(fruits);
+		Fruits.back()->setLast(true);
+		isSetMove = false;
 	}
 
 	void PHYSICS_ENGINE::applyConstraintIndividual(class FRUITS* fruits){
@@ -81,6 +91,11 @@ namespace GAME09
 			fruits->setPosC(VECTOR2(fruits->getPosC().x, game()->box()->under() - fruits->getRadius()));
 			fruits->setPosO(VECTOR2(fruits->getPosO().x, game()->box()->under() - fruits->getRadius()));
 			fruits->setTouch(true);
+			if (!isSetMove && fruits->getLast()) {
+				isSetMove = true;
+				game()->cloud()->setMove();
+				fruits->setLast(false);
+			}
 		}
 		if (fruits->getPosC().x + fruits->getRadius() > game()->box()->right()) {
 			fruits->setPosC(VECTOR2(game()->box()->right() - fruits->getRadius() - 0.01f, fruits->getPosC().y));
@@ -106,6 +121,14 @@ namespace GAME09
 				const float distR = fruits1->getRadius() + fruits2->getRadius();
 				//衝突してるなら
 				if (dist < distR) {
+					if (!isSetMove) {
+						if (fruits1->getLast() || fruits2->getLast()) {
+   							isSetMove = true;
+							game()->cloud()->setMove();
+							fruits1->setLast(false);
+							fruits2->setLast(false);
+						}
+					}
 					//同じフルーツなら消す
 					if (fruits1->getKinds() == fruits2->getKinds()) {
 						//スイカじゃなければ進化した奴を生成
@@ -113,7 +136,9 @@ namespace GAME09
 							VECTOR2 pos = (fruits1->getPosC() + fruits2->getPosC()) / 2;
 							TempEvolution.emplace_back(new FRUITS(game(), pos, (FRUITS::FRUITS_KINDS)(fruits1->getKinds() + 1), true));
 						}
+						delete (*it2);
 						Fruits.erase(it2);
+						delete (*it);
 						it = Fruits.erase(it);
 						erase = true;
 						break;

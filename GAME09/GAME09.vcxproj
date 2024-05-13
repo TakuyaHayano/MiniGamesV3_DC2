@@ -161,6 +161,7 @@
     <ClInclude Include="FRUITS.h" />
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />
+    <ClInclude Include="myFunc.h" />
     <ClInclude Include="PHYSICS_ENGINE.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="STAGE.h" />

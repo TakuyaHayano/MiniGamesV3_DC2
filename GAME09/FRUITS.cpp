@@ -32,6 +32,7 @@ namespace GAME09
 		if (!Inflate) Radius = MaxRadius;
 		ImgSize = Fruits.cherryImgSize * rate;
 		InflateTime = 0;
+		Last = false;
 	}
 
 	void FRUITS::update(float dt) {
@@ -64,10 +65,22 @@ namespace GAME09
 	void FRUITS::draw() {
 		strokeWeight(4);
 		stroke(0,180,0);
-		fill(255, 255, 255, 0);
+		if (Last) {
+			fill(255, 0, 0, 200);
+		}
+		else {
+			fill(0, 255, 0, 200);
+		}
 		angleMode(RADIANS);
 		image(Fruits.imgs[Kinds], Pos_current.x, Pos_current.y, Theta, ImgSize);
 		//circle(Pos_current.x, Pos_current.y, Radius * 2);
 		//line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
+	}
+
+	void FRUITS::setTouch(bool touch) {
+		Touch = touch;
+		if (!TouchedAny) {
+			TouchedAny = true;
+		}
 	}
 }

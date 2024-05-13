@@ -13,7 +13,7 @@ namespace GAME09
 
 	}
 	CLOUD::~CLOUD() {
-
+		delete Fruits;
 	}
 
 	void CLOUD::create() {
@@ -45,13 +45,14 @@ namespace GAME09
 				FruitsPos.x = Cloud.right;
 			}
 		}
+		Fruits->setPosC(FruitsPos);
+		Fruits->setPosO(FruitsPos);
 		if (State == MOVE) {
-			Fruits->setPosC(FruitsPos);
-			Fruits->setPosO(FruitsPos);
-		}
-		if (isTrigger(KEY_SPACE)) {
-			game()->physics()->addFruits(Fruits);
-			State = FALL;
+			if (isTrigger(KEY_SPACE) || isTrigger(KEY_ENTER)) {
+				game()->physics()->addFruits(Fruits);
+				CreateFruits();
+				State = FALL;
+			}
 		}
 	}
 
@@ -59,6 +60,13 @@ namespace GAME09
 		rectMode(CENTER);
 		VECTOR2 pos = FruitsPos + Cloud.cloudPosOfst;
 		image(Cloud.cloudImg, pos.x, pos.y, 0, Cloud.cloudImgSize);
-		Fruits->draw();
+		if (State == MOVE) {
+			Fruits->draw();
+		}
+		fill(0);
+		print(State);
+	}
+	void CLOUD::setMove(){
+		State = MOVE;
 	}
 }

@@ -33,6 +33,7 @@
     <ClInclude Include="BOX.h" />
     <ClInclude Include="FRUITS.h" />
     <ClInclude Include="CLOUD.h" />
+    <ClInclude Include="myFunc.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

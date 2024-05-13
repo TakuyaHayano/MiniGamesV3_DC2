@@ -37,5 +37,7 @@ namespace GAME09
         void init();
         void update();
         void draw();
+
+        void setMove();
     };
 }
