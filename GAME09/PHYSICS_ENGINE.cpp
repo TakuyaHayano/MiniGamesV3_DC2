@@ -128,7 +128,7 @@ namespace GAME09
 						//ƒXƒCƒJ‚¶‚á‚È‚¯‚ê‚Îi‰»‚µ‚½“z‚ð¶¬
 						if (fruits1->getKinds() != FRUITS::WATERMELON) {
 							VECTOR2 pos = (fruits1->getPosC() + fruits2->getPosC()) / 2;
-							TempEvolution.emplace_back(new FRUITS(game(), pos, (FRUITS::FRUITS_KINDS)(fruits1->getKinds() + 1), true));
+							TempEvolution.emplace_back(new FRUITS(game(), pos, (FRUITS::FRUITS_KINDS)(fruits1->getKinds() + 1)));
 						}
 						delete (*it2);
 						Fruits.erase(it2);
@@ -138,13 +138,28 @@ namespace GAME09
 						break;
 					}
 					else {
+						//d‚È‚è‰ðÁ
 						const VECTOR2 n = colliAxis / dist;
-						const float solveV = (distR - dist);
+						const float solveV = (distR - dist) * 0.9f;
 						const float ratio = pow(fruits1->getRadius(), 1) / (pow(fruits1->getRadius(), 1) + pow(fruits2->getRadius(), 1));
 						fruits1->setPosC(fruits1->getPosC() + (solveV * n * (1 - ratio)));
 						fruits2->setPosC(fruits2->getPosC() - (solveV * n * ratio));
 						fruits1->setTouch(true);
 						fruits2->setTouch(true);
+						//‚Ô‚Á”ò‚Ñ–hŽ~
+						const float maxSpeed = 1.0f;
+						VECTOR2 curVel1 = fruits1->getPosC() - fruits1->getPosO();
+						VECTOR2 curVel2 = fruits2->getPosC() - fruits2->getPosO();
+						float velLen1 = curVel1.mag();
+						float velLen2 = curVel2.mag();
+						if (velLen1 > maxSpeed) {
+							VECTOR2 n1 = curVel1 / velLen1;
+							fruits1->setPosO(fruits1->getPosC() - (maxSpeed * n1));
+						}
+						if (velLen2 > maxSpeed) {
+							VECTOR2 n2 = curVel2 / velLen2;
+							fruits2->setPosO(fruits2->getPosC() - (maxSpeed * n2));
+						}
 					}
 				}
 			}
