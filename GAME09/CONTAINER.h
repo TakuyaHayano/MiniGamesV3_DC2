@@ -8,6 +8,7 @@
 #include "BOX.h"
 #include "FRUITS.h"
 #include "CLOUD.h"
+#include "BUBBLE.h"
 
 namespace GAME09
 {
@@ -24,6 +25,7 @@ namespace GAME09
 			BOX::DATA box;
 			FRUITS::DATA fruits;
 			CLOUD::DATA cloud;
+			BUBBLE::DATA bubble;
 		};
 		DATA Data;
 	public:

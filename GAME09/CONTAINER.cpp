@@ -49,6 +49,11 @@ namespace GAME09
 		Data.cloud.right = 1228;
 		Data.cloud.moveSpeed = 340;
 		Data.cloud.lineWidth = 4;
+
+		Data.bubble.pos = VECTOR2(width / 2, height / 2);
+		Data.bubble.imgSize = 0.33f;
+		Data.bubble.maxMoveOfst = VECTOR2(0, 20);
+		Data.bubble.animeTime = 2.0f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -67,5 +72,6 @@ namespace GAME09
 			Data.fruits.imgs[i] = loadImage(path.c_str());
 		}
 		Data.cloud.cloudImg = loadImage("..\\main\\assets\\game09\\cloud.png");
+		Data.bubble.img = loadImage("..\\main\\assets\\game09\\bubble.png");
 	}
 }

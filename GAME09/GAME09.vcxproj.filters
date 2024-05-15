@@ -16,6 +16,7 @@
     <ClCompile Include="BOX.cpp" />
     <ClCompile Include="FRUITS.cpp" />
     <ClCompile Include="CLOUD.cpp" />
+    <ClCompile Include="BUBBLE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="FRUITS.h" />
     <ClInclude Include="CLOUD.h" />
     <ClInclude Include="myFunc.h" />
+    <ClInclude Include="BUBBLE.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

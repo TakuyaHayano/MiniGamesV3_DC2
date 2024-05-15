@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="BACKGROUND.cpp" />
     <ClCompile Include="BOX.cpp" />
+    <ClCompile Include="BUBBLE.cpp" />
     <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="BUTTON_END.cpp" />
     <ClCompile Include="BUTTON_HELP.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="BACKGROUND.h" />
     <ClInclude Include="BOX.h" />
+    <ClInclude Include="BUBBLE.h" />
     <ClInclude Include="BUTTON.h" />
     <ClInclude Include="BUTTON_END.h" />
     <ClInclude Include="BUTTON_HELP.h" />
