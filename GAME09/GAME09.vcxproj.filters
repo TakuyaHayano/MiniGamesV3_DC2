@@ -17,6 +17,7 @@
     <ClCompile Include="FRUITS.cpp" />
     <ClCompile Include="CLOUD.cpp" />
     <ClCompile Include="BUBBLE.cpp" />
+    <ClCompile Include="NEXT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="CLOUD.h" />
     <ClInclude Include="myFunc.h" />
     <ClInclude Include="BUBBLE.h" />
+    <ClInclude Include="NEXT.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

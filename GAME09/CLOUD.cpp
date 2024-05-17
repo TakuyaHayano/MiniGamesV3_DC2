@@ -26,9 +26,7 @@ namespace GAME09
 	}
 
 	void CLOUD::CreateFruits() {
-		Fruits = new FRUITS(game(), FruitsPos, (FRUITS::FRUITS_KINDS)random(0, 4));
-		Fruits->create();
-		Fruits->init();
+		Fruits = game()->next()->getNextFruits();
 		State = MOVE;
 	}
 
@@ -45,12 +43,11 @@ namespace GAME09
 				FruitsPos.x = Cloud.right;
 			}
 		}
-		Fruits->setPosC(FruitsPos);
-		Fruits->setPosO(FruitsPos);
 		if (State == MOVE) {
+			Fruits->setPosC(FruitsPos);
+			Fruits->setPosO(FruitsPos);
 			if (isTrigger(KEY_SPACE) || isTrigger(KEY_ENTER)) {
 				game()->physics()->addFruits(Fruits);
-				CreateFruits();
 				State = FALL;
 			}
 		}
@@ -68,6 +65,7 @@ namespace GAME09
 		}
 	}
 	void CLOUD::setMove(){
+		CreateFruits();
 		State = MOVE;
 	}
 }

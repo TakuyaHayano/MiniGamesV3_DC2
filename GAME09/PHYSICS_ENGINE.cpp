@@ -29,11 +29,11 @@ namespace GAME09
 	void PHYSICS_ENGINE::update() {
 
 		//ƒtƒ‹[ƒc‚ğ‘‚â‚·ˆ—
-		if (isTrigger(MOUSE_LBUTTON)) {
-			Fruits.emplace_back(new FRUITS(game(), VECTOR2(mouseX, mouseY), (FRUITS::FRUITS_KINDS)random(0, 4)));
-			Fruits.back()->create();
-			Fruits.back()->init();
-		}
+		//if (isTrigger(MOUSE_LBUTTON)) {
+		//	Fruits.emplace_back(new FRUITS(game(), VECTOR2(mouseX, mouseY), (FRUITS::FRUITS_KINDS)random(0, 4)));
+		//	Fruits.back()->create();
+		//	Fruits.back()->init();
+		//}
 
 		//•¨—‰‰Z
 		const int subSteps = 8;

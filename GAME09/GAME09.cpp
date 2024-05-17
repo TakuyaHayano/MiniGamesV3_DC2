@@ -18,6 +18,7 @@ namespace GAME09
 		Physics = new PHYSICS_ENGINE(this);
 		Box = new BOX(this);
 		Cloud = new CLOUD(this);
+		Next = new NEXT(this);
 
 		//load
 		Container->load();
@@ -32,6 +33,7 @@ namespace GAME09
 		Physics->create();
 		Box->create();
 		Cloud->create();
+		Next->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -42,6 +44,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Next;
 		delete Cloud;
 		delete Box;
 		delete Physics;

@@ -145,6 +145,7 @@
     <ClCompile Include="FRUITS.cpp" />
     <ClCompile Include="GAME09.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
+    <ClCompile Include="NEXT.cpp" />
     <ClCompile Include="PHYSICS_ENGINE.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="STAGE.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />
     <ClInclude Include="myFunc.h" />
+    <ClInclude Include="NEXT.h" />
     <ClInclude Include="PHYSICS_ENGINE.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="STAGE.h" />

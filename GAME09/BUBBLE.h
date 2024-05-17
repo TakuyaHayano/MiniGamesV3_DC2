@@ -31,5 +31,6 @@ namespace GAME09
 
         void setPos(VECTOR2 pos);
         void setSize(float size) { Size = size; }
+        VECTOR2 getPos() { return CPos; }
     };
 }

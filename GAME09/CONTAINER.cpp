@@ -54,6 +54,10 @@ namespace GAME09
 		Data.bubble.imgSize = 0.33f;
 		Data.bubble.maxMoveOfst = VECTOR2(0, 20);
 		Data.bubble.animeTime = 2.0f;
+		
+		Data.next.strOfst = VECTOR2(0, -70);
+		Data.next.bubbleSize = 0.7f;
+		Data.next.bubblePos = VECTOR2(1620, 270);
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
