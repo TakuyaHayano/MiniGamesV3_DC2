@@ -20,6 +20,7 @@ namespace GAME09
 		Cloud = new CLOUD(this);
 		Next = new NEXT(this);
 		Score = new SCORE(this);
+		DrawNum = new DRAW_NUM(this);
 
 		//load
 		Container->load();
@@ -36,6 +37,7 @@ namespace GAME09
 		Cloud->create();
 		Next->create();
 		Score->create();
+		DrawNum->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -46,6 +48,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete DrawNum;
 		delete Score;
 		delete Next;
 		delete Cloud;
@@ -60,8 +63,7 @@ namespace GAME09
 		delete Container;
 	}
 
-	void GAME::proc()
-	{
+	void GAME::proc(){
 		Scenes[CurSceneId]->proc();
 	}
 

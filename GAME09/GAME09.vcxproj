@@ -142,6 +142,7 @@
     <ClCompile Include="BUTTON_START.cpp" />
     <ClCompile Include="CLOUD.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="DRAW_NUM.cpp" />
     <ClCompile Include="FRUITS.cpp" />
     <ClCompile Include="GAME09.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="BUTTON_START.h" />
     <ClInclude Include="CLOUD.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="DRAW_NUM.h" />
     <ClInclude Include="FRUITS.h" />
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />

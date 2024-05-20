@@ -73,6 +73,9 @@ namespace GAME09
 		Data.score.fruitsScores[FRUITS::PINEAPPLE]  = 45;
 		Data.score.fruitsScores[FRUITS::MELON]      = 55;
 		Data.score.fruitsScores[FRUITS::WATERMELON] = 66;
+
+		Data.drawNum.numSize = 0.31f;
+		Data.drawNum.digitSpace = 80;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -92,5 +95,7 @@ namespace GAME09
 		}
 		Data.cloud.cloudImg = loadImage("..\\main\\assets\\game09\\cloud.png");
 		Data.bubble.img = loadImage("..\\main\\assets\\game09\\bubble.png");
+		Data.drawNum.numImg = loadImage("..\\main\\assets\\game09\\num.png");
+		divideImage(Data.drawNum.numImg, 10, 1, 260, 512, Data.drawNum.numImgs);
 	}
 }
