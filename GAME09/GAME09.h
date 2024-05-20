@@ -27,6 +27,7 @@ namespace GAME09
 		class BOX* Box;
 		class CLOUD* Cloud;
 		class NEXT* Next;
+		class SCORE* Score;
 	public:
 		class SCENE* getScene(SCENE_ID sceneId) { return Scenes[sceneId]; }
 		class BACKGROUND* backGround() { return BackGround; }
@@ -34,6 +35,7 @@ namespace GAME09
 		class BOX* box() { return Box; }
 		class CLOUD* cloud() { return Cloud; }
 		class NEXT* next() { return Next; }
+		class SCORE* score() { return Score; }
     public:
         GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};

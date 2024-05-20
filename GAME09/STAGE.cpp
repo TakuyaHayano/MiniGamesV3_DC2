@@ -18,14 +18,16 @@ namespace GAME09
 		Stage = game()->container()->data().stage;
 	}
 	void STAGE::init() {
-		game()->next()->init();
-		game()->cloud()->init();
+		game()->next()->init();  //ã
+		game()->cloud()->init(); //‰º@‚±‚ê‚ð“ü‚ê‘Ö‚¦‚é‚Æ‚Ü‚¸‚¢
 		game()->physics()->init();
+		game()->score()->init();
 	}
 	void STAGE::update() {
 		game()->cloud()->update();
 		game()->physics()->update();
 		game()->next()->update();
+		game()->score()->update();
 	}
 	void STAGE::draw() {
 		clear(128);
@@ -34,6 +36,7 @@ namespace GAME09
 		game()->cloud()->draw();
 		game()->physics()->draw();
 		game()->next()->draw();
+		game()->score()->draw();
 	}
 	void STAGE::nextScene() {
 

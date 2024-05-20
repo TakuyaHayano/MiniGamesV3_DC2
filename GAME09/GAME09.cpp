@@ -19,6 +19,7 @@ namespace GAME09
 		Box = new BOX(this);
 		Cloud = new CLOUD(this);
 		Next = new NEXT(this);
+		Score = new SCORE(this);
 
 		//load
 		Container->load();
@@ -34,6 +35,7 @@ namespace GAME09
 		Box->create();
 		Cloud->create();
 		Next->create();
+		Score->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -44,6 +46,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Score;
 		delete Next;
 		delete Cloud;
 		delete Box;

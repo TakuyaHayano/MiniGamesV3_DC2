@@ -58,6 +58,21 @@ namespace GAME09
 		Data.next.strOfst = VECTOR2(0, -70);
 		Data.next.bubbleSize = 0.7f;
 		Data.next.bubblePos = VECTOR2(1620, 270);
+
+		Data.score.strOfst = VECTOR2(0, -70);
+		Data.score.bubbleSize = 0.9f;
+		Data.score.bubblePos = VECTOR2(290, 240);
+		Data.score.fruitsScores[FRUITS::CHERRY]     = 1;
+		Data.score.fruitsScores[FRUITS::STRAWBERRY] = 3;
+		Data.score.fruitsScores[FRUITS::GRAPE]      = 6;
+		Data.score.fruitsScores[FRUITS::DEKOPON]    = 10;
+		Data.score.fruitsScores[FRUITS::PERSIMMON]  = 15;
+		Data.score.fruitsScores[FRUITS::APPLE]      = 21;
+		Data.score.fruitsScores[FRUITS::PEAR]       = 28;
+		Data.score.fruitsScores[FRUITS::PEACH]      = 36;
+		Data.score.fruitsScores[FRUITS::PINEAPPLE]  = 45;
+		Data.score.fruitsScores[FRUITS::MELON]      = 55;
+		Data.score.fruitsScores[FRUITS::WATERMELON] = 66;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

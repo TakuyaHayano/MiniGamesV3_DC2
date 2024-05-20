@@ -125,6 +125,8 @@ namespace GAME09
 					}
 					//同じフルーツなら消す
 					if (fruits1->getKinds() == fruits2->getKinds()) {
+						//スコア
+						game()->score()->addScore(fruits1->getKinds());
 						//スイカじゃなければ進化した奴を生成
 						if (fruits1->getKinds() != FRUITS::WATERMELON) {
 							VECTOR2 pos = (fruits1->getPosC() + fruits2->getPosC()) / 2;

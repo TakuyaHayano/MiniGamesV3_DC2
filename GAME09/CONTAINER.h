@@ -10,6 +10,7 @@
 #include "CLOUD.h"
 #include "BUBBLE.h"
 #include "NEXT.h"
+#include "SCORE.h"
 
 namespace GAME09
 {
@@ -28,6 +29,7 @@ namespace GAME09
 			CLOUD::DATA cloud;
 			BUBBLE::DATA bubble;
 			NEXT::DATA next;
+			SCORE::DATA score;
 		};
 		DATA Data;
 	public:
