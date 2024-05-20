@@ -73,6 +73,8 @@ namespace GAME09
 		Data.score.fruitsScores[FRUITS::PINEAPPLE]  = 45;
 		Data.score.fruitsScores[FRUITS::MELON]      = 55;
 		Data.score.fruitsScores[FRUITS::WATERMELON] = 66;
+		Data.score.scoreOfst = VECTOR2(0, -20);
+		Data.score.scoreSize = 0.6f;
 
 		Data.drawNum.numSize = 0.31f;
 		Data.drawNum.digitSpace = 80;

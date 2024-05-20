@@ -37,9 +37,7 @@ namespace GAME09
 	void SCORE::draw() {
 		rectMode(CENTER);
 		Bubble->draw();
-		textSize(100);
-		fill(0);
-		text(CurScore, Bubble->getPos().x, Bubble->getPos().y);
+		game()->drawNum()->draw(CurScore, Bubble->getPos() + Score.scoreOfst, Score.scoreSize);
 	}
 
 	void SCORE::addScore(FRUITS::FRUITS_KINDS kinds){

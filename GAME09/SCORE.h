@@ -15,6 +15,8 @@ namespace GAME09
             float bubbleSize;
             VECTOR2 bubblePos;
             int fruitsScores[FRUITS::NUM_FRUITS_KINDS];
+            VECTOR2 scoreOfst;
+            float scoreSize;
         };
     private:
         DATA Score;
