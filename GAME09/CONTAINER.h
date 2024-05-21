@@ -12,6 +12,7 @@
 #include "NEXT.h"
 #include "SCORE.h"
 #include "DRAW_NUM.h"
+#include "FRUITS_BUBBLE.h"
 
 namespace GAME09
 {
@@ -32,6 +33,7 @@ namespace GAME09
 			NEXT::DATA next;
 			SCORE::DATA score;
 			DRAW_NUM::DATA drawNum;
+			FRUITS_BUBBLE::DATA fruitsBubble;
 		};
 		DATA Data;
 	public:

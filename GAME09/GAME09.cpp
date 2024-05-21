@@ -21,6 +21,7 @@ namespace GAME09
 		Next = new NEXT(this);
 		Score = new SCORE(this);
 		DrawNum = new DRAW_NUM(this);
+		FruitsBubble = new FRUITS_BUBBLE(this);
 
 		//load
 		Container->load();
@@ -38,16 +39,20 @@ namespace GAME09
 		Next->create();
 		Score->create();
 		DrawNum->create();
+		FruitsBubble->create();
 
 		//init
 		CurSceneId = TITLE_ID;
 		Scenes[CurSceneId]->init();
+		FruitsBubble->setKinds(FRUITS::WATERMELON);
+		FruitsBubble->init();
 
 		return 0;
 	}
 
 	void GAME::destroy()
 	{
+		delete FruitsBubble;
 		delete DrawNum;
 		delete Score;
 		delete Next;
@@ -65,6 +70,7 @@ namespace GAME09
 
 	void GAME::proc(){
 		Scenes[CurSceneId]->proc();
+		FruitsBubble->draw();
 	}
 
 	void GAME::changeScene(SCENE_ID sceneId) {

@@ -78,6 +78,12 @@ namespace GAME09
 
 		Data.drawNum.numSize = 0.31f;
 		Data.drawNum.digitSpace = 80;
+
+		Data.fruitsBubble.bubblePos = VECTOR2(500, 500);
+		Data.fruitsBubble.bubbleSize = 0.75f;
+		Data.fruitsBubble.cherryImgSize = 0.062f;
+		Data.fruitsBubble.nextFruitsSizeRate = 1.232f;
+		Data.fruitsBubble.maxImgSize = 0.18f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -99,5 +105,6 @@ namespace GAME09
 		Data.bubble.img = loadImage("..\\main\\assets\\game09\\bubble.png");
 		Data.drawNum.numImg = loadImage("..\\main\\assets\\game09\\num.png");
 		divideImage(Data.drawNum.numImg, 10, 1, 260, 512, Data.drawNum.numImgs);
+		Data.fruitsBubble.imgs = Data.fruits.imgs;
 	}
 }
