@@ -13,6 +13,7 @@
 #include "SCORE.h"
 #include "DRAW_NUM.h"
 #include "FRUITS_BUBBLE.h"
+#include "FRUITS_BUBBLES.h"
 
 namespace GAME09
 {
@@ -34,6 +35,7 @@ namespace GAME09
 			SCORE::DATA score;
 			DRAW_NUM::DATA drawNum;
 			FRUITS_BUBBLE::DATA fruitsBubble;
+			FRUITS_BUBBLES::DATA fruitsBubbles;
 		};
 		DATA Data;
 	public:

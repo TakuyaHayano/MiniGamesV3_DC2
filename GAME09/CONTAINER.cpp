@@ -87,6 +87,18 @@ namespace GAME09
 		Data.fruitsBubble.maxMoveDist = 50;
 		Data.fruitsBubble.maxMoveTime = 1;
 		Data.fruitsBubble.minMoveTime = 0.5f;
+
+		Data.fruitsBubbles.order.emplace_back(FRUITS::STRAWBERRY);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::WATERMELON);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::PEAR);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::CHERRY);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::PINEAPPLE);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::PERSIMMON);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::MELON);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::PEACH);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::DEKOPON);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::GRAPE);
+		Data.fruitsBubbles.order.emplace_back(FRUITS::APPLE);
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

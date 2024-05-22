@@ -145,6 +145,7 @@
     <ClCompile Include="DRAW_NUM.cpp" />
     <ClCompile Include="FRUITS.cpp" />
     <ClCompile Include="FRUITS_BUBBLE.cpp" />
+    <ClCompile Include="FRUITS_BUBBLES.cpp" />
     <ClCompile Include="GAME09.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
     <ClCompile Include="NEXT.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="DRAW_NUM.h" />
     <ClInclude Include="FRUITS.h" />
     <ClInclude Include="FRUITS_BUBBLE.h" />
+    <ClInclude Include="FRUITS_BUBBLES.h" />
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />
     <ClInclude Include="myFunc.h" />
