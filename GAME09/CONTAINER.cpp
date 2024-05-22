@@ -84,6 +84,9 @@ namespace GAME09
 		Data.fruitsBubble.cherryImgSize = 0.062f;
 		Data.fruitsBubble.nextFruitsSizeRate = 1.232f;
 		Data.fruitsBubble.maxImgSize = 0.18f;
+		Data.fruitsBubble.maxMoveDist = 50;
+		Data.fruitsBubble.maxMoveTime = 1;
+		Data.fruitsBubble.minMoveTime = 0.5f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

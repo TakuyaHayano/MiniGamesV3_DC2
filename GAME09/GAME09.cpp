@@ -70,6 +70,7 @@ namespace GAME09
 
 	void GAME::proc(){
 		Scenes[CurSceneId]->proc();
+		FruitsBubble->update();
 		FruitsBubble->draw();
 	}
 

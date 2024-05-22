@@ -17,12 +17,25 @@ namespace GAME09
 
             float bubbleSize;
             VECTOR2 bubblePos;
+
+            float maxMoveDist;
+            float maxMoveTime;
+            float minMoveTime;
         };
     private:
         DATA FruitsBubble;
         class BUBBLE* Bubble;
         FRUITS::FRUITS_KINDS Kinds;
         float ImgSize;
+
+        float AnimeTime;
+        float MoveTime;
+        VECTOR2 Pos;
+        VECTOR2 BeforeOfst;
+        VECTOR2 CurOfst;
+        VECTOR2 AfterOfst;
+
+        void SetRandMove();
     public:
         FRUITS_BUBBLE(class GAME* game);
         ~FRUITS_BUBBLE();
