@@ -12,10 +12,15 @@ namespace GAME09
     public:
         struct DATA {
             std::vector<FRUITS::FRUITS_KINDS> order;
+            float lenX;
+            float lenY;
+            float initAngle;
+            float angSpeed;
         };
     private:
         DATA FruitsBubbles;
         class FRUITS_BUBBLE* Bubbles[FRUITS::NUM_FRUITS_KINDS];
+        float Angle;
     public:
         FRUITS_BUBBLES(class GAME* game);
         ~FRUITS_BUBBLES();

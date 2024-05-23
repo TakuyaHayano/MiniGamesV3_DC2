@@ -45,5 +45,6 @@ namespace GAME09
         void draw();
 
         void setKinds(FRUITS::FRUITS_KINDS kinds) { Kinds = kinds; }
+        void setPos(VECTOR2 pos) { Pos = pos; }
     };
 }

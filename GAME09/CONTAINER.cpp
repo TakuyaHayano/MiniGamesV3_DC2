@@ -99,6 +99,10 @@ namespace GAME09
 		Data.fruitsBubbles.order.emplace_back(FRUITS::DEKOPON);
 		Data.fruitsBubbles.order.emplace_back(FRUITS::GRAPE);
 		Data.fruitsBubbles.order.emplace_back(FRUITS::APPLE);
+		Data.fruitsBubbles.lenX = 700;
+		Data.fruitsBubbles.lenY = 400;
+		Data.fruitsBubbles.initAngle = -15.0f;
+		Data.fruitsBubbles.angSpeed = 10.0f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

@@ -29,13 +29,20 @@ namespace GAME09
 	}
 
 	void FRUITS_BUBBLES::init() {
+		Angle = FruitsBubbles.initAngle;
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
 			Bubbles[i]->init();
 		}
 	}
 
 	void FRUITS_BUBBLES::update() {
+		angleMode(DEGREES);
+		Angle += FruitsBubbles.angSpeed * delta;
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
+			float angle = Angle + (float)i / FRUITS::NUM_FRUITS_KINDS * 360;
+			VECTOR2 pos(width / 2, height / 2);
+			pos += VECTOR2(Cos(angle) * FruitsBubbles.lenX, Sin(angle) * FruitsBubbles.lenY);
+			Bubbles[i]->setPos(pos);
 			Bubbles[i]->update();
 		}
 	}
