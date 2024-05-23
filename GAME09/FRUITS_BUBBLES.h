@@ -10,12 +10,25 @@ namespace GAME09
         public GAME_OBJECT
     {
     public:
+        enum STATE {
+            START,
+            STAY,
+            PULL,
+            END,
+            NUM_STATE
+        };
+        struct STATE_MOVE_DATA {
+            float animeTime;
+            float startMag;
+            float endMag;
+        };
         struct DATA {
             std::vector<FRUITS::FRUITS_KINDS> order;
             float lenX;
             float lenY;
             float initDist;
             float speed;
+            STATE_MOVE_DATA moveDatas[NUM_STATE];
         };
     private:
         DATA FruitsBubbles;
@@ -24,6 +37,8 @@ namespace GAME09
         std::vector<float> arcLengths;
         float totalArcLength = 0;
         const float totalSteps = 10000; // ï™äÑÇÃç◊Ç©Ç≥
+        STATE State;
+        float AnimeTime;
     public:
         FRUITS_BUBBLES(class GAME* game);
         ~FRUITS_BUBBLES();

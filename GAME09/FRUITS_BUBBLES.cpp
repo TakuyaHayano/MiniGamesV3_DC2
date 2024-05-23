@@ -47,33 +47,61 @@ namespace GAME09
 
 	void FRUITS_BUBBLES::init() {
 		MoveDist = FruitsBubbles.initDist;
+		AnimeTime = 0;
+		State = START;
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
 			Bubbles[i]->init();
 		}
 	}
 
 	void FRUITS_BUBBLES::update() {
-		angleMode(DEGREES);
-		MoveDist += FruitsBubbles.speed * delta;
-		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
-			float targetLength = ((float)i / FRUITS::NUM_FRUITS_KINDS) * totalArcLength + MoveDist;
-			while (targetLength > totalArcLength) {
-				targetLength -= totalArcLength;
+		if (State != NUM_STATE) {
+			angleMode(DEGREES);
+			AnimeTime += delta;
+			if (AnimeTime > FruitsBubbles.moveDatas[State].animeTime) {
+				AnimeTime -= FruitsBubbles.moveDatas[State].animeTime;
+				State = (STATE)(State + 1);
+				if (State == NUM_STATE) return;
 			}
-			int closestIndex = 0;
+			float ratio = AnimeTime / FruitsBubbles.moveDatas[State].animeTime;
+			switch (State)
+			{
+			case START:
+			case STAY:
+			case PULL:
+				ratio = Sin(ratio * 90);
+				break;
+			case END:
+				ratio = 1 - Cos(ratio * 90);
+				break;
+			default:
+				break;
+			}
+			float magnification = FruitsBubbles.moveDatas[State].startMag * (1 - ratio) + FruitsBubbles.moveDatas[State].endMag * ratio;
+			float a = FruitsBubbles.lenX * magnification;
+			float b = FruitsBubbles.lenY * magnification;
 
-			for (int j = 0; j < arcLengths.size(); j++) {
-				if (arcLengths[j] >= targetLength) {
-					closestIndex = j;
-					break;
+			MoveDist += FruitsBubbles.speed * delta;
+			for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
+				float targetLength = ((float)i / FRUITS::NUM_FRUITS_KINDS) * totalArcLength + MoveDist;
+				while (targetLength > totalArcLength) {
+					targetLength -= totalArcLength;
 				}
-			}
+				int closestIndex = 0;
 
-			float theta = (closestIndex / totalSteps) * 360;
-			VECTOR2 pos(width / 2, height / 2);
-			pos += VECTOR2(Cos(theta) * FruitsBubbles.lenX, Sin(theta) * FruitsBubbles.lenY);
-			Bubbles[i]->setPos(pos);
-			Bubbles[i]->update();
+				for (int j = 0; j < arcLengths.size(); j++) {
+					if (arcLengths[j] >= targetLength) {
+						closestIndex = j;
+						break;
+					}
+				}
+
+				float theta = (closestIndex / totalSteps) * 360;
+				VECTOR2 pos(width / 2, height / 2);
+				pos += VECTOR2(Cos(theta) * a, Sin(theta) * b);
+				Bubbles[i]->setPos(pos);
+				Bubbles[i]->update();
+			}
 		}
 	}
 

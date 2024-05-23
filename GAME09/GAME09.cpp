@@ -69,6 +69,7 @@ namespace GAME09
 
 	void GAME::proc(){
 		Scenes[CurSceneId]->proc();
+		if (isTrigger(KEY_R)) FruitsBubbles->init();
 		FruitsBubbles->update();
 		FruitsBubbles->draw();
 	}

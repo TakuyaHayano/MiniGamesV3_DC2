@@ -105,6 +105,18 @@ namespace GAME09
 		Data.fruitsBubbles.lenY = 360;
 		Data.fruitsBubbles.initDist = 0.0f;
 		Data.fruitsBubbles.speed = 100.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::START].animeTime = 0.33f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::START].startMag = 3.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::START].endMag = 1.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::STAY].animeTime = 1.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::STAY].startMag = 1.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::STAY].endMag = 1.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::PULL].animeTime = 0.33f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::PULL].startMag = 1.0f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::PULL].endMag = 0.8f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::END].animeTime = 0.33f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::END].startMag = 0.8f;
+		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::END].endMag = 3.0f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
