@@ -37,16 +37,13 @@ namespace GAME10
         int WallUnderRightCornerImg = 0;
         //当たり判定用
         struct HITBOX {
-            VECTOR2 Wup;
-            VECTOR2 Wunder;
-            VECTOR2 Wleft;
-            VECTOR2 Wright;
-            VECTOR2 Wcore;
-            //プレイヤーの壁
-            VECTOR2 Pup;
-            VECTOR2 Punder;
-            VECTOR2 Pleft;
-            VECTOR2 Pright;
+            VECTOR2 up;
+            VECTOR2 under;
+            VECTOR2 left;
+            VECTOR2 right;
+            VECTOR2 core;
+        };
+        struct DISTANCE {
             //各判定からの距離
             float UpDist;
             float UnderDist;
@@ -86,10 +83,15 @@ namespace GAME10
             VECTOR2 ItemCore;
             float Iradius = 20;
             float HIradius = Iradius / 2;
-            int ItemKind;
+            int ItemKind = 0;
         };
         //当たり判定関係
         HITBOX HitBox;
+        HITBOX WallBox;
+        HITBOX PlayerBox;
+        HITBOX EnemyBox;
+        DISTANCE PDist;
+        DISTANCE EDist;
         //アイテム関連
         Item Gun;
         Item Key;
@@ -104,12 +106,23 @@ namespace GAME10
             float length = 300;
             float radius = 50;
             float Hradius = radius / 2;
+            //見ている位置の種類
+            enum {
+                Up,
+                Under,
+                Right,
+                Left
+            };
+            int View;
             //敵の動きの種類
-            char Mkind;
-            //プレイヤーのみ使用する変数
-            bool GunFlag = false;
+            int Mkind = 0;
+            //プレイヤーのみ使用する(アイテムの保持)
             bool KeyFlag = false;
+            //敵が壁にぶつかったか
+            bool WallHitFlag = false;
+            int Frieze = 0;
         };
+        const int FriezeTime = 1500;
         enum  {
             UpDown,
             RightLeft,
@@ -123,6 +136,7 @@ namespace GAME10
         //敵
         character* Enemys;
         int Ecnt = 0;
+        const int FrieseTime = 240;
         //プレイヤー
         character player;
     public:
@@ -138,8 +152,11 @@ namespace GAME10
             void Emove();
             void stageChange();
             void collision();
-                void hitbox(int w);
+                void hitbox(int w);//プレイヤーと壁
+                void hitbox(int w, int e);//敵と壁
+                void wallHitBox(int w);
                     void playerHitBox();
+                    void enemyHitBox(int e);
             void draw();
         void destroy();
     };

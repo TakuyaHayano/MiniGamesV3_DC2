@@ -83,9 +83,11 @@ namespace GAME10
 
 	void GAME::destroy()
 	{
-		delete map;
-		delete Wall;
-		delete Goal;
+		delete[] map;
+		delete[] Wall;
+		delete[] WallCorner;
+		delete[] Goal;
+		delete[] Enemys;
 	}
 
 	void GAME::proc()
@@ -118,9 +120,9 @@ namespace GAME10
 		Ecnt = 0;
 		//プレイヤーと敵の初期位置設定・壁の情報の保存
 		for (int c = 0; c < col; c++) {
-			Wmap.px = Wmap.worldX + c * Wmap.Xsize;
+			Wmap.px = c * Wmap.Xsize;
 			for (int r = 0; r < row; r++) {
-				Wmap.py = Wmap.worldY + r * Wmap.Ysize;
+				Wmap.py =r * Wmap.Ysize;
 				Wmap.mIdx = r * col + c;
 				//壁
 				if (map[Wmap.mIdx] == 'a') {
@@ -192,7 +194,9 @@ namespace GAME10
 					}
 					else if (map[Wmap.mIdx] == 'e') {
 						Enemys[Ecnt].Mkind = NoMove;
+						Enemys[Ecnt].View = random() % 4;
 					}
+					Enemys[Ecnt].Frieze = 0;
 					Ecnt++;
 				}
 				//鍵
@@ -203,6 +207,33 @@ namespace GAME10
 			}
 		}
 
+		//エネミーの動きを決める
+		for (int e = 0; e < EnemyCnt; e++) {
+			switch (Enemys[e].Mkind)
+			{
+				case RightLeft:
+					if (random() % 2) {
+						Enemys[e].Mx *= -1;
+						Enemys[e].View = Enemys[e].Left;
+					}
+					else {
+						Enemys[e].View = Enemys[e].Right;
+					}
+				break;
+				case UpDown:
+					if (random() % 2) {
+						Enemys[e].My *= -1;
+						Enemys[e].View = Enemys[e].Under;
+					}
+					else {
+						Enemys[e].View = Enemys[e].Up;
+					}
+				break;
+				case NoMove:
+					Enemys[e].View = random() % 4;
+				break;
+			}
+		}
 		//初期表示位置をプレイヤーに変更
 		while (player.Cpy + Wmap.worldY > height) {
 			Wmap.worldY -= height;
@@ -214,7 +245,6 @@ namespace GAME10
 		player.Cpx += Wmap.worldX;
 		//鍵取得の初期化
 		player.KeyFlag = false;
-		player.GunFlag = false;
 	}
 
 	void GAME::play() {
@@ -244,6 +274,37 @@ namespace GAME10
 		}
 		if (isPress(KEY_W)) {
 			player.Cpy -= player.My;
+		}
+	}
+
+	void GAME::Emove() {
+		for (int enemy = 0; enemy < EnemyCnt; enemy++) {
+			if (Enemys[enemy].Cpx + Wmap.worldX > 0
+				&& Enemys[enemy].Cpx + Wmap.worldX < width
+				&& Enemys[enemy].Cpy + Wmap.worldY > 0
+				&& Enemys[enemy].Cpy + Wmap.worldY < height) {
+				switch (Enemys[enemy].Mkind) {
+				case RightLeft:
+					if (Enemys[enemy].WallHitFlag == false) {
+						Enemys[enemy].Cpx += Enemys[enemy].Mx;
+					}
+					break;
+				case UpDown:
+					if (Enemys[enemy].WallHitFlag == false) {
+						Enemys[enemy].Cpy += Enemys[enemy].My;
+					}
+					break;
+				case NoMove:
+					if (Enemys[enemy].Frieze == FrieseTime) {
+						Enemys[enemy].View = (Enemys[enemy].View + 1) % 4;
+						Enemys[enemy].Frieze = 0;
+					}
+					else {
+						Enemys[enemy].Frieze++;
+					}
+					break;
+				}
+			}
 		}
 	}
 
@@ -280,39 +341,21 @@ namespace GAME10
 				&& Wall[w].WaPy + Wmap.worldY >= -Wmap.Ysize
 				&& Wall[w].WaPy + Wmap.worldY < height + Wmap.Ysize) {
 				hitbox(w);
-				switch (HitBox.PointFlag) {
-				case HitBox.Up://壁から見て上側の判定
-					if (HitBox.Wup.y <= HitBox.Punder.y
-						&& HitBox.Wunder.y >= HitBox.Punder.y
-						&& HitBox.Wright.x >= HitBox.Pleft.x
-						&& HitBox.Wleft.x <= HitBox.Pright.x) {
-						player.Cpy -= player.My;
+				//敵と壁の当たり判定
+				for (int e = 0; e < EnemyCnt; e++) {
+					if (Enemys[e].Cpx + Wmap.worldX >= 0
+						&& Enemys[e].Cpx + Wmap.worldX <= width
+						&& Enemys[e].Cpy + Wmap.worldY >= 0
+						&& Enemys[e].Cpy + Wmap.worldY <= height) {
+						hitbox(w, e);
+						if (Enemys[e].WallHitFlag == true && Enemys[e].Frieze == FriezeTime) {
+							Enemys[e].WallHitFlag = false;
+							Enemys[e].Frieze = 0;
+						}
+						else if (Enemys[e].WallHitFlag == true) {
+							Enemys[e].Frieze++;
+						}
 					}
-				break;
-				case HitBox.Under://壁から見て下側の判定
-					if (HitBox.Wunder.y >= HitBox.Pup.y
-						&& HitBox.Wup.y <= HitBox.Pup.y
-						&& HitBox.Wright.x >= HitBox.Pleft.x
-						&& HitBox.Wleft.x <= HitBox.Pright.x) {
-						player.Cpy += player.My;
-					}
-				break;
-				case HitBox.Left://壁から見て左側の判定
-					if (HitBox.Wleft.x <= HitBox.Pright.x
-						&& HitBox.Wright.x >= HitBox.Pright.x
-						&& HitBox.Wup.y <= HitBox.Punder.y
-						&& HitBox.Wunder.y >= HitBox.Pup.y) {
-						player.Cpx -= player.Mx;
-					}
-				break;
-				case HitBox.Right://壁から見て右側の判定
-					if (HitBox.Wleft.x <= HitBox.Pleft.x
-						&& HitBox.Wright.x >= HitBox.Pleft.x
-						&& HitBox.Wup.y <= HitBox.Punder.y
-						&& HitBox.Wunder.y >= HitBox.Pup.y) {
-						player.Cpx += player.Mx;
-					}
-				break;
 				}
 			}
 
@@ -323,10 +366,10 @@ namespace GAME10
 				&& Goal[g].WaPy + Wmap.worldY >= 0
 				&& Goal[g].WaPy + Wmap.worldY < height) { 
 				playerHitBox();
-				if (HitBox.Punder.y >= Goal[g].WaPy + Wmap.worldY
-					&& HitBox.Punder.y <= Goal[g].WaPy + Wmap.worldY + Wmap.Ysize
-					&& HitBox.Pleft.x <= Goal[g].WaPx + Wmap.worldX + Wmap.Xsize
-					&& HitBox.Pright.x >= Goal[g].WaPx + Wmap.worldX) {
+				if (PlayerBox.under.y >= Goal[g].WaPy + Wmap.worldY
+					&& PlayerBox.under.y <= Goal[g].WaPy + Wmap.worldY + Wmap.Ysize
+					&& PlayerBox.left.x <= Goal[g].WaPx + Wmap.worldX + Wmap.Xsize
+					&& PlayerBox.right.x >= Goal[g].WaPx + Wmap.worldX) {
 					STATE = RESULT;
 				}
 			}
@@ -334,54 +377,175 @@ namespace GAME10
 	}
 
 	void GAME::hitbox(int w) {
-
-		//壁のコア
-		HitBox.Wcore.x = Wall[w].WaPx + Wmap.XharfSize + Wmap.worldX;
-		HitBox.Wcore.y = Wall[w].WaPy + Wmap.YharfSize + Wmap.worldY;
-		//壁の上下左右の当たり判定
-		HitBox.Wup.x = Wall[w].WaPx + Wmap.worldX;
-		HitBox.Wup.y = Wall[w].WaPy + Wmap.worldY;
-
-		HitBox.Wunder.x = Wall[w].WaPx + Wmap.worldX;
-		HitBox.Wunder.y = Wall[w].WaPy + Wall[w].Ysize + Wmap.worldY;
-
-		HitBox.Wleft.x = Wall[w].WaPx + Wmap.worldX;
-		HitBox.Wleft.y = Wall[w].WaPy + Wmap.worldY;
-
-		HitBox.Wright.x = Wall[w].WaPx + Wall[w].Xsize + Wmap.worldX;
-		HitBox.Wright.y = Wall[w].WaPy + Wmap.worldY;
+		wallHitBox(w);
 		playerHitBox();
-		HitBox.UpDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Punder.x) * (HitBox.Wcore.x - HitBox.Punder.x)) + Abs((HitBox.Wcore.y - HitBox.Punder.y) * (HitBox.Wcore.y - HitBox.Punder.y)));
-		HitBox.UnderDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Pup.x) * (HitBox.Wcore.x - HitBox.Pup.x)) + Abs((HitBox.Wcore.y - HitBox.Pup.y) * (HitBox.Wcore.y - HitBox.Pup.y)));
-		HitBox.LeftDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Pright.x) * (HitBox.Wcore.x - HitBox.Pright.x)) + Abs((HitBox.Wcore.y - HitBox.Pright.y) * (HitBox.Wcore.y - HitBox.Pright.y)));
-		HitBox.RightDist = Sqrt(Abs((HitBox.Wcore.x - HitBox.Pleft.x) * (HitBox.Wcore.x - HitBox.Pleft.x)) + Abs((HitBox.Wcore.y - HitBox.Pleft.y) * (HitBox.Wcore.y - HitBox.Pleft.y)));
-		if (HitBox.UpDist < HitBox.LeftDist && HitBox.UpDist < HitBox.RightDist && HitBox.UpDist < HitBox.UnderDist) {
-			HitBox.PointFlag = HitBox.Up;
+		PDist.UpDist = Sqrt(Abs((WallBox.core.x - PlayerBox.under.x) * (WallBox.core.x - PlayerBox.under.x)) + Abs((WallBox.core.y - PlayerBox.under.y) * (WallBox.core.y - PlayerBox.under.y)));
+		PDist.UnderDist = Sqrt(Abs((WallBox.core.x - PlayerBox.up.x) * (WallBox.core.x - PlayerBox.up.x)) + Abs((WallBox.core.y - PlayerBox.up.y) * (WallBox.core.y - PlayerBox.up.y)));
+		PDist.LeftDist = Sqrt(Abs((WallBox.core.x - PlayerBox.right.x) * (WallBox.core.x - PlayerBox.right.x)) + Abs((WallBox.core.y - PlayerBox.right.y) * (WallBox.core.y - PlayerBox.right.y)));
+		PDist.RightDist = Sqrt(Abs((WallBox.core.x - PlayerBox.left.x) * (WallBox.core.x - PlayerBox.left.x)) + Abs((WallBox.core.y - PlayerBox.left.y) * (WallBox.core.y - PlayerBox.left.y)));
+		if (PDist.UpDist < PDist.LeftDist && PDist.UpDist < PDist.RightDist && PDist.UpDist < PDist.UnderDist) {
+			PDist.PointFlag = PDist.Up;
 		}
-		else if (HitBox.UnderDist < HitBox.UpDist && HitBox.UnderDist < HitBox.RightDist && HitBox.UnderDist < HitBox.LeftDist) {
-			HitBox.PointFlag = HitBox.Under;
+		else if (PDist.UnderDist < PDist.UpDist && PDist.UnderDist < PDist.RightDist && PDist.UnderDist < PDist.LeftDist) {
+			PDist.PointFlag = PDist.Under;
 		}
-		else if (HitBox.LeftDist < HitBox.UpDist && HitBox.LeftDist < HitBox.RightDist && HitBox.LeftDist < HitBox.UnderDist) {
-			HitBox.PointFlag = HitBox.Left;
+		else if (PDist.LeftDist < PDist.UpDist && PDist.LeftDist < PDist.RightDist && PDist.LeftDist < PDist.UnderDist) {
+			PDist.PointFlag = PDist.Left;
 		}
-		else if (HitBox.RightDist < HitBox.UpDist && HitBox.RightDist < HitBox.LeftDist && HitBox.RightDist < HitBox.UnderDist) {
-			HitBox.PointFlag = HitBox.Right;
+		else if (PDist.RightDist < PDist.UpDist && PDist.RightDist < PDist.LeftDist && PDist.RightDist < PDist.UnderDist) {
+			PDist.PointFlag = PDist.Right;
 		}
+		switch (PDist.PointFlag) {
+		case PDist.Up://壁から見て上側の判定
+			if (WallBox.up.y <= PlayerBox.under.y
+				&& WallBox.under.y >= PlayerBox.under.y
+				&& WallBox.right.x >= PlayerBox.left.x
+				&& WallBox.left.x <= PlayerBox.right.x) {
+				player.Cpy -= player.My;
+			}
+			break;
+		case PDist.Under://壁から見て下側の判定
+			if (WallBox.under.y >= PlayerBox.up.y
+				&& WallBox.up.y <= PlayerBox.up.y
+				&& WallBox.right.x >= PlayerBox.left.x
+				&& WallBox.left.x <= PlayerBox.right.x) {
+				player.Cpy += player.My;
+			}
+			break;
+		case PDist.Left://壁から見て左側の判定
+			if (WallBox.left.x <= PlayerBox.right.x
+				&& WallBox.right.x >= PlayerBox.right.x
+				&& WallBox.up.y <= PlayerBox.under.y
+				&& WallBox.under.y >= PlayerBox.up.y) {
+				player.Cpx -= player.Mx;
+			}
+			break;
+		case PDist.Right://壁から見て右側の判定
+			if (WallBox.left.x <= PlayerBox.left.x
+				&& WallBox.right.x >= PlayerBox.left.x
+				&& WallBox.up.y <= PlayerBox.under.y
+				&& WallBox.under.y >= PlayerBox.up.y) {
+				player.Cpx += player.Mx;
+			}
+			break;
+		}
+	}
+
+	void GAME::hitbox(int w, int e) {
+		wallHitBox(w);
+		enemyHitBox(e);
+		EDist.PointFlag = -1;//リセット
+		EDist.UpDist = Sqrt(Abs((WallBox.core.x - EnemyBox.under.x) * (WallBox.core.x - EnemyBox.under.x)) + Abs((WallBox.core.y - EnemyBox.under.y) * (WallBox.core.y - EnemyBox.under.y)));
+		EDist.UnderDist = Sqrt(Abs((WallBox.core.x - EnemyBox.up.x) * (WallBox.core.x - EnemyBox.up.x)) + Abs((WallBox.core.y - EnemyBox.up.y) * (WallBox.core.y - EnemyBox.up.y)));
+		EDist.LeftDist = Sqrt(Abs((WallBox.core.x - EnemyBox.right.x) * (WallBox.core.x - EnemyBox.right.x)) + Abs((WallBox.core.y - EnemyBox.right.y) * (WallBox.core.y - EnemyBox.right.y)));
+		EDist.RightDist = Sqrt(Abs((WallBox.core.x - EnemyBox.left.x) * (WallBox.core.x - EnemyBox.left.x)) + Abs((WallBox.core.y - EnemyBox.left.y) * (WallBox.core.y - EnemyBox.left.y)));
+
+		if (Enemys[e].Mkind == UpDown) {
+			if (EDist.UpDist < EDist.LeftDist && EDist.UpDist < EDist.RightDist && EDist.UpDist < EDist.UnderDist) {
+				EDist.PointFlag = EDist.Up;
+			}
+			else if (EDist.UnderDist < EDist.UpDist && EDist.UnderDist < EDist.RightDist && EDist.UnderDist < EDist.LeftDist) {
+				EDist.PointFlag = EDist.Under;
+			}
+		}
+		else if (Enemys[e].Mkind == RightLeft) {
+			if (EDist.LeftDist < EDist.UpDist && EDist.LeftDist < EDist.RightDist && EDist.LeftDist < EDist.UnderDist) {
+				EDist.PointFlag = EDist.Left;
+			}
+			else if (EDist.RightDist < EDist.UpDist && EDist.RightDist < EDist.LeftDist && EDist.RightDist < EDist.UnderDist) {
+				EDist.PointFlag = EDist.Right;
+			}
+		}
+
+			switch (EDist.PointFlag) {
+			case EDist.Up://壁から見て上側の判定
+				if (WallBox.up.y <= EnemyBox.under.y + Wall[w].YharfSize
+					&& WallBox.under.y >= EnemyBox.under.y + Wall[w].YharfSize
+					&& WallBox.right.x >= EnemyBox.left.x
+					&& WallBox.left.x <= EnemyBox.right.x) {
+					Enemys[e].My *= -1;
+					Enemys[e].Cpy += Enemys[e].My;
+					Enemys[e].WallHitFlag = true;
+				}
+				break;
+			case EDist.Under://壁から見て下側の判定
+				if (WallBox.under.y >= EnemyBox.up.y - Wall[w].YharfSize
+					&& WallBox.up.y <= EnemyBox.up.y - Wall[w].YharfSize
+					&& WallBox.right.x >= EnemyBox.left.x
+					&& WallBox.left.x <= EnemyBox.right.x) {
+					Enemys[e].My *= -1;
+					Enemys[e].Cpy += Enemys[e].My;
+					Enemys[e].WallHitFlag = true;
+				}
+				break;
+			case EDist.Left://壁から見て左側の判定
+				if (WallBox.left.x <= EnemyBox.right.x + Wall[e].XharfSize
+					&& WallBox.right.x >= EnemyBox.right.x + Wall[e].XharfSize
+					&& WallBox.up.y <= EnemyBox.under.y
+					&& WallBox.under.y >= EnemyBox.up.y) {
+					Enemys[e].Mx *= -1;
+					Enemys[e].Cpx += Enemys[e].Mx;
+					Enemys[e].WallHitFlag = true;
+				}
+				break;
+			case EDist.Right://壁から見て右側の判定
+				if (WallBox.left.x <= EnemyBox.left.x - Wall[e].XharfSize
+					&& WallBox.right.x >= EnemyBox.left.x - Wall[e].XharfSize
+					&& WallBox.up.y <= EnemyBox.under.y
+					&& WallBox.under.y >= EnemyBox.up.y) {
+					Enemys[e].Mx *= -1;
+					Enemys[e].Cpx += Enemys[e].Mx;
+					Enemys[e].WallHitFlag = true;
+				}
+				break;
+			}
+	}
+
+	void GAME::wallHitBox(int w) {
+		//壁のコア
+		WallBox.core.x = Wall[w].WaPx + Wmap.XharfSize + Wmap.worldX;
+		WallBox.core.y = Wall[w].WaPy + Wmap.YharfSize + Wmap.worldY;
+		//壁の上下左右の当たり判定
+		WallBox.up.x = Wall[w].WaPx + Wmap.worldX;
+		WallBox.up.y = Wall[w].WaPy + Wmap.worldY;
+
+		WallBox.under.x = Wall[w].WaPx + Wmap.worldX;
+		WallBox.under.y = Wall[w].WaPy + Wall[w].Ysize + Wmap.worldY;
+
+		WallBox.left.x = Wall[w].WaPx + Wmap.worldX;
+		WallBox.left.y = Wall[w].WaPy + Wmap.worldY;
+
+		WallBox.right.x = Wall[w].WaPx + Wall[w].Xsize + Wmap.worldX;
+		WallBox.right.y = Wall[w].WaPy + Wmap.worldY;
 	}
 
 	void GAME::playerHitBox() {
 		//プレイヤーの上下左右の当たり判定
-		HitBox.Pup.x = player.Cpx;
-		HitBox.Pup.y = player.Cpy - player.Hradius;
+		PlayerBox.up.x = player.Cpx;
+		PlayerBox.up.y = player.Cpy - player.Hradius;
 
-		HitBox.Punder.x = player.Cpx;
-		HitBox.Punder.y = player.Cpy + player.Hradius;
+		PlayerBox.under.x = player.Cpx;
+		PlayerBox.under.y = player.Cpy + player.Hradius;
 
-		HitBox.Pleft.x = player.Cpx - player.Hradius;
-		HitBox.Pleft.y = player.Cpy;
+		PlayerBox.left.x = player.Cpx - player.Hradius;
+		PlayerBox.left.y = player.Cpy;
 
-		HitBox.Pright.x = player.Cpx + player.Hradius;
-		HitBox.Pright.y = player.Cpy;
+		PlayerBox.right.x = player.Cpx + player.Hradius;
+		PlayerBox.right.y = player.Cpy;
+	}
+
+	void GAME::enemyHitBox(int e) {
+		EnemyBox.up.x = Enemys[e].Cpx + Wmap.worldX;
+		EnemyBox.up.y = Enemys[e].Cpy - Enemys[e].Hradius + Wmap.worldY;
+
+		EnemyBox.under.x = Enemys[e].Cpx + Wmap.worldX;
+		EnemyBox.under.y = Enemys[e].Cpy + Enemys[e].Hradius + Wmap.worldY;
+
+		EnemyBox.left.x = Enemys[e].Cpx - Enemys[e].Hradius + Wmap.worldX;
+		EnemyBox.left.y = Enemys[e].Cpy + Wmap.worldY;
+
+		EnemyBox.right.x = Enemys[e].Cpx + Enemys[e].Hradius + Wmap.worldX;
+		EnemyBox.right.y = Enemys[e].Cpy + Wmap.worldY;
 	}
 
 	void GAME::draw() {
