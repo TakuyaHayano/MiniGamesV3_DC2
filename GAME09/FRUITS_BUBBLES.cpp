@@ -26,10 +26,27 @@ namespace GAME09
 			Bubbles[i]->create();
 			Bubbles[i]->setKinds(FruitsBubbles.order[i]);
 		}
+		//ë»â~ÇÃâ~é¸ÇÃí∑Ç≥ÇéñëOÇ…ãÅÇﬂÇÈ
+		angleMode(DEGREES);
+		totalArcLength = 0;
+		float prevX = FruitsBubbles.lenX;
+		float prevY = 0;
+		for (int i = 1; i <= totalSteps; i++) {
+			float theta = (i / totalSteps) * 360;
+			float x = FruitsBubbles.lenX * Cos(theta);
+			float y = FruitsBubbles.lenY * Sin(theta);
+			float dx = x - prevX;
+			float dy = y - prevY;
+			float segmentLength = Sqrt(dx * dx + dy * dy);
+			totalArcLength += segmentLength;
+			arcLengths.emplace_back(totalArcLength);
+			prevX = x;
+			prevY = y;
+		}
 	}
 
 	void FRUITS_BUBBLES::init() {
-		Angle = FruitsBubbles.initAngle;
+		MoveDist = FruitsBubbles.initDist;
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
 			Bubbles[i]->init();
 		}
@@ -37,11 +54,24 @@ namespace GAME09
 
 	void FRUITS_BUBBLES::update() {
 		angleMode(DEGREES);
-		Angle += FruitsBubbles.angSpeed * delta;
+		MoveDist += FruitsBubbles.speed * delta;
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
-			float angle = Angle + (float)i / FRUITS::NUM_FRUITS_KINDS * 360;
+			float targetLength = ((float)i / FRUITS::NUM_FRUITS_KINDS) * totalArcLength + MoveDist;
+			while (targetLength > totalArcLength) {
+				targetLength -= totalArcLength;
+			}
+			int closestIndex = 0;
+
+			for (int j = 0; j < arcLengths.size(); j++) {
+				if (arcLengths[j] >= targetLength) {
+					closestIndex = j;
+					break;
+				}
+			}
+
+			float theta = (closestIndex / totalSteps) * 360;
 			VECTOR2 pos(width / 2, height / 2);
-			pos += VECTOR2(Cos(angle) * FruitsBubbles.lenX, Sin(angle) * FruitsBubbles.lenY);
+			pos += VECTOR2(Cos(theta) * FruitsBubbles.lenX, Sin(theta) * FruitsBubbles.lenY);
 			Bubbles[i]->setPos(pos);
 			Bubbles[i]->update();
 		}

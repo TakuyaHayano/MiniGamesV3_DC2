@@ -14,13 +14,16 @@ namespace GAME09
             std::vector<FRUITS::FRUITS_KINDS> order;
             float lenX;
             float lenY;
-            float initAngle;
-            float angSpeed;
+            float initDist;
+            float speed;
         };
     private:
         DATA FruitsBubbles;
         class FRUITS_BUBBLE* Bubbles[FRUITS::NUM_FRUITS_KINDS];
-        float Angle;
+        float MoveDist;
+        std::vector<float> arcLengths;
+        float totalArcLength = 0;
+        const float totalSteps = 10000; // ï™äÑÇÃç◊Ç©Ç≥
     public:
         FRUITS_BUBBLES(class GAME* game);
         ~FRUITS_BUBBLES();

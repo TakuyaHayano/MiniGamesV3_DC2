@@ -21,11 +21,12 @@ namespace GAME09
 		FruitsBubble = game()->container()->data().fruitsBubble;
 		Bubble = new BUBBLE(game());
 		Bubble->create();
+		Size = random(FruitsBubble.minSize, FruitsBubble.maxSize);
 	}
 
 	void FRUITS_BUBBLE::init() {
 		Bubble->init();
-		Bubble->setSize(FruitsBubble.bubbleSize);
+		Bubble->setSize(FruitsBubble.bubbleSize * Size);
 		Bubble->setPos(FruitsBubble.bubblePos);
 		Pos = FruitsBubble.bubblePos;
 		float rate = Pow(FruitsBubble.nextFruitsSizeRate, Kinds);
@@ -61,6 +62,6 @@ namespace GAME09
 	void FRUITS_BUBBLE::draw() {
 		rectMode(CENTER);
 		Bubble->draw();
-		image(FruitsBubble.imgs[Kinds], Bubble->getPos().x, Bubble->getPos().y, 0, ImgSize);
+		image(FruitsBubble.imgs[Kinds], Bubble->getPos().x, Bubble->getPos().y, 0, ImgSize * Size);
 	}
 }

@@ -21,12 +21,15 @@ namespace GAME09
             float maxMoveDist;
             float maxMoveTime;
             float minMoveTime;
+            float maxSize;
+            float minSize;
         };
     private:
         DATA FruitsBubble;
         class BUBBLE* Bubble;
         FRUITS::FRUITS_KINDS Kinds;
         float ImgSize;
+        float Size;
 
         float AnimeTime;
         float MoveTime;
