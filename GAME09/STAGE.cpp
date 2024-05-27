@@ -39,6 +39,8 @@ namespace GAME09
 		game()->score()->draw();
 	}
 	void STAGE::nextScene() {
-
+		if (game()->physics()->gameOverJudge()) {
+			game()->changeScene(GAME::TITLE_ID);
+		}
 	}
 }

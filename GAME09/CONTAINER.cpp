@@ -32,6 +32,7 @@ namespace GAME09
 		Data.box.left = -338;
 		Data.box.right = 335;
 		Data.box.under = 472;
+		Data.box.up = -380;
 
 		Data.fruits.sw = 2;
 		Data.fruits.attenuationRate = 0.998f;

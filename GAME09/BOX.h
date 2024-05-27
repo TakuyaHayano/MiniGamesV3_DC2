@@ -15,6 +15,7 @@ namespace GAME09
             float left;
             float right;
             float under;
+            float up;
         };
     private:
         DATA Box;
@@ -29,5 +30,6 @@ namespace GAME09
         float left();
         float right();
         float under();
+        float up();
     };
 }

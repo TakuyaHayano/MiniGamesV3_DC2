@@ -63,7 +63,7 @@ namespace GAME09
 		image(Title.titleImg, Title.titlePos.x, Title.titlePos.y, 0, Title.imgSize);
 	}
 	void TITLE::nextScene() {
-		if (isPress(KEY_ENTER) || isPress(KEY_SPACE)) {
+		if (isTrigger(KEY_ENTER) || isTrigger(KEY_SPACE)) {
 			switch (SelectButton)
 			{
 			case START:

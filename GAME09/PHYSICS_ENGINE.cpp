@@ -23,6 +23,7 @@ namespace GAME09
 	}
 
 	void PHYSICS_ENGINE::init() {
+		safe_clear(Fruits);
 		isSetMove = true;
 	}
 
@@ -101,6 +102,15 @@ namespace GAME09
 			fruits->setPosO(VECTOR2(game()->box()->left() + fruits->getRadius() + 0.01f, fruits->getPosO().y));
 			//fruits->setTouch(true);
 		}
+	}
+
+	bool PHYSICS_ENGINE::gameOverJudge() {
+		for (auto it = Fruits.begin(); it != Fruits.end(); it++) {
+			if ((*it)->gameOverJudge()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	void PHYSICS_ENGINE::solveCollisions() {

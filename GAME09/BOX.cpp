@@ -30,11 +30,12 @@ namespace GAME09
 	void BOX::draw() {
 		rectMode(CENTER);
 		image(Box.img, Box.pos.x, Box.pos.y, 0, Box.imgSize);
-		//strokeWeight(3);
-		//stroke(0);
-		//line(Box.left + Box.pos.x, 0, Box.left + Box.pos.x, height);
-		//line(Box.right + Box.pos.x, 0, Box.right + Box.pos.x, height);
-		//line(0, Box.under + Box.pos.y, width, Box.under + Box.pos.y);
+		strokeWeight(3);
+		stroke(0);
+		line(Box.left + Box.pos.x, 0, Box.left + Box.pos.x, height);
+		line(Box.right + Box.pos.x, 0, Box.right + Box.pos.x, height);
+		line(0, Box.under + Box.pos.y, width, Box.under + Box.pos.y);
+		line(0, up(), width, up());
 	}
 
 	float BOX::left(){
@@ -45,5 +46,8 @@ namespace GAME09
 	}
 	float BOX::under(){
 		return Box.under + Box.pos.y;
+	}
+	float BOX::up() {
+		return Box.up + Box.pos.y;
 	}
 }

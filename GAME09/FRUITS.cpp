@@ -62,10 +62,19 @@ namespace GAME09
 	void FRUITS::accelerate(VECTOR2 acc) {
 		Acc += acc;
 	}
+	bool FRUITS::gameOverJudge() {
+		if (!TouchedAny) return false;
+		if (Pos_current.y - Radius < game()->box()->up()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	void FRUITS::draw() {
 		strokeWeight(4);
 		stroke(0,180,0);
-		if (Last) {
+		if (TouchedAny) {
 			fill(255, 0, 0, 200);
 		}
 		else {
@@ -73,8 +82,8 @@ namespace GAME09
 		}
 		angleMode(RADIANS);
 		image(Fruits.imgs[Kinds], Pos_current.x, Pos_current.y, Theta, ImgSize);
-		//circle(Pos_current.x, Pos_current.y, Radius * 2);
-		//line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
+		circle(Pos_current.x, Pos_current.y, Radius * 2);
+		line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
 	}
 
 	void FRUITS::setTouch(bool touch) {

@@ -60,6 +60,7 @@ namespace GAME09
         void update(float dt);
         void accelerate(VECTOR2 acc);
         void draw();
+        bool gameOverJudge();
 
         const VECTOR2& getPosC() { return Pos_current; }
         const VECTOR2& getPosO() { return Pos_old; }
