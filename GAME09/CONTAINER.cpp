@@ -125,6 +125,9 @@ namespace GAME09
 		Data.curtain.imgPos = VECTOR2(width / 2, height / 2);
 		Data.curtain.openOfst = VECTOR2(width / 2, 0);
 		Data.curtain.imgSize = 1.5f;
+
+		Data.transition.outTime = 1.8f;
+		Data.transition.inTime = 0.28f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

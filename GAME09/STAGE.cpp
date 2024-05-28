@@ -28,6 +28,9 @@ namespace GAME09
 		game()->physics()->update();
 		game()->next()->update();
 		game()->score()->update();
+		if (!game()->transition()->inEndFlag()) {
+			game()->transition()->update();
+		}
 	}
 	void STAGE::draw() {
 		clear(128);
@@ -37,6 +40,9 @@ namespace GAME09
 		game()->physics()->draw();
 		game()->next()->draw();
 		game()->score()->draw();
+		if (!game()->transition()->inEndFlag()) {
+			game()->transition()->draw();
+		}
 	}
 	void STAGE::nextScene() {
 		if (game()->physics()->gameOverJudge()) {

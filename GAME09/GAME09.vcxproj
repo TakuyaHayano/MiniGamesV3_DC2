@@ -155,6 +155,7 @@
     <ClCompile Include="SCORE.cpp" />
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="TITLE.cpp" />
+    <ClCompile Include="TRANSITION.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BACKGROUND.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="SCORE.h" />
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="TITLE.h" />
+    <ClInclude Include="TRANSITION.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

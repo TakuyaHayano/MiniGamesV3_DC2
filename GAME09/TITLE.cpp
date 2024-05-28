@@ -36,6 +36,10 @@ namespace GAME09
 		Buttons[SelectButton]->setSelect(true, false);
 	}
 	void TITLE::update() {
+		if (!game()->transition()->inEndFlag()) {
+			game()->transition()->update();
+			return;
+		}
 		if (isTrigger(KEY_W) || isTrigger(KEY_UP)) {
 			if (SelectButton > 0) {
 				Buttons[SelectButton]->setSelect(false);
@@ -61,21 +65,31 @@ namespace GAME09
 			Buttons[i]->draw();
 		}
 		image(Title.titleImg, Title.titlePos.x, Title.titlePos.y, 0, Title.imgSize);
+		if (!game()->transition()->inEndFlag()) {
+			game()->transition()->draw();
+		}
 	}
 	void TITLE::nextScene() {
-		if (isTrigger(KEY_ENTER) || isTrigger(KEY_SPACE)) {
-			switch (SelectButton)
-			{
-			case START:
+		if (game()->transition()->inEndFlag()) {
+			if (isTrigger(KEY_ENTER) || isTrigger(KEY_SPACE)) {
+				switch (SelectButton)
+				{
+				case START:
+					game()->transition()->start();
+					break;
+				case HELP:
+					break;
+				case END:
+					game()->backToMenu();
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		else {
+			if (game()->transition()->outEndFlag()) {
 				game()->changeScene(GAME::STAGE_ID);
-				break;
-			case HELP:
-				break;
-			case END:
-				game()->backToMenu();
-				break;
-			default:
-				break;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 #pragma once
 #include "TITLE.h"
 #include "STAGE.h"
-//#include "TRANSITION.h"
+#include "TRANSITION.h"
 #include "BACKGROUND.h"
 #include "BUTTON.h"
 #include "PHYSICS_ENGINE.h"
@@ -38,6 +38,7 @@ namespace GAME09
 			FRUITS_BUBBLE::DATA fruitsBubble;
 			FRUITS_BUBBLES::DATA fruitsBubbles;
 			CURTAIN::DATA curtain;
+			TRANSITION::DATA transition;
 		};
 		DATA Data;
 	public:

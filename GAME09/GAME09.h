@@ -31,6 +31,7 @@ namespace GAME09
 		class DRAW_NUM* DrawNum;
 		class FRUITS_BUBBLES* FruitsBubbles;
 		class CURTAIN* Curtain;
+		class TRANSITION* Transition;
 	public:
 		class SCENE* getScene(SCENE_ID sceneId) { return Scenes[sceneId]; }
 		class BACKGROUND* backGround() { return BackGround; }
@@ -42,6 +43,7 @@ namespace GAME09
 		class DRAW_NUM* drawNum() { return DrawNum; }
 		class FRUITS_BUBBLES* fruitsBubbles() { return FruitsBubbles; }
 		class CURTAIN* curtain() { return Curtain; }
+		class TRANSITION* transition() { return Transition; }
     public:
         GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};

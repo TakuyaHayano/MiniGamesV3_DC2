@@ -23,6 +23,7 @@ namespace GAME09
 		DrawNum = new DRAW_NUM(this);
 		FruitsBubbles = new FRUITS_BUBBLES(this);
 		Curtain = new CURTAIN(this);
+		Transition = new TRANSITION(this);
 
 		//load
 		Container->load();
@@ -42,11 +43,11 @@ namespace GAME09
 		DrawNum->create();
 		FruitsBubbles->create();
 		Curtain->create();
+		Transition->create();
 
 		//init
 		CurSceneId = TITLE_ID;
 		Scenes[CurSceneId]->init();
-		FruitsBubbles->init();
 
 		return 0;
 	}
@@ -72,14 +73,6 @@ namespace GAME09
 
 	void GAME::proc(){
 		Scenes[CurSceneId]->proc();
-		if (isTrigger(KEY_R)) {
-			FruitsBubbles->init();
-			Curtain->init();
-		}
-		Curtain->update();
-		FruitsBubbles->update();
-		Curtain->draw();
-		FruitsBubbles->draw();
 	}
 
 	void GAME::changeScene(SCENE_ID sceneId) {

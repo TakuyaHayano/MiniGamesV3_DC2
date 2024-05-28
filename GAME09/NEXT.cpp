@@ -7,6 +7,8 @@
 #include "../../libOne/inc/mathUtil.h"
 #include "../../libOne/inc/rand.h"
 
+#define new new( _CLIENT_BLOCK, __FILE__, __LINE__)
+
 namespace GAME09
 {
 	NEXT::NEXT(GAME* game) :
