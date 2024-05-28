@@ -21,6 +21,7 @@ namespace GAME09
 	}
 
 	void CLOUD::init() {
+		delete Fruits;
 		FruitsPos = Cloud.fruitsInitPos;
 		CreateFruits();
 	}
@@ -48,6 +49,7 @@ namespace GAME09
 			Fruits->setPosO(FruitsPos);
 			if (isTrigger(KEY_SPACE) || isTrigger(KEY_ENTER)) {
 				game()->physics()->addFruits(Fruits);
+				Fruits = nullptr;
 				State = FALL;
 			}
 		}

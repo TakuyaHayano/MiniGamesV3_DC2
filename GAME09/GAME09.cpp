@@ -54,6 +54,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Transition;
 		delete Curtain;
 		delete FruitsBubbles;
 		delete DrawNum;

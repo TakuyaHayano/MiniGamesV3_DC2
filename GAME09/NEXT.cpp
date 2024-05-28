@@ -27,6 +27,7 @@ namespace GAME09
 	}
 
 	void NEXT::init() {
+		delete Fruits;
 		Bubble->init();
 		Bubble->setSize(Next.bubbleSize);
 		Bubble->setPos(Next.bubblePos);
