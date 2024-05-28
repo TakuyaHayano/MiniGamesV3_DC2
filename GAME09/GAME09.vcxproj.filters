@@ -22,6 +22,7 @@
     <ClCompile Include="DRAW_NUM.cpp" />
     <ClCompile Include="FRUITS_BUBBLE.cpp" />
     <ClCompile Include="FRUITS_BUBBLES.cpp" />
+    <ClCompile Include="CURTAIN.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="DRAW_NUM.h" />
     <ClInclude Include="FRUITS_BUBBLE.h" />
     <ClInclude Include="FRUITS_BUBBLES.h" />
+    <ClInclude Include="CURTAIN.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

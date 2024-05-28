@@ -14,6 +14,7 @@
 #include "DRAW_NUM.h"
 #include "FRUITS_BUBBLE.h"
 #include "FRUITS_BUBBLES.h"
+#include "CURTAIN.h"
 
 namespace GAME09
 {
@@ -36,6 +37,7 @@ namespace GAME09
 			DRAW_NUM::DATA drawNum;
 			FRUITS_BUBBLE::DATA fruitsBubble;
 			FRUITS_BUBBLES::DATA fruitsBubbles;
+			CURTAIN::DATA curtain;
 		};
 		DATA Data;
 	public:

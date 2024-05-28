@@ -22,6 +22,7 @@ namespace GAME09
 		Score = new SCORE(this);
 		DrawNum = new DRAW_NUM(this);
 		FruitsBubbles = new FRUITS_BUBBLES(this);
+		Curtain = new CURTAIN(this);
 
 		//load
 		Container->load();
@@ -40,6 +41,7 @@ namespace GAME09
 		Score->create();
 		DrawNum->create();
 		FruitsBubbles->create();
+		Curtain->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -51,6 +53,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Curtain;
 		delete FruitsBubbles;
 		delete DrawNum;
 		delete Score;
@@ -69,8 +72,13 @@ namespace GAME09
 
 	void GAME::proc(){
 		Scenes[CurSceneId]->proc();
-		if (isTrigger(KEY_R)) FruitsBubbles->init();
+		if (isTrigger(KEY_R)) {
+			FruitsBubbles->init();
+			Curtain->init();
+		}
+		Curtain->update();
 		FruitsBubbles->update();
+		Curtain->draw();
 		FruitsBubbles->draw();
 	}
 

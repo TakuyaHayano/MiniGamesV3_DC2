@@ -82,8 +82,8 @@ namespace GAME09
 		}
 		angleMode(RADIANS);
 		image(Fruits.imgs[Kinds], Pos_current.x, Pos_current.y, Theta, ImgSize);
-		circle(Pos_current.x, Pos_current.y, Radius * 2);
-		line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
+		//circle(Pos_current.x, Pos_current.y, Radius * 2);
+		//line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
 	}
 
 	void FRUITS::setTouch(bool touch) {

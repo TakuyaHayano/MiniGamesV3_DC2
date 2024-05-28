@@ -118,6 +118,13 @@ namespace GAME09
 		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::END].animeTime = 0.33f;
 		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::END].startMag = 0.8f;
 		Data.fruitsBubbles.moveDatas[FRUITS_BUBBLES::END].endMag = 3.0f;
+
+		Data.curtain.moveTimes[CURTAIN::START] = 0.33f;
+		Data.curtain.moveTimes[CURTAIN::STAY] = 1.5f;
+		Data.curtain.moveTimes[CURTAIN::END] = 0.25f;
+		Data.curtain.imgPos = VECTOR2(width / 2, height / 2);
+		Data.curtain.openOfst = VECTOR2(width / 2, 0);
+		Data.curtain.imgSize = 1.5f;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -140,5 +147,8 @@ namespace GAME09
 		Data.drawNum.numImg = loadImage("..\\main\\assets\\game09\\num.png");
 		divideImage(Data.drawNum.numImg, 10, 1, 260, 512, Data.drawNum.numImgs);
 		Data.fruitsBubble.imgs = Data.fruits.imgs;
+		Data.curtain.imgL = loadImage("..\\main\\assets\\game09\\curtain_L.png");
+		Data.curtain.imgR = loadImage("..\\main\\assets\\game09\\curtain_R.png");
+		Data.curtain.imgClose = loadImage("..\\main\\assets\\game09\\curtain_close.png");
 	}
 }
