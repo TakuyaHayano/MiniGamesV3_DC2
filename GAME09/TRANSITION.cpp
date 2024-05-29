@@ -40,8 +40,10 @@ namespace GAME09
 
 	void TRANSITION::draw() {
 		if (State != IN_END) {
+			//imageColor(255, 255, 255, 100);
 			game()->curtain()->draw();
 			game()->fruitsBubbles()->draw();
+			//imageColor(255);
 		}
 	}
 
