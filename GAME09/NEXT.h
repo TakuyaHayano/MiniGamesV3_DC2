@@ -13,11 +13,14 @@ namespace GAME09
             VECTOR2 strOfst;
             float bubbleSize;
             VECTOR2 bubblePos;
+            int useFruitsNum;
+            int useFruitsNumSecret;
         };
     private:
         DATA Next;
         class BUBBLE* Bubble;
         class FRUITS* Fruits;
+        int UseFruitsNum;
 
         void CreateFruits();
     public:

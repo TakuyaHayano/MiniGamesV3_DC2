@@ -24,6 +24,7 @@ namespace GAME09
 		FruitsBubbles = new FRUITS_BUBBLES(this);
 		Curtain = new CURTAIN(this);
 		Transition = new TRANSITION(this);
+		Command = new COMMAND(this);
 
 		//load
 		Container->load();
@@ -44,6 +45,7 @@ namespace GAME09
 		FruitsBubbles->create();
 		Curtain->create();
 		Transition->create();
+		Command->create();
 
 		//init
 		CurSceneId = TITLE_ID;
@@ -54,6 +56,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete Command;
 		delete Transition;
 		delete Curtain;
 		delete FruitsBubbles;

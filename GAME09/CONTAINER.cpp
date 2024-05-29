@@ -11,6 +11,7 @@ namespace GAME09
 	void CONTAINER::setData() {
 		Data.title.titlePos = VECTOR2(width / 2, height / 2);
 		Data.title.imgSize = 1;
+		Data.title.hueSpeed = 360;
 
 		Data.backG.imgSize = 1.0f;
 		Data.backG.pos = VECTOR2(width / 2, height / 2);
@@ -59,6 +60,8 @@ namespace GAME09
 		Data.next.strOfst = VECTOR2(0, -70);
 		Data.next.bubbleSize = 0.7f;
 		Data.next.bubblePos = VECTOR2(1620, 270);
+		Data.next.useFruitsNum = 4;
+		Data.next.useFruitsNumSecret = 10;
 
 		Data.score.strOfst = VECTOR2(0, -70);
 		Data.score.bubbleSize = 0.9f;
@@ -128,6 +131,17 @@ namespace GAME09
 
 		Data.transition.outTime = 1.8f;
 		Data.transition.inTime = 0.28f;
+
+		Data.command.command.emplace_back(KEY_UP);
+		Data.command.command.emplace_back(KEY_UP);
+		Data.command.command.emplace_back(KEY_DOWN);
+		Data.command.command.emplace_back(KEY_DOWN);
+		Data.command.command.emplace_back(KEY_LEFT);
+		Data.command.command.emplace_back(KEY_RIGHT);
+		Data.command.command.emplace_back(KEY_LEFT);
+		Data.command.command.emplace_back(KEY_RIGHT);
+		Data.command.command.emplace_back(KEY_B);
+		Data.command.command.emplace_back(KEY_A);
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

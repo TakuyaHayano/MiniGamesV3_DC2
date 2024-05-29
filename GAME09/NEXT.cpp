@@ -31,6 +31,12 @@ namespace GAME09
 		Bubble->init();
 		Bubble->setSize(Next.bubbleSize);
 		Bubble->setPos(Next.bubblePos);
+		if (((TITLE*)game()->getScene(GAME::TITLE_ID))->secretMode()) {
+			UseFruitsNum = Next.useFruitsNumSecret;
+		}
+		else {
+			UseFruitsNum = Next.useFruitsNum;
+		}
 		CreateFruits();
 	}
 
@@ -53,7 +59,7 @@ namespace GAME09
 	}
 
 	void NEXT::CreateFruits() {
-		Fruits = new FRUITS(game(), Bubble->getPos(), (FRUITS::FRUITS_KINDS)random(0, 4));
+		Fruits = new FRUITS(game(), Bubble->getPos(), (FRUITS::FRUITS_KINDS)random(0, UseFruitsNum));
 		Fruits->create();
 		Fruits->init();
 	}

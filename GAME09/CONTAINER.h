@@ -15,6 +15,7 @@
 #include "FRUITS_BUBBLE.h"
 #include "FRUITS_BUBBLES.h"
 #include "CURTAIN.h"
+#include "COMMAND.h"
 
 namespace GAME09
 {
@@ -39,6 +40,7 @@ namespace GAME09
 			FRUITS_BUBBLES::DATA fruitsBubbles;
 			CURTAIN::DATA curtain;
 			TRANSITION::DATA transition;
+			COMMAND::DATA command;
 		};
 		DATA Data;
 	public:

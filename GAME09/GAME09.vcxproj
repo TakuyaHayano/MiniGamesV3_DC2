@@ -141,6 +141,7 @@
     <ClCompile Include="BUTTON_HELP.cpp" />
     <ClCompile Include="BUTTON_START.cpp" />
     <ClCompile Include="CLOUD.cpp" />
+    <ClCompile Include="COMMAND.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
     <ClCompile Include="CURTAIN.cpp" />
     <ClCompile Include="DRAW_NUM.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="BUTTON_HELP.h" />
     <ClInclude Include="BUTTON_START.h" />
     <ClInclude Include="CLOUD.h" />
+    <ClInclude Include="COMMAND.h" />
     <ClInclude Include="CONTAINER.h" />
     <ClInclude Include="CURTAIN.h" />
     <ClInclude Include="DRAW_NUM.h" />

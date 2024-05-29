@@ -1,6 +1,8 @@
 #include "../../libOne/inc/COLOR.h"
+#include "../../libOne/inc/window.h"
 #include "../../libOne/inc/graphic.h"
 #include "../../libOne/inc/input.h"
+#include "../../libOne/inc/mathUtil.h"
 #include "CONTAINER.h"
 #include "GAME09.h"
 #include "TITLE.h"
@@ -34,6 +36,9 @@ namespace GAME09
 		}
 		SelectButton = START;
 		Buttons[SelectButton]->setSelect(true, false);
+		game()->command()->init();
+		SecretMode = false;
+		Hue = 0;
 	}
 	void TITLE::update() {
 		if (!game()->transition()->inEndFlag()) {
@@ -57,17 +62,32 @@ namespace GAME09
 		for (int i = 0; i < NUM_BUTTONS; i++) {
 			Buttons[i]->update();
 		}
+		game()->command()->update();
+		if (!SecretMode && game()->command()->complete()) {
+			SecretMode = true;
+		}
 	}
 	void TITLE::draw() {
 		clear(128);
 		game()->backGround()->draw();
 		for (int i = 0; i < NUM_BUTTONS; i++) {
+			if (SecretMode && (BUTTON_KINDS)i == START) {
+				colorMode(HSV);
+				angleMode(DEGREES);
+				Hue += Title.hueSpeed * delta;
+				imageColor(Hue, 255, 255);
+			}
 			Buttons[i]->draw();
+			if (SecretMode && (BUTTON_KINDS)i == START) {
+				colorMode(RGB);
+				imageColor(255);
+			}
 		}
 		image(Title.titleImg, Title.titlePos.x, Title.titlePos.y, 0, Title.imgSize);
 		if (!game()->transition()->inEndFlag()) {
 			game()->transition()->draw();
 		}
+		game()->command()->draw();
 	}
 	void TITLE::nextScene() {
 		if (game()->transition()->inEndFlag()) {

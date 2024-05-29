@@ -19,11 +19,14 @@ namespace GAME09
             int titleImg;
             VECTOR2 titlePos;
             float imgSize;
+            float hueSpeed;
         };
     private:
         DATA Title;
         class BUTTON* Buttons[NUM_BUTTONS];
         BUTTON_KINDS SelectButton;
+        bool SecretMode;
+        float Hue;
     public:
         TITLE(class GAME* game);
         ~TITLE();
@@ -32,5 +35,7 @@ namespace GAME09
         void update();
         void draw();
         void nextScene();
+
+        bool secretMode() { return SecretMode; }
     };
 }
