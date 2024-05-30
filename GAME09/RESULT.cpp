@@ -6,9 +6,8 @@
 #include "CONTAINER.h"
 #include "GAME09.h"
 #include "RESULT.h"
-#include "BUTTON_START.h"
+#include "BUTTON_RETRY_RESULT.h"
 #include "BUTTON_HELP.h"
-#include "BUTTON_END.h"
 
 namespace GAME09
 {
@@ -23,7 +22,7 @@ namespace GAME09
 	}
 	void RESULT::create() {
 		Result = game()->container()->data().result;
-		Buttons[RETRY] = new BUTTON_START(game());
+		Buttons[RETRY] = new BUTTON_RETRY_RESULT(game());
 		Buttons[BACK] = new BUTTON_HELP(game());
 		for (int i = 0; i < NUM_BUTTONS; i++) {
 			Buttons[i]->create();

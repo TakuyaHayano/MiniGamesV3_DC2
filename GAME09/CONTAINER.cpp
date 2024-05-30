@@ -28,6 +28,8 @@ namespace GAME09
 		Data.endButton.pos = VECTOR2(960, 920);
 		Data.endButton.initStandbyMotion = true;
 		Data.endButton.startTime = 0.0f;
+		Data.resultRetryButton.pos = VECTOR2(330, 950);
+		Data.resultRetryButton.imgSize = 0.85f;
 
 		Data.physics.gravity = VECTOR2(0.0f, 1800.0f);
 
@@ -156,6 +158,8 @@ namespace GAME09
 		Data.helpButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\help_button_gray.png");
 		Data.endButton.selectedImg = loadImage("..\\main\\assets\\game09\\end_button.png");
 		Data.endButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\end_button_gray.png");
+		Data.resultRetryButton.selectedImg = loadImage("..\\main\\assets\\game09\\retry_button.png");
+		Data.resultRetryButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\retry_button_gray.png");
 		Data.box.img = loadImage("..\\main\\assets\\game09\\box.png");
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
 			std::string path = "..\\main\\assets\\game09\\";

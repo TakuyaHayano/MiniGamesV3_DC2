@@ -26,6 +26,7 @@
     <ClCompile Include="TRANSITION.cpp" />
     <ClCompile Include="COMMAND.cpp" />
     <ClCompile Include="RESULT.cpp" />
+    <ClCompile Include="BUTTON_RETRY_RESULT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="TRANSITION.h" />
     <ClInclude Include="COMMAND.h" />
     <ClInclude Include="RESULT.h" />
+    <ClInclude Include="BUTTON_RETRY_RESULT.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

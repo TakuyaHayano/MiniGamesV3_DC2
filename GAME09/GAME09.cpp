@@ -49,8 +49,9 @@ namespace GAME09
 		Command->create();
 
 		//init
-		CurSceneId = TITLE_ID;
-		Scenes[CurSceneId]->init();
+		changeScene(TITLE_ID);
+		changeScene(STAGE_ID);
+		changeScene(RESULT_ID);
 
 		return 0;
 	}
