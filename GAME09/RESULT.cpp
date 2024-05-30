@@ -7,7 +7,7 @@
 #include "GAME09.h"
 #include "RESULT.h"
 #include "BUTTON_RETRY_RESULT.h"
-#include "BUTTON_HELP.h"
+#include "BUTTON_BACK_RESULT.h"
 
 namespace GAME09
 {
@@ -23,7 +23,7 @@ namespace GAME09
 	void RESULT::create() {
 		Result = game()->container()->data().result;
 		Buttons[RETRY] = new BUTTON_RETRY_RESULT(game());
-		Buttons[BACK] = new BUTTON_HELP(game());
+		Buttons[BACK] = new BUTTON_BACK_RESULT(game());
 		for (int i = 0; i < NUM_BUTTONS; i++) {
 			Buttons[i]->create();
 		}
@@ -40,14 +40,14 @@ namespace GAME09
 			game()->transition()->update();
 			return;
 		}
-		if (isTrigger(KEY_W) || isTrigger(KEY_UP)) {
+		if (isTrigger(KEY_A) || isTrigger(KEY_LEFT)) {
 			if (SelectButton > 0) {
 				Buttons[SelectButton]->setSelect(false);
 				SelectButton = (BUTTON_KINDS)(SelectButton - 1);
 				Buttons[SelectButton]->setSelect(true);
 			}
 		}
-		else if (isTrigger(KEY_S) || isTrigger(KEY_DOWN)) {
+		else if (isTrigger(KEY_D) || isTrigger(KEY_RIGHT)) {
 			if (SelectButton < NUM_BUTTONS - 1) {
 				Buttons[SelectButton]->setSelect(false);
 				SelectButton = (BUTTON_KINDS)(SelectButton + 1);
@@ -57,7 +57,6 @@ namespace GAME09
 		for (int i = 0; i < NUM_BUTTONS; i++) {
 			Buttons[i]->update();
 		}
-		if (isTrigger(KEY_R)) game()->getScene(GAME::STAGE_ID)->update();
 	}
 	void RESULT::draw() {
 		clear(128);
