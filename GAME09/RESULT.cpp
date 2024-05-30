@@ -9,6 +9,8 @@
 #include "BUTTON_RETRY_RESULT.h"
 #include "BUTTON_BACK_RESULT.h"
 
+#include "canvasResize.h"
+
 namespace GAME09
 {
 	RESULT::RESULT(class GAME* game) :

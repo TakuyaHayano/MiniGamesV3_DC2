@@ -171,6 +171,7 @@
     <ClInclude Include="BUTTON_HELP.h" />
     <ClInclude Include="BUTTON_RETRY_RESULT.h" />
     <ClInclude Include="BUTTON_START.h" />
+    <ClInclude Include="canvasResize.h" />
     <ClInclude Include="CLOUD.h" />
     <ClInclude Include="COMMAND.h" />
     <ClInclude Include="CONTAINER.h" />
