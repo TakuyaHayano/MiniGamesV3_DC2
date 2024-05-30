@@ -13,6 +13,9 @@ namespace GAME09
 		Data.title.imgSize = 1;
 		Data.title.hueSpeed = 360;
 
+		Data.result.imgPos = VECTOR2(width / 2, height / 2);
+		Data.result.imgSize = 1.5f;
+
 		Data.backG.imgSize = 1.0f;
 		Data.backG.pos = VECTOR2(width / 2, height / 2);
 
@@ -145,6 +148,7 @@ namespace GAME09
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
+		Data.result.resultImg = loadImage("..\\main\\assets\\game09\\result_back.png");
 		Data.backG.img = loadImage("..\\main\\assets\\game09\\back_ground.png");
 		Data.startButton.selectedImg = loadImage("..\\main\\assets\\game09\\start_button.png");
 		Data.startButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\start_button_gray.png");

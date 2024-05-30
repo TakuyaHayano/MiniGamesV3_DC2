@@ -25,6 +25,7 @@
     <ClCompile Include="CURTAIN.cpp" />
     <ClCompile Include="TRANSITION.cpp" />
     <ClCompile Include="COMMAND.cpp" />
+    <ClCompile Include="RESULT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="CURTAIN.h" />
     <ClInclude Include="TRANSITION.h" />
     <ClInclude Include="COMMAND.h" />
+    <ClInclude Include="RESULT.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

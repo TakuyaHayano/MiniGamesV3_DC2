@@ -152,6 +152,7 @@
     <ClCompile Include="GAME_OBJECT.cpp" />
     <ClCompile Include="NEXT.cpp" />
     <ClCompile Include="PHYSICS_ENGINE.cpp" />
+    <ClCompile Include="RESULT.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="SCORE.cpp" />
     <ClCompile Include="STAGE.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="myFunc.h" />
     <ClInclude Include="NEXT.h" />
     <ClInclude Include="PHYSICS_ENGINE.h" />
+    <ClInclude Include="RESULT.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="SCORE.h" />
     <ClInclude Include="STAGE.h" />

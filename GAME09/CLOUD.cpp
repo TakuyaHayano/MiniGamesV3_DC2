@@ -45,8 +45,7 @@ namespace GAME09
 			}
 		}
 		if (State == MOVE) {
-			Fruits->setPosC(FruitsPos);
-			Fruits->setPosO(FruitsPos);
+			setFruitsPos();
 			if (isTrigger(KEY_SPACE) || isTrigger(KEY_ENTER)) {
 				game()->physics()->addFruits(Fruits);
 				Fruits = nullptr;
@@ -66,7 +65,11 @@ namespace GAME09
 			Fruits->draw();
 		}
 	}
-	void CLOUD::setMove(){
+	void CLOUD::setFruitsPos() {
+		Fruits->setPosC(FruitsPos);
+		Fruits->setPosO(FruitsPos);
+	}
+	void CLOUD::setMove() {
 		CreateFruits();
 		State = MOVE;
 	}

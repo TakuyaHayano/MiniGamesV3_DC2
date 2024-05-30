@@ -46,7 +46,8 @@ namespace GAME09
 	}
 	void STAGE::nextScene() {
 		if (game()->physics()->gameOverJudge()) {
-			game()->changeScene(GAME::TITLE_ID);
+			game()->cloud()->setFruitsPos();
+			game()->changeScene(GAME::RESULT_ID);
 		}
 	}
 }

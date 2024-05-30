@@ -1,6 +1,7 @@
 #pragma once
 #include "TITLE.h"
 #include "STAGE.h"
+#include "RESULT.h"
 #include "TRANSITION.h"
 #include "BACKGROUND.h"
 #include "BUTTON.h"
@@ -24,6 +25,7 @@ namespace GAME09
 		struct DATA {
 			TITLE::DATA title;
 			STAGE::DATA stage;
+			RESULT::DATA result;
 			BACKGROUND::DATA backG;
 			BUTTON::DATA startButton;
 			BUTTON::DATA helpButton;

@@ -39,6 +39,7 @@ namespace GAME09
         void update();
         void draw();
 
+        void setFruitsPos();
         void setMove();
     };
 }
