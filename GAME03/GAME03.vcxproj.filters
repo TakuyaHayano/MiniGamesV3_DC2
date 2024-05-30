@@ -2,11 +2,42 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GAME03.cpp" />
+    <ClCompile Include="VOLUME.cpp" />
+    <ClCompile Include="TITLE.cpp" />
+    <ClCompile Include="SCENE.cpp" />
+    <ClCompile Include="GAME_OBJECT.cpp" />
+    <ClCompile Include="FADE.cpp" />
+    <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="PLAYER.cpp" />
+    <ClCompile Include="MAP.cpp" />
+    <ClCompile Include="CHARACTER.cpp" />
+    <ClCompile Include="CHARACTER_MANAGER.cpp" />
+    <ClCompile Include="STAGE.cpp" />
+    <ClCompile Include="ANIMS.cpp" />
+    <ClCompile Include="ANIM.cpp" />
+    <ClCompile Include="OPERATION_INSTRUCTIONS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME03.h" />
+    <ClInclude Include="VOLUME.h" />
+    <ClInclude Include="TITLE.h" />
+    <ClInclude Include="SCENE.h" />
+    <ClInclude Include="GAME_OBJECT.h" />
+    <ClInclude Include="FADE.h" />
+    <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="PLAYER.h" />
+    <ClInclude Include="MAP.h" />
+    <ClInclude Include="CHARACTER.h" />
+    <ClInclude Include="CHARACTER_MANAGER.h" />
+    <ClInclude Include="STAGE.h" />
+    <ClInclude Include="ANIMS.h" />
+    <ClInclude Include="ANIM.h" />
+    <ClInclude Include="OPERATION_INSTRUCTIONS.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game03\title.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

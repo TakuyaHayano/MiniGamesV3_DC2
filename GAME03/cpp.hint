@@ -1,0 +1,6 @@
+// ヒント ファイルは、Visual Studio IDE が Visual C++ 識別子を解釈するのに役立ちます
+// 関数およびマクロの名前などです。
+// 詳細については次を参照してください https://go.microsoft.com/fwlink/?linkid=865984
+#define width
+#define delta
+#define WARNING(flag, msg1, msg2) { if(flag){ char buf[ 512 ]; sprintf_s( buf, "%s\n%s\n\n%s : %d", msg1, msg2, __FILE__, __LINE__ ); MessageBoxA( 0, buf, "WARNING!!", MB_OK | MB_ICONERROR ); exit(1); } }
