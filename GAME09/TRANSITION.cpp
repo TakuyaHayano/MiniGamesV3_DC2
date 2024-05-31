@@ -52,6 +52,7 @@ namespace GAME09
 		Time = 0;
 		game()->curtain()->init();
 		game()->fruitsBubbles()->init();
+		update();
 	}
 
 	bool TRANSITION::inEndFlag() {
