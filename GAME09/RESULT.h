@@ -18,6 +18,10 @@ namespace GAME09
             int resultImg;
             VECTOR2 imgPos;
             float imgSize;
+            VECTOR2 finalFieldPos;
+            float finalFieldSize;
+            VECTOR2 scorePos;
+            float scoreSize;
         };
     private:
         DATA Result;

@@ -84,9 +84,6 @@ namespace GAME09
 			}
 		}
 		image(Title.titleImg, Title.titlePos.x, Title.titlePos.y, 0, Title.imgSize);
-		if (!game()->transition()->inEndFlag()) {
-			game()->transition()->draw();
-		}
 		game()->command()->draw();
 	}
 	void TITLE::nextScene() {

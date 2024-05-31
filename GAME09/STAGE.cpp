@@ -33,16 +33,16 @@ namespace GAME09
 		}
 	}
 	void STAGE::draw() {
-		clear(128);
+		//clear(128);
 		game()->backGround()->draw();
 		game()->box()->draw();
 		game()->cloud()->draw();
 		game()->physics()->draw();
 		game()->next()->draw();
 		game()->score()->draw();
-		if (!game()->transition()->inEndFlag()) {
-			game()->transition()->draw();
-		}
+		//if (!game()->transition()->inEndFlag()) {
+		//	game()->transition()->draw();
+		//}
 	}
 	void STAGE::nextScene() {
 		if (game()->physics()->gameOverJudge()) {

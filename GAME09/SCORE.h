@@ -31,5 +31,6 @@ namespace GAME09
         void draw();
 
         void addScore(FRUITS::FRUITS_KINDS kinds);
+        int getCurScore() { return CurScore; }
     };
 }

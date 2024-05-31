@@ -9,8 +9,6 @@
 #include "BUTTON_RETRY_RESULT.h"
 #include "BUTTON_BACK_RESULT.h"
 
-#include "canvasResize.h"
-
 namespace GAME09
 {
 	RESULT::RESULT(class GAME* game) :
@@ -64,16 +62,22 @@ namespace GAME09
 		clear(128);
 		rectMode(CENTER);
 		game()->getScene(GAME::STAGE_ID)->draw();
-		fill(0, 0, 0, 100);
+		fill(0, 0, 0, 150);
 		noStroke();
 		rect(width / 2, height / 2, width, height);
 		image(Result.resultImg, Result.imgPos.x, Result.imgPos.y, 0, Result.imgSize);
 		for (int i = 0; i < NUM_BUTTONS; i++) {
 			Buttons[i]->draw();
 		}
-		if (!game()->transition()->inEndFlag()) {
-			game()->transition()->draw();
-		}
+		game()->drawNum()->draw(game()->score()->getCurScore(), Result.scorePos, Result.scoreSize);
+		setCornerPos(Result.finalFieldPos);
+		setMagnification(Result.finalFieldSize);
+		game()->getScene(GAME::STAGE_ID)->draw();
+		setCornerPos(VECTOR2(0,0));
+		setMagnification(1);
+		//if (!game()->transition()->inEndFlag()) {
+		//	game()->transition()->draw();
+		//}
 	}
 	void RESULT::nextScene() {
 		if (game()->transition()->inEndFlag()) {

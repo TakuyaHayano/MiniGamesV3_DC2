@@ -50,8 +50,8 @@ namespace GAME09
 
 		//init
 		changeScene(TITLE_ID);
-		changeScene(STAGE_ID);
-		changeScene(RESULT_ID);
+		//changeScene(STAGE_ID);
+		//changeScene(RESULT_ID);
 
 		return 0;
 	}
@@ -78,7 +78,11 @@ namespace GAME09
 	}
 
 	void GAME::proc(){
+		clear();
 		Scenes[CurSceneId]->proc();
+		if (!Transition->inEndFlag()) {
+			Transition->draw();
+		}
 	}
 
 	void GAME::changeScene(SCENE_ID sceneId) {

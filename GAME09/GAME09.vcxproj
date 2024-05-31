@@ -107,6 +107,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ForcedIncludeFiles>canvasResize.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -123,6 +124,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ForcedIncludeFiles>canvasResize.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -142,6 +144,7 @@
     <ClCompile Include="BUTTON_HELP.cpp" />
     <ClCompile Include="BUTTON_RETRY_RESULT.cpp" />
     <ClCompile Include="BUTTON_START.cpp" />
+    <ClCompile Include="canvasResize.cpp" />
     <ClCompile Include="CLOUD.cpp" />
     <ClCompile Include="COMMAND.cpp" />
     <ClCompile Include="CONTAINER.cpp" />

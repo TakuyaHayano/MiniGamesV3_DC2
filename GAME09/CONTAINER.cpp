@@ -15,6 +15,10 @@ namespace GAME09
 
 		Data.result.imgPos = VECTOR2(width / 2, height / 2);
 		Data.result.imgSize = 1.5f;
+		Data.result.finalFieldPos = VECTOR2(130, 280);
+		Data.result.finalFieldSize = 0.477f;
+		Data.result.scorePos = VECTOR2(1550, 420);
+		Data.result.scoreSize = 0.9f;
 
 		Data.backG.imgSize = 1.0f;
 		Data.backG.pos = VECTOR2(width / 2, height / 2);

@@ -28,6 +28,7 @@
     <ClCompile Include="RESULT.cpp" />
     <ClCompile Include="BUTTON_RETRY_RESULT.cpp" />
     <ClCompile Include="BUTTON_BACK_RESULT.cpp" />
+    <ClCompile Include="canvasResize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
