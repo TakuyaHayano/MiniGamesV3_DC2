@@ -190,6 +190,7 @@ namespace GAME09
 				Fruits.emplace_back(*it);
 				Fruits.back()->create();
 				Fruits.back()->init();
+				Fruits.back()->setTheta();
 				it = TempEvolution.erase(it);
 			}
 		}
