@@ -81,6 +81,12 @@ namespace GAME09
 		isSetMove = false;
 	}
 
+	void PHYSICS_ENGINE::setVibe(bool vibe) {
+		for (auto it = Fruits.begin(); it != Fruits.end(); it++) {
+			(*it)->setVibe(vibe);
+		}
+	}
+
 	void PHYSICS_ENGINE::applyConstraintIndividual(class FRUITS* fruits){
 		if (fruits->getPosC().y + fruits->getRadius() > game()->box()->under()) {
 			fruits->setPosC(VECTOR2(fruits->getPosC().x, game()->box()->under() - fruits->getRadius()));

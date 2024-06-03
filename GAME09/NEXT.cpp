@@ -53,6 +53,7 @@ namespace GAME09
 	}
 
 	class FRUITS* NEXT::getNextFruits(){
+		Fruits->setTheta();
 		class FRUITS* f = Fruits;
 		CreateFruits();
 		return f;

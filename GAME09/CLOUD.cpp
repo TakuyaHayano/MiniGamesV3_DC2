@@ -28,6 +28,7 @@ namespace GAME09
 
 	void CLOUD::CreateFruits() {
 		Fruits = game()->next()->getNextFruits();
+		setFruitsPos();
 		State = MOVE;
 	}
 

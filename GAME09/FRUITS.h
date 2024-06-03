@@ -25,6 +25,7 @@ namespace GAME09
         struct DATA {
             float sw;
             float attenuationRate; //â^ìÆó ÇÃå∏êäó¶(ínñ Ç≈ìôë¨â^ìÆÇÇ∑ÇÈÇÃÇîÇØÇÈÇΩÇﬂ)
+            float initTheta;
 
             int imgs[NUM_FRUITS_KINDS];
             float cherryImgSize;
@@ -33,6 +34,8 @@ namespace GAME09
 
             float inflateMaxTime;
             float initValue;
+            float vibeMaxDist;
+            float vibeSpeed;
         };
     private:
         DATA Fruits;
@@ -52,6 +55,8 @@ namespace GAME09
         bool Inflate;
         bool TouchedAny = false;
         bool Last = false;
+        bool Vibe = false;
+        float VibeAnimeTime = 0;
     public:
         FRUITS(class GAME* game, VECTOR2 pos, FRUITS_KINDS kinds, bool inflate = false);
         ~FRUITS();
@@ -71,6 +76,8 @@ namespace GAME09
         void setPosO(const VECTOR2& newPos) { Pos_old = newPos; }
         void setTouch(bool touch);
         void setLast(bool last) { Last = last; }
+        void setVibe(bool vibe);
+        void setTheta() { Theta = Fruits.initTheta; }
         
         bool getTouchedAny() { return TouchedAny; }
         bool getLast() { return Last; }

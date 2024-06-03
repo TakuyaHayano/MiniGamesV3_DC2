@@ -32,5 +32,6 @@ namespace GAME09
         bool gameOverJudge();
 
         void addFruits(class FRUITS* fruits);
+        void setVibe(bool vibe);
     };
 }

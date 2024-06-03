@@ -13,6 +13,9 @@ namespace GAME09
 		Data.title.imgSize = 1;
 		Data.title.hueSpeed = 360;
 
+		Data.stage.vibeTime = 0.83f;
+		Data.stage.waitTime = 1.3f;
+
 		Data.result.imgPos = VECTOR2(width / 2, height / 2);
 		Data.result.imgSize = 1.5f;
 		Data.result.finalFieldPos = VECTOR2(130, 280);
@@ -48,11 +51,14 @@ namespace GAME09
 
 		Data.fruits.sw = 2;
 		Data.fruits.attenuationRate = 0.998f;
+		Data.fruits.initTheta = -0.7854f;
 		Data.fruits.cherryRadius = 24;
 		Data.fruits.cherryImgSize = 0.062f;
 		Data.fruits.nextFruitsSizeRate = 1.232f;
 		Data.fruits.inflateMaxTime = 0.1f;
 		Data.fruits.initValue = 0.5f;
+		Data.fruits.vibeMaxDist = 1.8f;
+		Data.fruits.vibeSpeed = 60;
 
 		Data.cloud.fruitsInitPos = VECTOR2(width / 2, 136);
 		Data.cloud.fruitsImgSize = 1;

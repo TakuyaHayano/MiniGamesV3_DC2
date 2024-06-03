@@ -9,11 +9,19 @@ namespace GAME09
         public SCENE
     {
     public:
+        enum STATE {
+            PLAY,
+            VIBE,
+            WAIT
+        };
         struct DATA {
-            int a;
+            float vibeTime;
+            float waitTime;
         };
     private:
         DATA Stage;
+        STATE State;
+        float AnimeTime = 0;
     public:
         STAGE(class GAME* game);
         ~STAGE();

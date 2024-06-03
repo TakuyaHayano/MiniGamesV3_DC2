@@ -36,28 +36,34 @@ namespace GAME09
 	}
 
 	void FRUITS::update(float dt) {
-		if (Inflate && InflateTime < Fruits.inflateMaxTime) {
-			InflateTime += dt;
-			if (InflateTime < Fruits.inflateMaxTime) {
-				float ratio = InflateTime / Fruits.inflateMaxTime;
-				Radius = MaxRadius * (Fruits.initValue + (1 - Fruits.initValue) * ratio);
-			}
-			else {
-				Radius = MaxRadius;
-			}
+		if (Vibe) {
+			VibeAnimeTime += dt;
 		}
-		VECTOR2 Vel = Pos_current - Pos_old;
-		if (Touch) {
-			Vel *= Fruits.attenuationRate;
-			Omega = Vel.mag() / Radius;
-			if (Vel.x == 0) Omega *= 0;
-			if (Vel.x < 0) Omega *= -1;
+		else {
+			if (Inflate && InflateTime < Fruits.inflateMaxTime) {
+				InflateTime += dt;
+				if (InflateTime < Fruits.inflateMaxTime) {
+					float ratio = InflateTime / Fruits.inflateMaxTime;
+					Radius = MaxRadius * (Fruits.initValue + (1 - Fruits.initValue) * ratio);
+				}
+				else {
+					Radius = MaxRadius;
+				}
+			}
+
+			VECTOR2 Vel = Pos_current - Pos_old;
+			if (Touch) {
+				Vel *= Fruits.attenuationRate;
+				Omega = Vel.mag() / Radius;
+				if (Vel.x == 0) Omega *= 0;
+				if (Vel.x < 0) Omega *= -1;
+			}
+			Pos_old = Pos_current;
+			Pos_current = Pos_current + Vel + Acc * dt * dt;
+			Theta += Omega;
+			Acc *= 0;
+			Touch = false;
 		}
-		Pos_old = Pos_current;
-		Pos_current = Pos_current + Vel + Acc * dt * dt;
-		Theta += Omega;
-		Acc *= 0;
-		Touch = false;
 	}
 	void FRUITS::accelerate(VECTOR2 acc) {
 		Acc += acc;
@@ -81,7 +87,14 @@ namespace GAME09
 			fill(0, 255, 0, 200);
 		}
 		angleMode(RADIANS);
-		image(Fruits.imgs[Kinds], Pos_current.x, Pos_current.y, Theta, ImgSize);
+		if (Vibe) {
+			VECTOR2 ofst(Fruits.vibeMaxDist * Cos(Theta), Fruits.vibeMaxDist * Sin(Theta));
+			VECTOR2 pos = Pos_current + ofst * Sin(VibeAnimeTime * Fruits.vibeSpeed);
+			image(Fruits.imgs[Kinds], pos.x, pos.y, Theta, ImgSize);
+		}
+		else {
+			image(Fruits.imgs[Kinds], Pos_current.x, Pos_current.y, Theta, ImgSize);
+		}
 		//circle(Pos_current.x, Pos_current.y, Radius * 2);
 		//line(Pos_current.x, Pos_current.y, Pos_current.x + Radius * cos(Theta), Pos_current.y + Radius * sin(Theta));
 	}
@@ -91,5 +104,9 @@ namespace GAME09
 		if (!TouchedAny) {
 			TouchedAny = true;
 		}
+	}
+	void FRUITS::setVibe(bool vibe) {
+		Vibe = vibe;
+		VibeAnimeTime = 0;
 	}
 }
