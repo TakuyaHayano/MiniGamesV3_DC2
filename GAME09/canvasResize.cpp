@@ -26,6 +26,9 @@ namespace GAME09 {
 	void setCornerPos(VECTOR2 pos) {
 		cornerPos = pos;
 	}
+	void addCornerPos(VECTOR2 ofst) {
+		cornerPos += ofst;
+	}
 	void setMagnification(float value) {
 		magnification = value;
 	}

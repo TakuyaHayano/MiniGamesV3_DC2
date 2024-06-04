@@ -11,8 +11,19 @@ namespace GAME09
     public:
         enum BUTTON_KINDS {
             RETRY,
-            BACK,
+            RETURN,
             NUM_BUTTONS
+        };
+        enum STATE {
+            START,
+            BACK,
+            NORMAL,
+            NUM_STATE
+        };
+        struct STATE_MOVE_DATA {
+            float animeTime;
+            float startOfst;
+            float endOfst;
         };
         struct DATA {
             int resultImg;
@@ -22,11 +33,15 @@ namespace GAME09
             float finalFieldSize;
             VECTOR2 scorePos;
             float scoreSize;
+            STATE_MOVE_DATA moveDatas[NUM_STATE];
         };
     private:
         DATA Result;
         class BUTTON* Buttons[NUM_BUTTONS];
         BUTTON_KINDS SelectButton;
+        STATE State;
+        float AnimeTime;
+        float OfstY;
     public:
         RESULT(class GAME* game);
         ~RESULT();

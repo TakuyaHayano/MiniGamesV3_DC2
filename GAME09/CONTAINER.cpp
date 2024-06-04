@@ -22,6 +22,15 @@ namespace GAME09
 		Data.result.finalFieldSize = 0.477f;
 		Data.result.scorePos = VECTOR2(1550, 420);
 		Data.result.scoreSize = 0.9f;
+		Data.result.moveDatas[RESULT::START].animeTime = 0.3f;
+		Data.result.moveDatas[RESULT::START].startOfst = -height;
+		Data.result.moveDatas[RESULT::START].endOfst = 100;
+		Data.result.moveDatas[RESULT::BACK].animeTime = 0.1f;
+		Data.result.moveDatas[RESULT::BACK].startOfst = 100;
+		Data.result.moveDatas[RESULT::BACK].endOfst = 0;
+		Data.result.moveDatas[RESULT::NORMAL].animeTime = 0.1f;
+		Data.result.moveDatas[RESULT::NORMAL].startOfst = 0;
+		Data.result.moveDatas[RESULT::NORMAL].endOfst = 0;
 
 		Data.backG.imgSize = 1.0f;
 		Data.backG.pos = VECTOR2(width / 2, height / 2);
