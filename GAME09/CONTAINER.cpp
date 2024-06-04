@@ -186,6 +186,7 @@ namespace GAME09
 		Data.resultBackButton.selectedImg = loadImage("..\\main\\assets\\game09\\back_button.png");
 		Data.resultBackButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\back_button_gray.png");
 		Data.box.img = loadImage("..\\main\\assets\\game09\\box.png");
+		Data.box.frontImg = loadImage("..\\main\\assets\\game09\\box_front.png");
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {
 			std::string path = "..\\main\\assets\\game09\\";
 			path += std::to_string(i);

@@ -10,6 +10,7 @@ namespace GAME09
     public:
         struct DATA {
             int img;
+            int frontImg;
             VECTOR2 pos;
             float imgSize;
             float left;
@@ -26,6 +27,7 @@ namespace GAME09
         void init();
         void update();
         void draw();
+        void drawFront();
 
         float left();
         float right();

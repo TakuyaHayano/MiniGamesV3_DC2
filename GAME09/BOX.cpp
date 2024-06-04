@@ -38,6 +38,11 @@ namespace GAME09
 		//line(0, up(), width, up());
 	}
 
+	void BOX::drawFront() {
+		rectMode(CENTER);
+		image(Box.frontImg, Box.pos.x, Box.pos.y, 0, Box.imgSize);
+	}
+
 	float BOX::left(){
 		return Box.left + Box.pos.x;
 	}

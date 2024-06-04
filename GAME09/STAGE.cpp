@@ -64,6 +64,7 @@ namespace GAME09
 		game()->box()->draw();
 		game()->cloud()->draw();
 		game()->physics()->draw();
+		game()->box()->drawFront();
 		game()->next()->draw();
 		game()->score()->draw();
 	}
