@@ -13,7 +13,7 @@ namespace GAME03 {
 			COLOR stageClearColor;
 			float logoPx = 0;
 			float logoPy = 0;
-			float time = 0.0f;
+			time_t time = 0;
 			time_t s_time = 0, e_time = 0, n_time = 0;
 		};
 	private:

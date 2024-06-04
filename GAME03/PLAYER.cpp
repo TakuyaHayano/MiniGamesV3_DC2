@@ -6,6 +6,7 @@
 #include"GAME03.h"
 #include"MAP.h"
 #include "PLAYER.h"
+#include"VOLUME.h"
 #include<time.h>
 namespace GAME03 {
 	void PLAYER::create() {
@@ -105,9 +106,11 @@ namespace GAME03 {
 		time(&Player.n_time);
 		if (Player.e_time <= Player.n_time) {
 			State = STATE::DIED;
+			playSound(game()->container()->data().volume.Se_C);
 		}
 		if (Chara.wx < 0.0f && Chara.wy >= 250.0f) {
 			State = STATE::SURVIVED;
+			playSound(game()->container()->data().volume.Se_B);
 			Chara.hp = 0;
 		}
 	}

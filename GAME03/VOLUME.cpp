@@ -37,28 +37,25 @@ namespace GAME03 {
 		stroke(100);
 		fill(255);
 
-		line(width / 3.5f, height / 3.15f, width / 3.5f + 800.0f, (float)height / 3.15f);
-		line(width / 3.5f, height / 1.65f, width / 3.5f + 800.0f, (float)height / 1.65f);
-
-		circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
-		circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
+		line(width / 3.5f, height / 3.15f, width / 3.5f + 800.0f, height / 3.15f);
+		line(width / 3.5f, height / 1.65f, width / 3.5f + 800.0f, height / 1.65f);
 
 		fill(0);
-		text((let)Volume.volume1, width / 1.4f, height / 3.0f);
-		text((let)Volume.volume2, width / 1.4f, height / 1.6f);
+		text((let)(int)Volume.volume1, width / 1.4f, height / 3.0f);
+		text((let)(int)Volume.volume2, width / 1.4f, height / 1.6f);
 
 		if (Volume.select) {
 			Volume.cntVolume++;
 			if (Volume.cntVolume % 4 == 0) {
 				if (Volume.volume1 >= 0 && Volume.volume1 <= 100) {
 					if (isPress(KEY_A)) {
-						Volume.volume1--;
+						Volume.volume1 += -(3.4f * 60) * delta;
 						if (Volume.volume1 < 0) {
 							Volume.volume1 = 0;
 						}
 					}
 					if (isPress(KEY_D)) {
-						Volume.volume1++;
+						Volume.volume1 += 3.4f * 60 * delta;
 						if (Volume.volume1 > 100) {
 							Volume.volume1 = 100;
 						}
@@ -67,6 +64,8 @@ namespace GAME03 {
 				}
 				Volume.cntVolume = 0;
 			}
+			fill(255);
+			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
 			fill(255, 0, 0);
 			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
 		}
@@ -76,13 +75,13 @@ namespace GAME03 {
 			if (Volume.cntVolume % 4 == 0) {
 				if (Volume.volume2 >= 0 && Volume.volume2 <= 100) {
 					if (isPress(KEY_A)) {
-						Volume.volume2--;
+						Volume.volume2 += -(3.4f * 60) * delta;
 						if (Volume.volume2 < 0) {
 							Volume.volume2 = 0;
 						}
 					}
 					if (isPress(KEY_D)) {
-						Volume.volume2++;
+						Volume.volume2 += 3.4f * 60 * delta;
 						if (Volume.volume2 > 100) {
 							Volume.volume2 = 100;
 						}
@@ -90,6 +89,8 @@ namespace GAME03 {
 				}
 				Volume.cntVolume = 0;
 			}
+			fill(255);
+			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
 			fill(255, 0, 0);
 			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
 		}
@@ -103,8 +104,12 @@ namespace GAME03 {
 			Volume.volume1 = 80;
 			Volume.volume2 = 80;
 		}
-		setVolume(Volume.Snd_A, -(100 - Volume.volume1) * (100 - Volume.volume1));
-		setVolume(Volume.Se_A, -(100 - Volume.volume2) * (100 - Volume.volume2));
+
+		setVolume(Volume.Snd_A, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
+		setVolume(Volume.Se_A, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
+		setVolume(Volume.Se_B, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
+		setVolume(Volume.Se_C, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
+
 		fill(0);
 		textSize(40);
 		text("Enterキーでタイトルに戻る", width / 1.5f, height / 1.00625f);

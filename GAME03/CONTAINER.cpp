@@ -20,7 +20,7 @@ namespace GAME03 {
         Data.stage.logoPx = (width - 800) / 2;
         Data.stage.logoPy = 220;
         Data.stage.backToTitleTime = 2;
-        Data.stage.time = 0.0f;
+        Data.stage.time = 0;
         time(&Data.stage.s_time);
         Data.stage.e_time = Data.stage.s_time + 100;
         time(&Data.stage.n_time);
@@ -52,7 +52,6 @@ namespace GAME03 {
         Data.charaMng.numPlayers = 1;
 
         Data.operationInstructions.backColor = COLOR(255, 255, 255, 255);
-        //Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\.png");
 
     }
     void CONTAINER::LoadGraphics() {
@@ -66,16 +65,24 @@ namespace GAME03 {
         Data.playerChara.anims = new ANIMS("..\\main\\assets\\game03\\player");
         Data.playerChara.shadowImg = loadImage("..\\main\\assets\\game03\\shadow.png");
         Data.playerChara.animData.interval = 0.1f;
+
+        //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\.png");
+        // 
+        //Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\.png");
     }
 
     void CONTAINER::LoadBgms() {
         Data.volume.Snd_A = loadSound("..\\main\\assets\\game03\\BGM_A.wav");
         //Data.volume.Snd_B = loadSound("..\\main\\assets\\game03\\BGM_B.wav");
         Data.volume.Se_A = loadSound("..\\main\\assets\\game03\\ÉWÉÉÉìÉv.wav");
-        //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\.png");
-        Data.volume.volume1 = 80;
-        Data.volume.volume2 = 80;
-        setVolume(Data.volume.Snd_A, -(100 - Data.volume.volume1) * (100 - Data.volume.volume1));
-        setVolume(Data.volume.Se_A, -(100 - Data.volume.volume2) * (100 - Data.volume.volume2));
+        Data.volume.Se_B = loadSound("..\\main\\assets\\game03\\äΩê∫Ç∆îèéË.wav");
+        Data.volume.Se_C = loadSound("..\\main\\assets\\game03\\ä‘î≤ÇØ7.wav");
+        Data.volume.volume1 = 80.0f;
+        Data.volume.volume2 = 80.0f;
+        setVolume(Data.volume.Snd_A, -(100 - (int)Data.volume.volume1) * (100 - (int)Data.volume.volume1));
+        //setVolume(Data.volume.Snd_B, -(100 - Data.volume.volume1) * (100 - Data.volume.volume1));
+        setVolume(Data.volume.Se_A, -(100 - (int)Data.volume.volume2) * (100 - (int)Data.volume.volume2));
+        setVolume(Data.volume.Se_B, -(100 - (int)Data.volume.volume2) * (100 - (int)Data.volume.volume2));
+        setVolume(Data.volume.Se_C, -(100 - (int)Data.volume.volume2) * (100 - (int)Data.volume.volume2));
     }
 }
