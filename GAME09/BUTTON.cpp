@@ -46,6 +46,10 @@ namespace GAME09
                 pos.y += Sin(180 * ratio) * Button.standbyAnimeOfstY;
             }
         }
+        if (SelectMotion) {
+            float ratio = AnimeTime / Button.selectAnimeTime;
+            pos.y += Sin(180 * ratio) * Button.selectAnimeOfstY;
+        }
         if (Select) {
             image(Button.selectedImg, pos.x, pos.y, 0, Button.imgSize);
         }

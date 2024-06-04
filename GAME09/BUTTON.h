@@ -13,8 +13,8 @@ namespace GAME09
             int selectedImg;
             float imgSize = 1;
             VECTOR2 pos;
-            float selectAnimeTime = 0.15f;
-            float selectAnimeOfstY = 30;
+            float selectAnimeTime = 0.1f;
+            float selectAnimeOfstY = 10;
             float startTime = 0;
             float standbyAnimeCycleTime = 1.1f;
             float standbyAnimeTime = 0.6f;
