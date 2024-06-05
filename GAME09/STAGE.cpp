@@ -67,6 +67,7 @@ namespace GAME09
 		game()->box()->drawFront();
 		game()->next()->draw();
 		game()->score()->draw();
+		game()->eCircle()->draw();
 	}
 	void STAGE::nextScene() {
 		if (State == WAIT && AnimeTime > Stage.waitTime) {

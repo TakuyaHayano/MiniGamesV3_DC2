@@ -26,6 +26,7 @@ namespace GAME09
 		Curtain = new CURTAIN(this);
 		Transition = new TRANSITION(this);
 		Command = new COMMAND(this);
+		ECircle = new EVOLUTIONARY_CIRCLE(this);
 
 		//load
 		Container->load();
@@ -47,6 +48,7 @@ namespace GAME09
 		Curtain->create();
 		Transition->create();
 		Command->create();
+		ECircle->create();
 
 		//init
 		changeScene(TITLE_ID);
@@ -58,6 +60,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete ECircle;
 		delete Command;
 		delete Transition;
 		delete Curtain;

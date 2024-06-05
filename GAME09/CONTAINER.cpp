@@ -170,6 +170,9 @@ namespace GAME09
 		Data.command.command.emplace_back(KEY_RIGHT);
 		Data.command.command.emplace_back(KEY_B);
 		Data.command.command.emplace_back(KEY_A);
+
+		Data.eCircle.imgSize = 0.37f;
+		Data.eCircle.pos = VECTOR2(1630, 750);
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -201,5 +204,6 @@ namespace GAME09
 		Data.curtain.imgL = loadImage("..\\main\\assets\\game09\\curtain_L.png");
 		Data.curtain.imgR = loadImage("..\\main\\assets\\game09\\curtain_R.png");
 		Data.curtain.imgClose = loadImage("..\\main\\assets\\game09\\curtain_close.png");
+		Data.eCircle.img = loadImage("..\\main\\assets\\game09\\evolutionary_circle.png");
 	}
 }

@@ -33,6 +33,7 @@ namespace GAME09
 		class CURTAIN* Curtain;
 		class TRANSITION* Transition;
 		class COMMAND* Command;
+		class EVOLUTIONARY_CIRCLE* ECircle;
 	public:
 		class SCENE* getScene(SCENE_ID sceneId) { return Scenes[sceneId]; }
 		class BACKGROUND* backGround() { return BackGround; }
@@ -46,6 +47,7 @@ namespace GAME09
 		class CURTAIN* curtain() { return Curtain; }
 		class TRANSITION* transition() { return Transition; }
 		class COMMAND* command() { return Command; }
+		class EVOLUTIONARY_CIRCLE* eCircle() { return ECircle; }
     public:
         GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};

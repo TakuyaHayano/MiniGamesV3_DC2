@@ -17,6 +17,7 @@
 #include "FRUITS_BUBBLES.h"
 #include "CURTAIN.h"
 #include "COMMAND.h"
+#include "EVOLUTIONARY_CIRCLE.h"
 
 namespace GAME09
 {
@@ -45,6 +46,7 @@ namespace GAME09
 			CURTAIN::DATA curtain;
 			TRANSITION::DATA transition;
 			COMMAND::DATA command;
+			EVOLUTIONARY_CIRCLE::DATA eCircle;
 		};
 		DATA Data;
 	public:
