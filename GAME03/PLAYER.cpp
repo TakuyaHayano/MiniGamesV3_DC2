@@ -116,8 +116,6 @@ namespace GAME03 {
 	}
 	bool PLAYER::died() {
 		if (State == STATE::DIED) {
-			Chara.vx += Player.gravity * delta;
-			Chara.wy += Chara.vy * 60 * delta;
 			draw();
 			return true;
 		}

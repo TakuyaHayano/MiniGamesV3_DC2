@@ -43,7 +43,7 @@ namespace GAME03 {
 			if (Stage.time > 30) { fill(255); }
 			else if (Stage.time <= 30 && Stage.time > 10) { fill(255, 255, 0); }
 			else if (Stage.time <= 10 && Stage.time > 0) { fill(255, 0, 0); }
-			textSize(40);
+			textSize(90);
 			text((let)(int)Stage.time, width / 2.0f, height / 10.0f);
 		}
 		fill(0);
