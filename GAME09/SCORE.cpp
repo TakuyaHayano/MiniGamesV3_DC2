@@ -38,6 +38,9 @@ namespace GAME09
 		rectMode(CENTER);
 		Bubble->draw();
 		game()->drawNum()->draw(CurScore, Bubble->getPos() + Score.scoreOfst, Score.scoreSize);
+		VECTOR2 pos = Bubble->getPos() + Score.strOfst;
+		float size = game()->container()->data().bubble.imgSize * Score.bubbleSize;
+		image(Score.strImg, pos.x, pos.y, 0, size);
 	}
 
 	void SCORE::addScore(FRUITS::FRUITS_KINDS kinds){

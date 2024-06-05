@@ -85,13 +85,13 @@ namespace GAME09
 		Data.bubble.maxMoveOfst = VECTOR2(0, 20);
 		Data.bubble.animeTime = 2.0f;
 		
-		Data.next.strOfst = VECTOR2(0, -70);
+		Data.next.strOfst = VECTOR2(0, -125);
 		Data.next.bubbleSize = 0.7f;
 		Data.next.bubblePos = VECTOR2(1620, 270);
 		Data.next.useFruitsNum = 4;
 		Data.next.useFruitsNumSecret = 10;
 
-		Data.score.strOfst = VECTOR2(0, -70);
+		Data.score.strOfst = VECTOR2(0, -160);
 		Data.score.bubbleSize = 0.9f;
 		Data.score.bubblePos = VECTOR2(290, 240);
 		Data.score.fruitsScores[FRUITS::CHERRY]     = 1;
@@ -198,6 +198,8 @@ namespace GAME09
 		}
 		Data.cloud.cloudImg = loadImage("..\\main\\assets\\game09\\cloud.png");
 		Data.bubble.img = loadImage("..\\main\\assets\\game09\\bubble.png");
+		Data.next.strImg = loadImage("..\\main\\assets\\game09\\next_str.png");
+		Data.score.strImg = loadImage("..\\main\\assets\\game09\\score_str.png");
 		Data.drawNum.numImg = loadImage("..\\main\\assets\\game09\\num.png");
 		divideImage(Data.drawNum.numImg, 10, 1, 260, 512, Data.drawNum.numImgs);
 		Data.fruitsBubble.imgs = Data.fruits.imgs;

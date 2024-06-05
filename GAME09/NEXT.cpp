@@ -50,6 +50,9 @@ namespace GAME09
 		rectMode(CENTER);
 		Bubble->draw();
 		Fruits->draw();
+		VECTOR2 pos = Bubble->getPos() + Next.strOfst;
+		float size = game()->container()->data().bubble.imgSize * Next.bubbleSize;
+		image(Next.strImg, pos.x, pos.y, 0, size);
 	}
 
 	class FRUITS* NEXT::getNextFruits(){
