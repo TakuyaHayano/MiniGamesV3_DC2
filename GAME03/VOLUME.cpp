@@ -18,11 +18,7 @@ namespace GAME03 {
 	}
 	void VOLUME::draw() {
 
-		clear(255);
-		fill(0);
-		textSize(50);
-		text("‚a‚f‚l", width / 5.0f, height / 3.0f);
-		text("‚r‚d", width / 4.5f, height / 1.6f);
+		clear(250);
 
 		if (isTrigger(KEY_W)) {
 			Volume.select = true;
@@ -33,17 +29,38 @@ namespace GAME03 {
 			Volume.cntVolume = 0;
 		}
 
-		strokeWeight(5.0);
-		stroke(100);
-		fill(255);
-
-		line(width / 3.5f, height / 3.15f, width / 3.5f + 800.0f, height / 3.15f);
-		line(width / 3.5f, height / 1.65f, width / 3.5f + 800.0f, height / 1.65f);
-
-		fill(0);
-		text((let)(int)Volume.volume1, width / 1.4f, height / 3.0f);
-		text((let)(int)Volume.volume2, width / 1.4f, height / 1.6f);
-
+		for (int i = 0; i < 10; i++) {
+			if (i == 8) {
+				fill(255, 255, 255, 150);
+				textSize(60);
+				text("‚a‚f‚l", width / 5.2f, height / 2.89f - (float)i * 1.0f);
+				text("‚r‚d", width / 4.5f, height / 1.57f - (float)i * 1.0f);
+				textSize(50);
+				text((let)(int)Volume.volume1, width / 1.4f, height / 3.0f - (float)i * 1.0f);
+				text((let)(int)Volume.volume2, width / 1.4f, height / 1.6f - (float)i * 1.0f);
+				textSize(40);
+				text("‰ŠúÝ’è", width / 2.2f, height / 1.1f - (float)i * 1.0f);
+				text("EnterƒL[‚Åƒ^ƒCƒgƒ‹‚É–ß‚é", width / 1.5f, height / 1.00625f - (float)i * 1.0f);
+			}
+			else {
+				fill(50.0f + (float)i * 10.0f, 30, 100, (float)i * 10);
+				strokeWeight(10.0f);
+				stroke(140.0f + (float)i * 10.0f, 90, 160, 120 - (float)i * 10);
+				line(width / 3.5f, height / 3.15f, width / 3.5f + 800.0f, height / 3.15f - (float)i * 2.0f);
+				line(width / 3.5f, height / 1.65f, width / 3.5f + 800.0f, height / 1.65f - (float)i * 2.0f);
+				textSize(60);
+				text("‚a‚f‚l", width / 5.2f, height / 2.89f - (float)i * 1.0f);
+				text("‚r‚d", width / 4.5f, height / 1.57f - (float)i * 1.0f);
+				textSize(50);
+				text((let)(int)Volume.volume1, width / 1.4f, height / 3.0f - (float)i * 1.0f);
+				text((let)(int)Volume.volume2, width / 1.4f, height / 1.6f - (float)i * 1.0f);
+				textSize(40);
+				text("‰ŠúÝ’è", width / 2.2f, height / 1.1f - (float)i * 1.0f);
+				text("EnterƒL[‚Åƒ^ƒCƒgƒ‹‚É–ß‚é", width / 1.5f, height / 1.00625f - (float)i * 1.0f);
+			}
+		}
+		strokeWeight(5.0f);
+		stroke(255);
 		if (Volume.select) {
 			Volume.cntVolume++;
 			if (Volume.cntVolume % 4 == 0) {
@@ -66,7 +83,7 @@ namespace GAME03 {
 			}
 			fill(255);
 			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
-			fill(255, 0, 0);
+			fill(200, 50, 50);
 			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
 		}
 
@@ -91,18 +108,8 @@ namespace GAME03 {
 			}
 			fill(255);
 			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
-			fill(255, 0, 0);
+			fill(200, 50, 50);
 			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
-		}
-
-		fill(0);
-		text("‰ŠúÝ’è", width / 2.2f, height / 1.1f);
-
-		if (isPress(KEY_SPACE)) {
-			fill(255, 0, 0);
-			text("‰ŠúÝ’è", width / 2.2f, height / 1.1f);
-			Volume.volume1 = 80;
-			Volume.volume2 = 80;
 		}
 
 		setVolume(Volume.Snd_A, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
@@ -110,17 +117,23 @@ namespace GAME03 {
 		setVolume(Volume.Se_B, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_C, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 
-		fill(0);
-		textSize(40);
-		text("EnterƒL[‚Åƒ^ƒCƒgƒ‹‚É–ß‚é", width / 1.5f, height / 1.00625f);
+		if (isPress(KEY_SPACE)) {
+			fill(255, 155, 0);
+			text("‰ŠúÝ’è", width / 2.2f, height / 1.1f - 9.0f);
+			Volume.volume1 = 80;
+			Volume.volume2 = 80;
+		}
+		noStroke();
 		game()->fade()->draw();
 	}
+
 	void VOLUME::BackGround() {
 		clear();
 		rectMode(CORNER);
 		imageColor(Volume.backColor);
 		image(Volume.backImg, 0, 0);
 	}
+
 	void VOLUME::nextScene() {
 		if (isTrigger(KEY_ENTER)) {
 			game()->fade()->outTrigger();

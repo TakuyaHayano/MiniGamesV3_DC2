@@ -67,7 +67,7 @@ namespace GAME03 {
         Data.playerChara.animData.interval = 0.1f;
 
         //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\.png");
-        // 
+        
         //Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\.png");
     }
 

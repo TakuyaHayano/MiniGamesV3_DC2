@@ -26,18 +26,30 @@ namespace GAME03 {
 		image(game()->container()->data().stage.backImg, 0, 0);
 		float size;
 		font("UD デジタル 教科書体 NP-B");
-		size = 100;
-		textSize(size);
-		fill(0);
-		text("大迷路", width / 2.3f, height / 2.0f);
-		size = 40;
-		textSize(size);
-		text("press space key to start", width / 2.6f, height / 1.45f);
-		text("Ｏキー:オプション", width / 20.0f, height / 1.00625f);
-		text("Ｐキー:操作説明", width / 3.0f, height / 1.00625f);
-		fill(0);
-		textSize(size);
-		text("Enterキーでメニューに戻る", width / 1.5f, height / 1.00625f);
+		for (int i = 0; i < 10; i++) {
+			size = 100;
+			textSize(size);
+			if (i == 8) {
+				fill(255, 255, 255, 150);
+				text("大迷路", width / 2.3f - 3.0f, height / 2.0f - (float)i * 1.0f - 1.0f);
+				size = 40;
+				textSize(size);
+				text("press space key to start", width / 2.6f - 2.0f, height / 1.45f - (float)i * 1.0f - 0.1f);
+				text("Ｏキー:オプション", width / 20.0f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
+				text("Ｐキー:操作説明", width / 3.0f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
+				text("Enterキーでメニューに戻る", width / 1.5f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
+			}
+			else {
+				fill(50.0f + (float)i * 10.0f, 30, 100, (float)i * 10);
+				text("大迷路", width / 2.3f, height / 2.0f - (float)i * 1.0f);
+				size = 40;
+				textSize(size);
+				text("press space key to start", width / 2.6f, height / 1.45f - (float)i * 1.0f);
+				text("Ｏキー:オプション", width / 20.0f, height / 1.00625f - (float)i * 1.0f);
+				text("Ｐキー:操作説明", width / 3.0f, height / 1.00625f - (float)i * 1.0f);
+				text("Enterキーでメニューに戻る", width / 1.5f, height / 1.00625f - (float)i * 1.0f);
+			}
+		}
 		game()->fade()->draw();
 	}
 	void TITLE::nextScene() {
