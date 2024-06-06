@@ -63,14 +63,14 @@ namespace GAME09
 		Data.resultBackButton.imgSize = 0.83f;
 		Data.resultBackButton.initSelectMotion = true;
 
-		Data.continueButton.pos = VECTOR2(960, 540);
-		Data.continueButton.imgSize = 0.83f;
+		Data.continueButton.pos = VECTOR2(960, 440);
+		Data.continueButton.imgSize = 0.65f;
 		Data.continueButton.initSelectMotion = true;
-		Data.pauseRetryButton.pos = VECTOR2(960, 730);
-		Data.pauseRetryButton.imgSize = 0.83f;
+		Data.pauseRetryButton.pos = VECTOR2(960, 590);
+		Data.pauseRetryButton.imgSize = 0.65f;
 		Data.pauseRetryButton.initSelectMotion = true;
-		Data.pauseBackButton.pos = VECTOR2(960, 920);
-		Data.pauseBackButton.imgSize = 0.83f;
+		Data.pauseBackButton.pos = VECTOR2(960, 740);
+		Data.pauseBackButton.imgSize = 0.65f;
 		Data.pauseBackButton.initSelectMotion = true;
 
 		Data.physics.gravity = VECTOR2(0.0f, 1800.0f);
