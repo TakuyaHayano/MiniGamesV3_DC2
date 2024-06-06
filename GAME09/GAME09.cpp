@@ -14,6 +14,7 @@ namespace GAME09
 		Container = new CONTAINER;
 		Scenes[TITLE_ID] = new TITLE(this);
 		Scenes[STAGE_ID] = new STAGE(this);
+		Scenes[PAUSE_ID] = new PAUSE(this);
 		Scenes[RESULT_ID] = new RESULT(this);
 		BackGround = new BACKGROUND(this);
 		Physics = new PHYSICS_ENGINE(this);

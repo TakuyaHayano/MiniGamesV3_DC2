@@ -30,6 +30,7 @@
     <ClCompile Include="BUTTON_BACK_RESULT.cpp" />
     <ClCompile Include="canvasResize.cpp" />
     <ClCompile Include="EVOLUTIONARY_CIRCLE.cpp" />
+    <ClCompile Include="PAUSE.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -62,6 +63,7 @@
     <ClInclude Include="BUTTON_BACK_RESULT.h" />
     <ClInclude Include="canvasResize.h" />
     <ClInclude Include="EVOLUTIONARY_CIRCLE.h" />
+    <ClInclude Include="PAUSE.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

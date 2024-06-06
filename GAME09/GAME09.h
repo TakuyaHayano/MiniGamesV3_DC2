@@ -16,6 +16,7 @@ namespace GAME09
 		enum SCENE_ID {
 			TITLE_ID,
 			STAGE_ID,
+			PAUSE_ID,
 			RESULT_ID,
 			NUM_SCENES
 		};

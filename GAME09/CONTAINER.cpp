@@ -16,6 +16,18 @@ namespace GAME09
 		Data.stage.vibeTime = 0.83f;
 		Data.stage.waitTime = 1.3f;
 
+		Data.pause.imgPos = VECTOR2(width / 2, height / 2);
+		Data.pause.imgSize = 1.5f;
+		Data.pause.moveDatas[PAUSE::START].animeTime = 0.3f;
+		Data.pause.moveDatas[PAUSE::START].startOfst = -height;
+		Data.pause.moveDatas[PAUSE::START].endOfst = 100;
+		Data.pause.moveDatas[PAUSE::BACK].animeTime = 0.1f;
+		Data.pause.moveDatas[PAUSE::BACK].startOfst = 100;
+		Data.pause.moveDatas[PAUSE::BACK].endOfst = 0;
+		Data.pause.moveDatas[PAUSE::NORMAL].animeTime = 0.1f;
+		Data.pause.moveDatas[PAUSE::NORMAL].startOfst = 0;
+		Data.pause.moveDatas[PAUSE::NORMAL].endOfst = 0;
+
 		Data.result.imgPos = VECTOR2(width / 2, height / 2);
 		Data.result.imgSize = 1.5f;
 		Data.result.finalFieldPos = VECTOR2(130, 280);
@@ -176,6 +188,7 @@ namespace GAME09
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
+		Data.pause.pauseImg = loadImage("..\\main\\assets\\game09\\pause_back.png");
 		Data.result.resultImg = loadImage("..\\main\\assets\\game09\\result_back.png");
 		Data.backG.img = loadImage("..\\main\\assets\\game09\\back_ground.png");
 		Data.startButton.selectedImg = loadImage("..\\main\\assets\\game09\\start_button.png");

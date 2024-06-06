@@ -73,6 +73,10 @@ namespace GAME09
 		if (State == WAIT && AnimeTime > Stage.waitTime) {
 			game()->changeScene(GAME::RESULT_ID);
 		}
-
+		if (State == PLAY && game()->transition()->inEndFlag()) {
+			if (isTrigger(KEY_X)) {
+				game()->changeScene(GAME::PAUSE_ID);
+			}
+		}
 	}
 }
