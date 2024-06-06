@@ -63,6 +63,16 @@ namespace GAME09
 		Data.resultBackButton.imgSize = 0.83f;
 		Data.resultBackButton.initSelectMotion = true;
 
+		Data.continueButton.pos = VECTOR2(960, 540);
+		Data.continueButton.imgSize = 0.83f;
+		Data.continueButton.initSelectMotion = true;
+		Data.pauseRetryButton.pos = VECTOR2(960, 730);
+		Data.pauseRetryButton.imgSize = 0.83f;
+		Data.pauseRetryButton.initSelectMotion = true;
+		Data.pauseBackButton.pos = VECTOR2(960, 920);
+		Data.pauseBackButton.imgSize = 0.83f;
+		Data.pauseBackButton.initSelectMotion = true;
+
 		Data.physics.gravity = VECTOR2(0.0f, 1800.0f);
 
 		Data.box.pos = VECTOR2(width / 2, height / 2);
@@ -201,6 +211,12 @@ namespace GAME09
 		Data.resultRetryButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\retry_button_gray.png");
 		Data.resultBackButton.selectedImg = loadImage("..\\main\\assets\\game09\\back_button.png");
 		Data.resultBackButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\back_button_gray.png");
+		Data.continueButton.selectedImg = loadImage("..\\main\\assets\\game09\\continue_button.png");
+		Data.continueButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\continue_button_gray.png");
+		Data.pauseRetryButton.selectedImg = loadImage("..\\main\\assets\\game09\\retry_button.png");
+		Data.pauseRetryButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\retry_button_gray.png");
+		Data.pauseBackButton.selectedImg = loadImage("..\\main\\assets\\game09\\back_button.png");
+		Data.pauseBackButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\back_button_gray.png");
 		Data.box.img = loadImage("..\\main\\assets\\game09\\box.png");
 		Data.box.frontImg = loadImage("..\\main\\assets\\game09\\box_front.png");
 		for (int i = 0; i < FRUITS::NUM_FRUITS_KINDS; i++) {

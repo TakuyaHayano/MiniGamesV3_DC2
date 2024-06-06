@@ -139,9 +139,12 @@
     <ClCompile Include="BOX.cpp" />
     <ClCompile Include="BUBBLE.cpp" />
     <ClCompile Include="BUTTON.cpp" />
+    <ClCompile Include="BUTTON_BACK_PAUSE.cpp" />
     <ClCompile Include="BUTTON_BACK_RESULT.cpp" />
+    <ClCompile Include="BUTTON_CONTINUE.cpp" />
     <ClCompile Include="BUTTON_END.cpp" />
     <ClCompile Include="BUTTON_HELP.cpp" />
+    <ClCompile Include="BUTTON_RETRY_PAUSE.cpp" />
     <ClCompile Include="BUTTON_RETRY_RESULT.cpp" />
     <ClCompile Include="BUTTON_START.cpp" />
     <ClCompile Include="canvasResize.cpp" />
@@ -171,9 +174,12 @@
     <ClInclude Include="BOX.h" />
     <ClInclude Include="BUBBLE.h" />
     <ClInclude Include="BUTTON.h" />
+    <ClInclude Include="BUTTON_BACK_PAUSE.h" />
     <ClInclude Include="BUTTON_BACK_RESULT.h" />
+    <ClInclude Include="BUTTON_CONTINUE.h" />
     <ClInclude Include="BUTTON_END.h" />
     <ClInclude Include="BUTTON_HELP.h" />
+    <ClInclude Include="BUTTON_RETRY_PAUSE.h" />
     <ClInclude Include="BUTTON_RETRY_RESULT.h" />
     <ClInclude Include="BUTTON_START.h" />
     <ClInclude Include="canvasResize.h" />

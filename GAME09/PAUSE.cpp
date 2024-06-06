@@ -6,9 +6,9 @@
 #include "CONTAINER.h"
 #include "GAME09.h"
 #include "PAUSE.h"
-#include "BUTTON_RETRY_RESULT.h"
-//#include "BUTTON_RETRY_PAUSE.h"
-//#include "BUTTON_BACK_PAUSE.h"
+#include "BUTTON_CONTINUE.h"
+#include "BUTTON_RETRY_PAUSE.h"
+#include "BUTTON_BACK_PAUSE.h"
 
 namespace GAME09
 {
@@ -23,9 +23,9 @@ namespace GAME09
 	}
 	void PAUSE::create() {
 		Pause = game()->container()->data().pause;
-		Buttons[CONTINUE] = new BUTTON_RETRY_RESULT(game());
-		Buttons[RETRY] = new BUTTON_RETRY_RESULT(game());
-		Buttons[RETURN] = new BUTTON_RETRY_RESULT(game());
+		Buttons[CONTINUE] = new BUTTON_CONTINUE(game());
+		Buttons[RETRY] = new BUTTON_RETRY_PAUSE(game());
+		Buttons[RETURN] = new BUTTON_BACK_PAUSE(game());
 		for (int i = 0; i < NUM_BUTTONS; i++) {
 			Buttons[i]->create();
 		}

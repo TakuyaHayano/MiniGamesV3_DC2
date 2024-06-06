@@ -35,6 +35,9 @@ namespace GAME09
 			BUTTON::DATA endButton;
 			BUTTON::DATA resultRetryButton;
 			BUTTON::DATA resultBackButton;
+			BUTTON::DATA continueButton;
+			BUTTON::DATA pauseRetryButton;
+			BUTTON::DATA pauseBackButton;
 			PHYSICS_ENGINE::DATA physics;
 			BOX::DATA box;
 			FRUITS::DATA fruits;
