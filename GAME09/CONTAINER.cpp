@@ -18,7 +18,7 @@ namespace GAME09
 
 		Data.pause.imgPos = VECTOR2(width / 2, height / 2);
 		Data.pause.imgSize = 1.5f;
-		Data.pause.moveDatas[PAUSE::START].animeTime = 0.3f;
+		Data.pause.moveDatas[PAUSE::START].animeTime = 0.25f;
 		Data.pause.moveDatas[PAUSE::START].startOfst = -height;
 		Data.pause.moveDatas[PAUSE::START].endOfst = 100;
 		Data.pause.moveDatas[PAUSE::BACK].animeTime = 0.1f;

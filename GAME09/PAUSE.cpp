@@ -80,7 +80,7 @@ namespace GAME09
 		clear(128);
 		rectMode(CENTER);
 		game()->getScene(GAME::STAGE_ID)->draw();
-		fill(0, 0, 0, 150);
+		fill(0, 0, 0, 70);
 		noStroke();
 		rect(width / 2, height / 2, width, height);
 		setCornerPos(VECTOR2(0, OfstY));
@@ -97,7 +97,7 @@ namespace GAME09
 					switch (SelectButton)
 					{
 					case CONTINUE:
-						game()->changeScene(GAME::STAGE_ID);
+						game()->returnScene(GAME::STAGE_ID);
 						break;
 					case RETRY:
 						game()->transition()->start();

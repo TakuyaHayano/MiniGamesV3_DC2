@@ -56,6 +56,7 @@ namespace GAME09
         void proc();
         void destroy();
 		void changeScene(SCENE_ID sceneId);
+		void returnScene(SCENE_ID sceneId);
 
 		void backToMenu();
     };
