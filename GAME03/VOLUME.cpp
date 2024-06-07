@@ -20,11 +20,11 @@ namespace GAME03 {
 
 		clear(250);
 
-		if (isTrigger(KEY_W)) {
+		if (isTrigger(KEY_W) || (isPress(MOUSE_LBUTTON) && mouseY < height / 2.0f )) {
 			Volume.select = true;
 			Volume.cntVolume = 0;
 		}
-		if (isTrigger(KEY_S)) {
+		if (isTrigger(KEY_S) || (isPress(MOUSE_LBUTTON) && mouseY > height / 2.0f)) {
 			Volume.select = false;
 			Volume.cntVolume = 0;
 		}
@@ -60,7 +60,7 @@ namespace GAME03 {
 			}
 		}
 		strokeWeight(5.0f);
-		stroke(255);
+		stroke(100);
 		if (Volume.select) {
 			Volume.cntVolume++;
 			if (Volume.cntVolume % 4 == 0) {
@@ -81,10 +81,25 @@ namespace GAME03 {
 				}
 				Volume.cntVolume = 0;
 			}
-			fill(255);
-			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
-			fill(200, 50, 50);
-			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
+			if (isPress(MOUSE_LBUTTON)) {
+				Volume.volume1 = (float)(mouseX - width / 3.5f) / 8.0f;
+				if (Volume.volume1 < 0) {
+					Volume.volume1 = 0;
+				}
+				if (Volume.volume1 > 100) {
+					Volume.volume1 = 100;
+				}
+				fill(255);
+				circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
+				fill(255, 50, 50);
+				circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 35.0f);
+			}
+			else {
+				fill(255);
+				circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
+				fill(255, 50, 50);
+				circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 35.0f);
+			}
 		}
 
 		else {
@@ -106,10 +121,25 @@ namespace GAME03 {
 				}
 				Volume.cntVolume = 0;
 			}
-			fill(255);
-			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
-			fill(200, 50, 50);
-			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
+			if (isPress(MOUSE_LBUTTON)) {
+				Volume.volume2 = (float)(mouseX - width / 3.5f) / 8.0f;
+				if (Volume.volume2 < 0) {
+					Volume.volume2 = 0;
+				}
+				if (Volume.volume2 > 100) {
+					Volume.volume2 = 100;
+				}
+				fill(255);
+				circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
+				fill(255, 50, 50);
+				circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 35.0f);
+			}
+			else {
+				fill(255);
+				circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
+				fill(255, 50, 50);
+				circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 35.0f);
+			}
 		}
 
 		setVolume(Volume.Snd_A, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
