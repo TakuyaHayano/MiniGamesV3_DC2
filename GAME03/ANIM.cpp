@@ -2,6 +2,7 @@
 #include"../../libOne/inc/graphic.h"
 #include<filesystem>
 #include "ANIM.h"
+#pragma warning(disable:6386)
 namespace GAME03 {
     ANIM::ANIM() {
     }

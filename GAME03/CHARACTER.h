@@ -36,12 +36,12 @@ namespace GAME03 {
 		virtual void appear(float wx, float ey, float vx, float vy);
 		virtual void update();
 		virtual void draw();
-		int hp() { return Chara.hp; }
-		char charaId() { return Chara.charaId; }
-		float wLeft() { return Chara.wx + Chara.offsetLeft; }
-		float wTop() { return Chara.wy + Chara.offsetTop; }
-		float wRight() { return Chara.wx + Chara.offsetRight; }
-		float wBottom() { return Chara.wy + Chara.offsetBottom; }
+		int hp() const { return Chara.hp; }
+		char charaId() const { return Chara.charaId; }
+		float wLeft() const { return Chara.wx + Chara.offsetLeft; }
+		float wTop() const { return Chara.wy + Chara.offsetTop; }
+		float wRight() const { return Chara.wx + Chara.offsetRight; }
+		float wBottom() const { return Chara.wy + Chara.offsetBottom; }
 		void setImgidx(int i) { Chara.animData.imgIdx = i; }
 	};
 };

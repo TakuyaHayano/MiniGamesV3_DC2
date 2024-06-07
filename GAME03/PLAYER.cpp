@@ -121,7 +121,7 @@ namespace GAME03 {
 		}
 		return false;
 	}
-	bool PLAYER::survived() {
+	bool PLAYER::survived() const {
 		return State == STATE::SURVIVED;
 	}
 	float PLAYER::overCenterVx() {

@@ -21,7 +21,7 @@ namespace GAME03 {
         void divide(const char* filename, int cols, int rows, int w, int h);
         void draw(ANIM_DATA* animData, float px, float py, float angle = 0, float scale = 1);
         void noLoop() { LoopFlag = false; }
-        bool end(const ANIM_DATA& data) { return data.imgIdx >= NumImgs; }
+        bool end(const ANIM_DATA& data) const { return data.imgIdx >= NumImgs; }
     };
 }
 

@@ -19,6 +19,7 @@ namespace GAME03 {
 	void VOLUME::draw() {
 
 		clear(250);
+		//image(Volume.backImg, 0, 0);
 
 		if (isTrigger(KEY_W) || (isPress(MOUSE_LBUTTON) && mouseY < height / 2.0f )) {
 			Volume.select = true;

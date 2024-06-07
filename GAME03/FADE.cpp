@@ -55,10 +55,10 @@ namespace GAME03 {
             break;
         }
     }
-    int FADE::inEndFlag() {
+    int FADE::inEndFlag() const {
         return (State == STATE::IN_END);
     }
-    int FADE::outEndFlag() {
+    int FADE::outEndFlag() const {
         return (State == STATE::OUT_END);
     }
     void FADE::setColor(const COLOR& color) {

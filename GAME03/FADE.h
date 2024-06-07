@@ -21,8 +21,8 @@ namespace GAME03 {
         void inTrigger();
         void outTrigger();
         void draw();
-        int outEndFlag();
-        int inEndFlag();
+        int outEndFlag() const;
+        int inEndFlag() const;
         void setSpeed(float speed);
         void setColor(const COLOR& color);
 	};

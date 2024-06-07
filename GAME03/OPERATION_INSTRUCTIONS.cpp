@@ -16,9 +16,10 @@ namespace GAME03 {
 	}
 	void OPERATION_INSTRUCTIONS::draw() {
 		clear(255);
-		textSize(90);
-		fill(0);
-		text("操作説明", width / 2.3f, height / 1.5f);
+		//image(OpInstructions.backimg, 0, 0);
+		//textSize(90);
+		//fill(0);
+		//text("操作説明", width / 2.3f, height / 1.5f);
 		textSize(40);
 		fill(0);
 		text("Enterキーでタイトルに戻る", width / 1.5f, height / 1.00625f);

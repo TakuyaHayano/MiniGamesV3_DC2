@@ -33,16 +33,16 @@ namespace GAME03 {
         void init();
         void update();
         void draw();
-        float wx() { return Map.wx; }
-        float wy() { return Map.wy; }
-        int chipSize() { return Map.chipSize; }
-        bool collisionCheck(float wx, float wy);
-        bool collisionCharaLeft(float wx, float wy);
-        bool collisionCharaRight(float wx, float wy);
-        bool collisionCharaTop(float wx, float wy);
-        bool collisionCharaBottom(float wx, float wy);
-        float wDispLeft();
-        float wDispRight();
+        float wx() const { return Map.wx; }
+        float wy() const { return Map.wy; }
+        int chipSize() const { return Map.chipSize; }
+        bool collisionCheck(float wx, float wy) const;
+        bool collisionCharaLeft(float wx, float wy) const;
+        bool collisionCharaRight(float wx, float wy) const;
+        bool collisionCharaTop(float wx, float wy) const;
+        bool collisionCharaBottom(float wx, float wy) const;
+        float wDispLeft() const;
+        float wDispRight() const;
     };
 }
 

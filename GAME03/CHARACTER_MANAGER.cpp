@@ -3,6 +3,7 @@
 #include"CHARACTER.h"
 #include"PLAYER.h"
 #include "CHARACTER_MANAGER.h"
+#pragma warning(disable:6386)
 namespace GAME03 {
 	CHARACTER_MANAGER::CHARACTER_MANAGER(class GAME* game) : GAME_OBJECT(game) {
 	}
@@ -26,8 +27,8 @@ namespace GAME03 {
 		Characters = new CHARACTER * [Total];
 
 		Player = new PLAYER(game());
-		int i, j = 0;
-		for (i = 0; i < CharaMng.numPlayers; i++)Characters[j++] = Player;
+		int j = 0;
+		for (int i = 0; i < CharaMng.numPlayers; i++) { Characters[j++] = Player; }
 		for (int k = 0; k < Total; k++) {
 			Characters[k]->create();
 		}

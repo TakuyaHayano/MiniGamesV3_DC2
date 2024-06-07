@@ -29,7 +29,7 @@ namespace GAME03 {
         void CheckState();
     public:
         bool died();
-        bool survived();
+        bool survived() const;
         float overCenterVx();
 	};
 }
