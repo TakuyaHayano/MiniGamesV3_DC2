@@ -34,6 +34,7 @@
     <ClCompile Include="BUTTON_RETRY_PAUSE.cpp" />
     <ClCompile Include="BUTTON_BACK_PAUSE.cpp" />
     <ClCompile Include="BUTTON_CONTINUE.cpp" />
+    <ClCompile Include="READYGO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -70,6 +71,7 @@
     <ClInclude Include="BUTTON_RETRY_PAUSE.h" />
     <ClInclude Include="BUTTON_BACK_PAUSE.h" />
     <ClInclude Include="BUTTON_CONTINUE.h" />
+    <ClInclude Include="READYGO.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

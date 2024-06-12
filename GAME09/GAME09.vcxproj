@@ -162,6 +162,7 @@
     <ClCompile Include="NEXT.cpp" />
     <ClCompile Include="PAUSE.cpp" />
     <ClCompile Include="PHYSICS_ENGINE.cpp" />
+    <ClCompile Include="READYGO.cpp" />
     <ClCompile Include="RESULT.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="SCORE.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="NEXT.h" />
     <ClInclude Include="PAUSE.h" />
     <ClInclude Include="PHYSICS_ENGINE.h" />
+    <ClInclude Include="READYGO.h" />
     <ClInclude Include="RESULT.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="SCORE.h" />

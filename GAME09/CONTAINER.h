@@ -19,6 +19,7 @@
 #include "CURTAIN.h"
 #include "COMMAND.h"
 #include "EVOLUTIONARY_CIRCLE.h"
+#include "READYGO.h"
 
 namespace GAME09
 {
@@ -52,6 +53,7 @@ namespace GAME09
 			TRANSITION::DATA transition;
 			COMMAND::DATA command;
 			EVOLUTIONARY_CIRCLE::DATA eCircle;
+			READYGO::DATA readyGo;
 		};
 		DATA Data;
 	public:

@@ -195,6 +195,9 @@ namespace GAME09
 
 		Data.eCircle.imgSize = 0.37f;
 		Data.eCircle.pos = VECTOR2(1630, 750);
+
+		Data.readyGo.imgPos = VECTOR2(width / 2, height / 2);
+		Data.readyGo.imgSize = 1;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
@@ -236,5 +239,7 @@ namespace GAME09
 		Data.curtain.imgR = loadImage("..\\main\\assets\\game09\\curtain_R.png");
 		Data.curtain.imgClose = loadImage("..\\main\\assets\\game09\\curtain_close.png");
 		Data.eCircle.img = loadImage("..\\main\\assets\\game09\\evolutionary_circle.png");
+		Data.readyGo.imgReady = loadImage("..\\main\\assets\\game09\\ready.png");
+		Data.readyGo.imgGo = loadImage("..\\main\\assets\\game09\\go.png");
 	}
 }
