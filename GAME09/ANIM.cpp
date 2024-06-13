@@ -17,7 +17,7 @@ namespace GAME09
 		while (Time > Data[State].animeTime) {
 			Time -= Data[State].animeTime;
 			State++;
-			if (State <= Data.size()) {
+			if (State >= Data.size()) {
 				Start = false;
 				return;
 			}

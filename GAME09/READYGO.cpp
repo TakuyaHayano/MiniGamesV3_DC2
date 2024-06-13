@@ -23,17 +23,29 @@ namespace GAME09
 
 	void READYGO::init() {
 		ReadyGo.readyAnim.start();
+		ReadyGo.goAnim.start();
+		ReadyGo.effectAnim.start();
 	}
 
 	void READYGO::update() {
-		if (ReadyGo.readyAnim.isStart()) {
-			ReadyGo.readyAnim.update();
-		}
+		ReadyGo.readyAnim.update();
+		ReadyGo.goAnim.update();
+		ReadyGo.effectAnim.update();
 	}
 
 	void READYGO::draw() {
 		if (ReadyGo.readyAnim.isStart()) {
+			imageColor(255, 255, 255, ReadyGo.readyAnim.alpha());
 			image(ReadyGo.imgReady, ReadyGo.readyAnim.pos().x, ReadyGo.readyAnim.pos().y, 0, ReadyGo.readyAnim.size());
 		}
+		if (ReadyGo.goAnim.isStart()) {
+			imageColor(255, 255, 255, ReadyGo.goAnim.alpha());
+			image(ReadyGo.imgGo, ReadyGo.goAnim.pos().x, ReadyGo.goAnim.pos().y, 0, ReadyGo.goAnim.size());
+		}
+		if (ReadyGo.effectAnim.isStart()) {
+			imageColor(255, 255, 255, ReadyGo.effectAnim.alpha());
+			image(ReadyGo.imgGo, ReadyGo.effectAnim.pos().x, ReadyGo.effectAnim.pos().y, 0, ReadyGo.effectAnim.size());
+		}
+		imageColor(255);
 	}
 }

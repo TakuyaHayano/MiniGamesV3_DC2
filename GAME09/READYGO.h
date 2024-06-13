@@ -14,6 +14,8 @@ namespace GAME09
             int imgReady;
             int imgGo;
             ANIM readyAnim;
+            ANIM goAnim;
+            ANIM effectAnim;
         };
     private:
         DATA ReadyGo;

@@ -196,7 +196,19 @@ namespace GAME09
 		Data.eCircle.imgSize = 0.37f;
 		Data.eCircle.pos = VECTOR2(1630, 750);
 
-		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 1, VECTOR2(960, 400), VECTOR2(960, 540) });
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.33f, VECTOR2(0, 0), VECTOR2(0, 0), 0, 0 });
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.166f, VECTOR2(960, 460), VECTOR2(960, 540), 0, 255 });
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.083f, VECTOR2(960, 540), VECTOR2(960, 500) });
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.083f, VECTOR2(960, 500), VECTOR2(960, 540) });
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.66f, VECTOR2(960, 540), VECTOR2(960, 540) });
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.083f, VECTOR2(960, 540), VECTOR2(960, 540), 255, 0 });
+		Data.readyGo.goAnim.data().emplace_back(ANIM::MOVE_DATA{ 1.42f, VECTOR2(0, 0), VECTOR2(0, 0), 0, 0 });
+		Data.readyGo.goAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.166f, VECTOR2(960, 460), VECTOR2(960, 540), 0, 255 });
+		Data.readyGo.goAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.4f, VECTOR2(960, 540), VECTOR2(960, 540) });
+		Data.readyGo.goAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.2f, VECTOR2(960, 540), VECTOR2(960, 540), 255, 0 });
+		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 1.586f, VECTOR2(0, 0), VECTOR2(0, 0), 0, 0 });
+		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.166f, VECTOR2(960, 540), VECTOR2(960, 540), 200, 0, 1, 1.3f });
+		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.2f, VECTOR2(960, 540), VECTOR2(960, 540), 200, 0, 1, 1.5f });
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
