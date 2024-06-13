@@ -34,5 +34,6 @@ namespace GAME09 {
         float alpha() { return Alpha; }
         float size() { return Size; }
         bool isStart() { return Start; }
+        std::vector<MOVE_DATA>& data() { return Data; }
 	};
 }

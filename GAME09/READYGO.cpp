@@ -18,17 +18,22 @@ namespace GAME09
 	}
 
 	void READYGO::create() {
+		ReadyGo = game()->container()->data().readyGo;
 	}
 
 	void READYGO::init() {
-
+		ReadyGo.readyAnim.start();
 	}
 
 	void READYGO::update() {
-
+		if (ReadyGo.readyAnim.isStart()) {
+			ReadyGo.readyAnim.update();
+		}
 	}
 
 	void READYGO::draw() {
-
+		if (ReadyGo.readyAnim.isStart()) {
+			image(ReadyGo.imgReady, ReadyGo.readyAnim.pos().x, ReadyGo.readyAnim.pos().y, 0, ReadyGo.readyAnim.size());
+		}
 	}
 }

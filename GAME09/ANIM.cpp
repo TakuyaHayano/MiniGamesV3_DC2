@@ -17,6 +17,10 @@ namespace GAME09
 		while (Time > Data[State].animeTime) {
 			Time -= Data[State].animeTime;
 			State++;
+			if (State <= Data.size()) {
+				Start = false;
+				return;
+			}
 		}
 		float ratio = Time / Data[State].animeTime;
 		ratio = (Cos(ratio * 180) - 1) / -2.0f;

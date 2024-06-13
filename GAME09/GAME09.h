@@ -35,6 +35,7 @@ namespace GAME09
 		class TRANSITION* Transition;
 		class COMMAND* Command;
 		class EVOLUTIONARY_CIRCLE* ECircle;
+		class READYGO* ReadyGo;
 	public:
 		class SCENE* getScene(SCENE_ID sceneId) { return Scenes[sceneId]; }
 		class BACKGROUND* backGround() { return BackGround; }
@@ -49,6 +50,7 @@ namespace GAME09
 		class TRANSITION* transition() { return Transition; }
 		class COMMAND* command() { return Command; }
 		class EVOLUTIONARY_CIRCLE* eCircle() { return ECircle; }
+		class READYGO* readyGo() { return ReadyGo; }
     public:
         GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};

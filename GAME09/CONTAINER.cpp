@@ -196,8 +196,7 @@ namespace GAME09
 		Data.eCircle.imgSize = 0.37f;
 		Data.eCircle.pos = VECTOR2(1630, 750);
 
-		Data.readyGo.imgPos = VECTOR2(width / 2, height / 2);
-		Data.readyGo.imgSize = 1;
+		Data.readyGo.readyAnim.data().emplace_back(ANIM::MOVE_DATA{ 1, VECTOR2(960, 400), VECTOR2(960, 540) });
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

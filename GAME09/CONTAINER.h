@@ -20,6 +20,7 @@
 #include "COMMAND.h"
 #include "EVOLUTIONARY_CIRCLE.h"
 #include "READYGO.h"
+#include "ANIM.h"
 
 namespace GAME09
 {

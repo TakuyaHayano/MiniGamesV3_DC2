@@ -28,6 +28,7 @@ namespace GAME09
 		Transition = new TRANSITION(this);
 		Command = new COMMAND(this);
 		ECircle = new EVOLUTIONARY_CIRCLE(this);
+		ReadyGo = new READYGO(this);
 
 		//load
 		Container->load();
@@ -50,6 +51,7 @@ namespace GAME09
 		Transition->create();
 		Command->create();
 		ECircle->create();
+		ReadyGo->create();
 
 		//init
 		changeScene(TITLE_ID);
@@ -61,6 +63,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete ReadyGo;
 		delete ECircle;
 		delete Command;
 		delete Transition;

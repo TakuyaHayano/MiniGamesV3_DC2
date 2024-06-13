@@ -35,6 +35,7 @@ namespace GAME09
 			}
 			game()->curtain()->update();
 			game()->fruitsBubbles()->update();
+			game()->readyGo()->update();
 		}
 	}
 
@@ -43,6 +44,7 @@ namespace GAME09
 			//imageColor(255, 255, 255, 100);
 			game()->curtain()->draw();
 			game()->fruitsBubbles()->draw();
+			game()->readyGo()->draw();
 			//imageColor(255);
 		}
 	}
@@ -52,6 +54,7 @@ namespace GAME09
 		Time = 0;
 		game()->curtain()->init();
 		game()->fruitsBubbles()->init();
+		game()->readyGo()->init();
 		update();
 	}
 
