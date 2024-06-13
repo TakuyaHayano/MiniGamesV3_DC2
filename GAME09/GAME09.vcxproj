@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ANIM.cpp" />
     <ClCompile Include="BACKGROUND.cpp" />
     <ClCompile Include="BOX.cpp" />
     <ClCompile Include="BUBBLE.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="TRANSITION.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ANIM.h" />
     <ClInclude Include="BACKGROUND.h" />
     <ClInclude Include="BOX.h" />
     <ClInclude Include="BUBBLE.h" />
