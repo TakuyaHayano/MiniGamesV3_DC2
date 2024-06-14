@@ -36,6 +36,7 @@
     <ClCompile Include="BUTTON_CONTINUE.cpp" />
     <ClCompile Include="READYGO.cpp" />
     <ClCompile Include="ANIM.cpp" />
+    <ClCompile Include="HELP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME09.h" />
@@ -74,6 +75,7 @@
     <ClInclude Include="BUTTON_CONTINUE.h" />
     <ClInclude Include="READYGO.h" />
     <ClInclude Include="ANIM.h" />
+    <ClInclude Include="HELP.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />

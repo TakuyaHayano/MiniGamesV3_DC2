@@ -18,6 +18,7 @@ namespace GAME09
 			STAGE_ID,
 			PAUSE_ID,
 			RESULT_ID,
+			HELP_ID,
 			NUM_SCENES
 		};
 	private:

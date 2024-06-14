@@ -33,13 +33,13 @@ namespace GAME09
 	}
 
 	void CLOUD::update() {
-		if (isPress(KEY_LEFT)) {
+		if (isPress(KEY_LEFT) || isPress(KEY_A)) {
 			FruitsPos.x -= Cloud.moveSpeed * delta;
 			if (FruitsPos.x < Cloud.left) {
 				FruitsPos.x = Cloud.left;
 			}
 		}
-		if (isPress(KEY_RIGHT)) {
+		if (isPress(KEY_RIGHT) || isPress(KEY_D)) {
 			FruitsPos.x += Cloud.moveSpeed * delta;
 			if (FruitsPos.x > Cloud.right) {
 				FruitsPos.x = Cloud.right;

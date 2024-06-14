@@ -160,6 +160,7 @@
     <ClCompile Include="FRUITS_BUBBLES.cpp" />
     <ClCompile Include="GAME09.cpp" />
     <ClCompile Include="GAME_OBJECT.cpp" />
+    <ClCompile Include="HELP.cpp" />
     <ClCompile Include="NEXT.cpp" />
     <ClCompile Include="PAUSE.cpp" />
     <ClCompile Include="PHYSICS_ENGINE.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="FRUITS_BUBBLES.h" />
     <ClInclude Include="GAME09.h" />
     <ClInclude Include="GAME_OBJECT.h" />
+    <ClInclude Include="HELP.h" />
     <ClInclude Include="myFunc.h" />
     <ClInclude Include="NEXT.h" />
     <ClInclude Include="PAUSE.h" />

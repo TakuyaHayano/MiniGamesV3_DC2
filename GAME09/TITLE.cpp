@@ -95,6 +95,7 @@ namespace GAME09
 					game()->transition()->start();
 					break;
 				case HELP:
+					game()->changeScene(GAME::HELP_ID);
 					break;
 				case END:
 					game()->backToMenu();

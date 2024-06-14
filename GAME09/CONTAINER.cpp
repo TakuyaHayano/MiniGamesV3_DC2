@@ -44,6 +44,9 @@ namespace GAME09
 		Data.result.moveDatas[RESULT::NORMAL].startOfst = 0;
 		Data.result.moveDatas[RESULT::NORMAL].endOfst = 0;
 
+		Data.help.imgPos = VECTOR2(width / 2, height / 2);
+		Data.help.imgSize = 1;
+
 		Data.backG.imgSize = 1.0f;
 		Data.backG.pos = VECTOR2(width / 2, height / 2);
 
@@ -214,6 +217,9 @@ namespace GAME09
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
 		Data.pause.pauseImg = loadImage("..\\main\\assets\\game09\\pause_back.png");
 		Data.result.resultImg = loadImage("..\\main\\assets\\game09\\result_back.png");
+		Data.help.Imgs[HELP::OPERATION] = loadImage("..\\main\\assets\\game09\\help_operation.png");
+		Data.help.Imgs[HELP::RULE] = loadImage("..\\main\\assets\\game09\\help_rule.png");
+		Data.help.Imgs[HELP::KINDS] = loadImage("..\\main\\assets\\game09\\help_kinds.png");
 		Data.backG.img = loadImage("..\\main\\assets\\game09\\back_ground.png");
 		Data.startButton.selectedImg = loadImage("..\\main\\assets\\game09\\start_button.png");
 		Data.startButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\start_button_gray.png");

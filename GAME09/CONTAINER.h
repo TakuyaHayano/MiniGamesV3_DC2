@@ -3,6 +3,7 @@
 #include "STAGE.h"
 #include "PAUSE.h"
 #include "RESULT.h"
+#include "HELP.h"
 #include "TRANSITION.h"
 #include "BACKGROUND.h"
 #include "BUTTON.h"
@@ -31,6 +32,7 @@ namespace GAME09
 			STAGE::DATA stage;
 			PAUSE::DATA pause;
 			RESULT::DATA result;
+			HELP::DATA help;
 			BACKGROUND::DATA backG;
 			BUTTON::DATA startButton;
 			BUTTON::DATA helpButton;
