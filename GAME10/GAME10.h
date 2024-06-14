@@ -9,15 +9,23 @@ namespace GAME10
     private:
         enum {
             TITLE,
+            TUTORIAL,
             PLAY,
             RESULT
         };
         int STATE;
+        //本番用マップ
         const char* fileName;
         FILE* fp;
         int fileSize;
         char* map;
-        //行列カウント用
+        //チュートリアル用
+        const char* CfileName;
+        FILE* Cfp;
+        int CfileSize;
+        char* Tmap;
+        //行列カウント用（本番用）
+        struct matrix {
         int row = 0;//行
         int col = 0;//列
         int cnt = 0;
@@ -25,16 +33,28 @@ namespace GAME10
         int GoalCnt = 0;
         int InvisibleWallCnt = 0;
         int EnemyCnt = 0;
-        //壁関連
-        int WallImg = 0;
-        int WallLeftImg = 0;
-        int WallRightImg = 0;
-        int WallUpImg = 0;
-        int WallUnderImg = 0;
-        int WallUpLeftCornerImg = 0;
-        int WallUnderLeftCornerImg = 0;
-        int WallUpRightCornerImg = 0;
-        int WallUnderRightCornerImg = 0;
+        int KeyCnt = 0;
+        int FlagCnt = 0;
+        };
+        matrix Production;
+        matrix Tutorial;
+        //画像
+            //壁関連
+            int WallImg = 0;
+            int WallLeftImg = 0;
+            int WallRightImg = 0;
+            int WallUpImg = 0;
+            int WallUnderImg = 0;
+            int WallUpLeftCornerImg = 0;
+            int WallUnderLeftCornerImg = 0;
+            int WallUpRightCornerImg = 0;
+            int WallUnderRightCornerImg = 0;
+            //ゴール関連
+            int goalImg = 0;
+            int LockImg = 0;
+            int KeyImg = 0;
+            //フラッグ
+            int FlagImg = 0;
         //当たり判定用
         struct HITBOX {
             VECTOR2 up;
@@ -78,12 +98,13 @@ namespace GAME10
             int XharfSize = Xsize / 2;
             int Ysize = 216;
             int YharfSize = Ysize / 2;
+            bool LockFlag = false;
         };
         struct Item {
             VECTOR2 ItemCore;
-            float Iradius = 20;
-            float HIradius = Iradius / 2;
+            float Iradius = 30;
             int ItemKind = 0;
+            bool Substance = false;
         };
         //当たり判定関係
         HITBOX HitBox;
@@ -92,11 +113,8 @@ namespace GAME10
         HITBOX EnemyBox;
         DISTANCE PDist;
         DISTANCE EDist;
-        //アイテム関連
-        Item Gun;
-        Item Key;
         //goal関連
-        int goalImg = 0;
+        bool GoalFlag = false;
         struct character {
             float Cpx = 0;
             float Cpy = 0;
@@ -106,33 +124,50 @@ namespace GAME10
             float length = 300;
             float radius = 50;
             float Hradius = radius / 2;
-            //見ている位置の種類
-            enum {
-                Up,
-                Under,
-                Right,
-                Left
-            };
             int View;
+            //視界範囲
+            float ViewUp;
+            float  ViewUnder;
+            float  ViewRight;
+            float  ViewLeft;
+            float ViewLen;
             //敵の動きの種類
             int Mkind = 0;
-            //プレイヤーのみ使用する(アイテムの保持)
+            //プレイヤーのみ使用する
             bool KeyFlag = false;
             //敵が壁にぶつかったか
             bool WallHitFlag = false;
             int Frieze = 0;
+            int FindLen = 400;
+            int WarningLen = 500;
         };
-        const int FriezeTime = 1500;
+        //見ている位置の種類
+        enum {
+                Up,
+                Right,
+                Under,
+                Left
+            };
+        int FriezeTime = 1500;
         enum  {
             UpDown,
             RightLeft,
             NoMove
         };
+        //発見関連
+        bool FindFlag = false;
         //動的確保用の変数
-        Map Wmap;
-        wall* Wall;
-        wall* WallCorner;
-        wall* Goal;
+        struct STAGE {
+            Map Wmap;
+            wall* Wall;
+            wall* WallCorner;
+            wall* Goal;
+            Item* Flag;
+            Item* Key;
+        };
+        //動的確保する変数のステージ種類
+        STAGE ProductionMap;
+        STAGE TutorialMap;
         //敵
         character* Enemys;
         int Ecnt = 0;
@@ -146,12 +181,14 @@ namespace GAME10
         void proc();
         void title();
         void init();
+        void tutorial();
         void play();
         void result();
             void Pmove();
             void Emove();
             void stageChange();
             void collision();
+            void viewCollision(int e);
                 void hitbox(int w);//プレイヤーと壁
                 void hitbox(int w, int e);//敵と壁
                 void wallHitBox(int w);
