@@ -33,6 +33,7 @@ namespace GAME09
 	void HELP::draw() {
 		game()->backGround()->draw();
 		image(Help.Imgs[CurPage], Help.imgPos.x, Help.imgPos.y, 0, Help.imgSize);
+		image(Help.operationImg, Help.operationImgPos.x, Help.operationImgPos.y, 0, Help.operationImgSize);
 	}
 	void HELP::nextScene() {
 		if (isTrigger(KEY_X)) {

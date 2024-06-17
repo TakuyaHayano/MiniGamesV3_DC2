@@ -34,6 +34,10 @@ namespace GAME09
             VECTOR2 scorePos;
             float scoreSize;
             STATE_MOVE_DATA moveDatas[NUM_STATE];
+
+            int operationImg;
+            VECTOR2 operationImgPos;
+            float operationImgSize;
         };
     private:
         DATA Result;

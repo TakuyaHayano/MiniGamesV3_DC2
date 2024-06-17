@@ -17,6 +17,10 @@ namespace GAME09
         struct DATA {
             float vibeTime;
             float waitTime;
+
+            int operationImg;
+            VECTOR2 operationImgPos;
+            float operationImgSize;
         };
     private:
         DATA Stage;

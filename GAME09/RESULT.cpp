@@ -92,6 +92,7 @@ namespace GAME09
 		game()->getScene(GAME::STAGE_ID)->draw();
 		setCornerPos(VECTOR2(0,0));
 		setMagnification(1);
+		image(Result.operationImg, Result.operationImgPos.x, Result.operationImgPos.y, 0, Result.operationImgSize);
 	}
 	void RESULT::nextScene() {
 		if (game()->transition()->inEndFlag()) {

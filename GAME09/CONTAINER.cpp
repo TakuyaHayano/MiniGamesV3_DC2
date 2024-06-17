@@ -15,6 +15,8 @@ namespace GAME09
 
 		Data.stage.vibeTime = 0.83f;
 		Data.stage.waitTime = 1.3f;
+		Data.stage.operationImgPos = VECTOR2(width / 2, height / 2);
+		Data.stage.operationImgSize = 1;
 
 		Data.pause.imgPos = VECTOR2(width / 2, height / 2);
 		Data.pause.imgSize = 1.5f;
@@ -43,9 +45,13 @@ namespace GAME09
 		Data.result.moveDatas[RESULT::NORMAL].animeTime = 0.1f;
 		Data.result.moveDatas[RESULT::NORMAL].startOfst = 0;
 		Data.result.moveDatas[RESULT::NORMAL].endOfst = 0;
+		Data.result.operationImgPos = VECTOR2(width / 2, height / 2);
+		Data.result.operationImgSize = 1;
 
 		Data.help.imgPos = VECTOR2(width / 2, height / 2);
 		Data.help.imgSize = 1;
+		Data.help.operationImgPos = VECTOR2(width / 2, height / 2);
+		Data.help.operationImgSize = 1;
 
 		Data.backG.imgSize = 1.0f;
 		Data.backG.pos = VECTOR2(width / 2, height / 2);
@@ -215,11 +221,14 @@ namespace GAME09
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");
+		Data.stage.operationImg = loadImage("..\\main\\assets\\game09\\operation_stage.png");
 		Data.pause.pauseImg = loadImage("..\\main\\assets\\game09\\pause_back.png");
 		Data.result.resultImg = loadImage("..\\main\\assets\\game09\\result_back.png");
+		Data.result.operationImg = loadImage("..\\main\\assets\\game09\\operation_result.png");
 		Data.help.Imgs[HELP::OPERATION] = loadImage("..\\main\\assets\\game09\\help_operation.png");
 		Data.help.Imgs[HELP::RULE] = loadImage("..\\main\\assets\\game09\\help_rule.png");
 		Data.help.Imgs[HELP::KINDS] = loadImage("..\\main\\assets\\game09\\help_kinds.png");
+		Data.help.operationImg = loadImage("..\\main\\assets\\game09\\operation_help.png");
 		Data.backG.img = loadImage("..\\main\\assets\\game09\\back_ground.png");
 		Data.startButton.selectedImg = loadImage("..\\main\\assets\\game09\\start_button.png");
 		Data.startButton.notSelectedImg = loadImage("..\\main\\assets\\game09\\start_button_gray.png");

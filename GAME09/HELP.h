@@ -19,6 +19,10 @@ namespace GAME09
             int Imgs[NUM_PAGES];
             VECTOR2 imgPos;
             float imgSize;
+
+            int operationImg;
+            VECTOR2 operationImgPos;
+            float operationImgSize;
         };
     private:
         DATA Help;
