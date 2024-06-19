@@ -4,3 +4,7 @@
 #define width
 #define delta
 #define WARNING(flag, msg1, msg2) { if(flag){ char buf[ 512 ]; sprintf_s( buf, "%s\n%s\n\n%s : %d", msg1, msg2, __FILE__, __LINE__ ); MessageBoxA( 0, buf, "WARNING!!", MB_OK | MB_ICONERROR ); exit(1); } }
+#define NULL
+#define NULL ((void *)0)
+#define NULL (__null)
+#define NULL ((void*)0)

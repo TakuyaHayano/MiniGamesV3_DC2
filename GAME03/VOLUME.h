@@ -13,12 +13,14 @@ namespace GAME03 {
 			float volume1 = 0.0f;
 			float volume2 = 0.0f;
 			int cntVolume = 0;
-			float select = true;
+			float select = 2;
+			float fileOnce = true;
 			COLOR backColor;
 		};
 	private:
 		DATA Volume;
-		void BackGround();
+		FILE* fp{};
+		void BackGround() const;
 	public:
 		VOLUME(class GAME* game) : SCENE(game){}
 		void create();

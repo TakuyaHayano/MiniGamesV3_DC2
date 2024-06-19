@@ -1,13 +1,13 @@
-#include"../../libOne/inc/graphic.h"
-#include"../../libOne/inc/input.h"
+#include "../../libOne/inc/graphic.h"
+#include "../../libOne/inc/input.h"
 #include "../../libOne/inc/libOne.h"
-#include"ANIMS.h"
-#include"CONTAINER.h"
-#include"GAME03.h"
-#include"MAP.h"
+#include "ANIMS.h"
+#include "CONTAINER.h"
+#include "GAME03.h"
+#include "MAP.h"
 #include "PLAYER.h"
-#include"VOLUME.h"
-#include<time.h>
+#include "VOLUME.h"
+#include <time.h>
 namespace GAME03 {
 	void PLAYER::create() {
 		Chara = game()->container()->data().playerChara;
@@ -96,7 +96,7 @@ namespace GAME03 {
 		if (map->collisionCharaBottom(Player.curWx, Chara.wy)) {
 			Player.jumpFlag = 0;
 			Chara.vy = 0.0f;
-			Chara.wy = (int)Chara.wy / map->chipSize() * (float)map->chipSize();
+			Chara.wy = (int)(Chara.wy / map->chipSize()) * (float)map->chipSize();
 		}
 		else {
 			Player.jumpFlag = 1;

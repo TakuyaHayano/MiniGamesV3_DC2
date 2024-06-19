@@ -28,7 +28,7 @@ namespace GAME03 {
         Data.fade.color = COLOR(60, 60, 60);
         Data.fade.speed = 255 * 2;
 
-        Data.map.fileName = "..\\main\\assets\\game03\\map.txt";
+        Data.map.fileName = "..\\main\\assets\\game03\\data\\map.txt";
         Data.map.chipSize = 50;
         Data.map.centerX = width / 2.0f - Data.map.chipSize / 2.0f;
 
@@ -46,37 +46,39 @@ namespace GAME03 {
         Data.player.initVecDown = 3.0f;
         Data.player.gravity = 48;
         time(&Data.player.s_time);
-        Data.player.e_time = Data.player.s_time + 500;
+        Data.player.e_time = Data.player.s_time + 100;
         time(&Data.player.n_time);
 
         Data.charaMng.numPlayers = 1;
+
+        Data.volume.backColor = COLOR(255);
 
         Data.operationInstructions.backColor = COLOR(255, 255, 255, 255);
 
     }
     void CONTAINER::LoadGraphics() {
-        Data.stage.backImg = loadImage("..\\main\\assets\\game03\\back_wide.png");
-        Data.stage.stageClearImg = loadImage("..\\main\\assets\\game03\\StageClear.png");
-        Data.stage.gameOverImg = loadImage("..\\main\\assets\\game03\\GameOver.png");
+        Data.stage.backImg = loadImage("..\\main\\assets\\game03\\data\\back_wide.png");
+        Data.stage.stageClearImg = loadImage("..\\main\\assets\\game03\\data\\StageClear.png");
+        Data.stage.gameOverImg = loadImage("..\\main\\assets\\game03\\data\\GameOver.png");
 
-        Data.map.blockImg = loadImage("..\\main\\assets\\game03\\block.png");
-        Data.map.goalImg = loadImage("..\\main\\assets\\game03\\goal.png");
+        Data.map.blockImg = loadImage("..\\main\\assets\\game03\\data\\block.png");
+        Data.map.goalImg = loadImage("..\\main\\assets\\game03\\data\\goal.png");
 
-        Data.playerChara.anims = new ANIMS("..\\main\\assets\\game03\\player");
-        Data.playerChara.shadowImg = loadImage("..\\main\\assets\\game03\\shadow.png");
+        Data.playerChara.anims = new ANIMS("..\\main\\assets\\game03\\data\\player");
+        Data.playerChara.shadowImg = loadImage("..\\main\\assets\\game03\\data\\shadow.png");
         Data.playerChara.animData.interval = 0.1f;
 
-        //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\.png");
+        //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\data\\.png");
         
-        //Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\.png");
+        //Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\data\\操作説明.png");
     }
 
     void CONTAINER::LoadBgms() {
-        Data.volume.Snd_A = loadSound("..\\main\\assets\\game03\\BGM_A.wav");
-        //Data.volume.Snd_B = loadSound("..\\main\\assets\\game03\\BGM_B.wav");
-        Data.volume.Se_A = loadSound("..\\main\\assets\\game03\\ジャンプ.wav");
-        Data.volume.Se_B = loadSound("..\\main\\assets\\game03\\歓声と拍手.wav");
-        Data.volume.Se_C = loadSound("..\\main\\assets\\game03\\間抜け7.wav");
+        Data.volume.Snd_A = loadSound("..\\main\\assets\\game03\\sounds\\BGM_A.wav");
+        //Data.volume.Snd_B = loadSound("..\\main\\assets\\game03\\sounds\\BGM_B.wav");
+        Data.volume.Se_A = loadSound("..\\main\\assets\\game03\\sounds\\ジャンプ.wav");
+        Data.volume.Se_B = loadSound("..\\main\\assets\\game03\\sounds\\歓声と拍手.wav");
+        Data.volume.Se_C = loadSound("..\\main\\assets\\game03\\sounds\\間抜け7.wav");
         Data.volume.volume1 = 80.0f;
         Data.volume.volume2 = 80.0f;
         setVolume(Data.volume.Snd_A, -(100 - (int)Data.volume.volume1) * (100 - (int)Data.volume.volume1));

@@ -13,23 +13,37 @@ namespace GAME03 {
 	}
 	void VOLUME::init() {
 		game()->fade()->inTrigger();
-		Volume.select = true;
+		Volume.select = 2;
+		Volume.fileOnce = true;
 		Volume.cntVolume = 0;
 	}
 	void VOLUME::draw() {
 
 		clear(250);
 		//image(Volume.backImg, 0, 0);
-
-		if (isTrigger(KEY_W) || (isPress(MOUSE_LBUTTON) && mouseY < height / 2.0f )) {
-			Volume.select = true;
-			Volume.cntVolume = 0;
+		if (Volume.fileOnce) {
+			fopen_s(&fp, "assets/game03/data/volume.txt", "r");
+			if (fp != NULL) {
+				fscanf_s(fp, "%f\n%f\n", &Volume.volume1, &Volume.volume2);
+				fclose(fp);
+			}
+			Volume.fileOnce = false;
 		}
-		if (isTrigger(KEY_S) || (isPress(MOUSE_LBUTTON) && mouseY > height / 2.0f)) {
-			Volume.select = false;
-			Volume.cntVolume = 0;
+		if (isPress(KEY_W) || (isPress(MOUSE_LBUTTON) && mouseY > 290 && mouseY < 377)) {
+			Volume.select = 0;
 		}
-
+		else if (isPress(KEY_S) || (isPress(MOUSE_LBUTTON) && mouseY > 609 && mouseY < 691)) {
+			Volume.select = 1;
+		}
+		if (isPress(MOUSE_LBUTTON) && 
+			((Volume.select == 1) && (mouseY < 609 || mouseY > 691) && !isPress(KEY_S)) ||
+			((Volume.select == 0) && (mouseY < 290 || mouseY > 377) && !isPress(KEY_W))) {
+			Volume.select = 2;
+		}
+		if ((isRelease(KEY_W) || isRelease(KEY_S) || isRelease(MOUSE_LBUTTON)) &&
+			(!isPress(KEY_W) || !isPress(KEY_S) || !isPress(MOUSE_LBUTTON))) {
+			Volume.select = 2;
+		}
 		for (int i = 0; i < 10; i++) {
 			if (i == 8) {
 				fill(255, 255, 255, 150);
@@ -57,12 +71,14 @@ namespace GAME03 {
 				text((let)(int)Volume.volume2, width / 1.4f, height / 1.6f - (float)i * 1.0f);
 				textSize(40);
 				text("初期設定", width / 2.2f, height / 1.1f - (float)i * 1.0f);
+				//text((let)mouseX, 10, height / 2.0f);
+				//text((let)mouseY, 10, height / 2.0f + 50);
 				text("Enterキーでタイトルに戻る", width / 1.5f, height / 1.00625f - (float)i * 1.0f);
 			}
 		}
 		strokeWeight(5.0f);
 		stroke(100);
-		if (Volume.select) {
+		if (Volume.select == 0) {
 			Volume.cntVolume++;
 			if (Volume.cntVolume % 4 == 0) {
 				if (Volume.volume1 >= 0 && Volume.volume1 <= 100) {
@@ -103,7 +119,7 @@ namespace GAME03 {
 			}
 		}
 
-		else {
+		else if(Volume.select == 1){
 			Volume.cntVolume++;
 			if (Volume.cntVolume % 4 == 0) {
 				if (Volume.volume2 >= 0 && Volume.volume2 <= 100) {
@@ -143,22 +159,31 @@ namespace GAME03 {
 			}
 		}
 
+		else if(Volume.select == 2){
+			fill(255);
+			circle(width / 3.5f + Volume.volume1 * 8.0f, height / 3.15f, 25.0f);
+			circle(width / 3.5f + Volume.volume2 * 8.0f, height / 1.65f, 25.0f);
+		}
+
 		setVolume(Volume.Snd_A, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
 		setVolume(Volume.Se_A, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_B, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_C, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 
-		if (isPress(KEY_SPACE)) {
+		if (isPress(KEY_SPACE)|| (isPress(MOUSE_LBUTTON) && mouseY < 971 && mouseX > 871 && mouseY > 931 && mouseX < 1011)) {
 			fill(255, 155, 0);
 			text("初期設定", width / 2.2f, height / 1.1f - 9.0f);
 			Volume.volume1 = 80;
 			Volume.volume2 = 80;
 		}
+		if (isTrigger(KEY_P)) {
+			playSound(Volume.Se_A);
+		}
 		noStroke();
 		game()->fade()->draw();
 	}
 
-	void VOLUME::BackGround() {
+	void VOLUME::BackGround() const {
 		clear();
 		rectMode(CORNER);
 		imageColor(Volume.backColor);
@@ -167,6 +192,11 @@ namespace GAME03 {
 
 	void VOLUME::nextScene() {
 		if (isTrigger(KEY_ENTER)) {
+			fopen_s(&fp, "assets/game03/data/volume.txt", "w");
+			if (fp == NULL)return;
+			fprintf_s(fp, "%d\n", (int)Volume.volume1);
+			fprintf_s(fp, "%d\n", (int)Volume.volume2);
+			fclose(fp);
 			game()->fade()->outTrigger();
 		}
 		if (game()->fade()->outEndFlag()) {

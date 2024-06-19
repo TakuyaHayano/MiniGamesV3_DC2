@@ -87,23 +87,23 @@ namespace GAME03 {
         return false;
     }
     bool MAP::collisionCharaLeft(float wx, float wy) const {
-        bool leftTop = collisionCheck(wx, wy);
-        bool leftBottom = collisionCheck(wx, wy + Map.chipSize - 1);
+        bool leftTop = collisionCheck(wx + 0.9f, wy);
+        bool leftBottom = collisionCheck(wx + 0.9f, wy + Map.chipSize - 1.0f);
         return leftTop || leftBottom;
     }
     bool MAP::collisionCharaRight(float wx, float wy) const {
-        bool rightTop = collisionCheck(wx + Map.chipSize - 1, wy);
-        bool rightBottom = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize - 1);
+        bool rightTop = collisionCheck(wx + Map.chipSize - 1.9f, wy);
+        bool rightBottom = collisionCheck(wx + Map.chipSize - 1.9f, wy + Map.chipSize - 1.0f);
         return rightTop || rightBottom;
     }
     bool MAP::collisionCharaTop(float wx, float wy) const {
-        bool topLeft = collisionCheck(wx, wy);
-        bool topRight = collisionCheck(wx + Map.chipSize - 1, wy);
+        bool topLeft = collisionCheck(wx + 0.9f, wy);
+        bool topRight = collisionCheck(wx + Map.chipSize - 1.9f, wy);
         return topLeft || topRight;
     }
     bool MAP::collisionCharaBottom(float wx, float wy) const {
-        bool bottomLeft = collisionCheck(wx, wy + Map.chipSize);
-        bool bottomRight = collisionCheck(wx + Map.chipSize - 1, wy + Map.chipSize);
+        bool bottomLeft = collisionCheck(wx + 0.9f, wy + Map.chipSize);
+        bool bottomRight = collisionCheck(wx + Map.chipSize - 1.9f, wy + Map.chipSize);
         return bottomLeft || bottomRight;
     }
     float MAP::wDispLeft() const {

@@ -18,7 +18,7 @@ namespace GAME03 {
 		};
 	private:
 		DATA Stage;
-		void BackGround();
+		void BackGround() const;
 		void Logo(int img, const COLOR& color);
 	public:
 		STAGE(class GAME* game) :SCENE(game){}

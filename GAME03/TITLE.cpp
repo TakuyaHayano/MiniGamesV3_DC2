@@ -19,7 +19,17 @@ namespace GAME03 {
 		clear();
 		rectMode(CORNER);
 		if (loopBgm) {
+			int f1 = 0, f2 = 0;
 			playLoopSound(game()->container()->data().volume.Snd_A);
+			fopen_s(&fp, "assets/game03/data/volume.txt", "r");
+			if (fp != NULL) {
+				fscanf_s(fp, "%d\n%d\n", &f1, &f2);
+				fclose(fp);
+				setVolume(game()->container()->data().volume.Snd_A, -(100 - f1) * (100 - f1));
+				setVolume(game()->container()->data().volume.Se_A, -(100 - f2) * (100 - f2));
+				setVolume(game()->container()->data().volume.Se_B, -(100 - f2) * (100 - f2));
+				setVolume(game()->container()->data().volume.Se_C, -(100 - f2) * (100 - f2));
+			}
 			loopBgm = false;
 		}
 		imageColor(240);
@@ -40,7 +50,7 @@ namespace GAME03 {
 				text("Enterキーでメニューに戻る", width / 1.5f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
 			}
 			else {
-				fill(50.0f + (float)i * 10.0f, 30, 100, (float)i * 10);
+				fill(50.0f + (float)i * 10.0f, 30, 100, (float)i * 10.0f);
 				text("大迷路", width / 2.3f, height / 2.0f - (float)i * 1.0f);
 				size = 40;
 				textSize(size);
@@ -57,19 +67,19 @@ namespace GAME03 {
 			game()->fade()->outTrigger();
 			delibe = 1;
 		}
-		if (game()->fade()->outEndFlag() && (delibe == 1)) {
-			game()->setCurScene(game()->stage());
-		}
 		if (isTrigger(KEY_O)) {
 			game()->fade()->outTrigger();
 			delibe = 2;
 		}
-		if (game()->fade()->outEndFlag() && (delibe == 2)) {
-			game()->setCurScene(game()->volume());
-		}
 		if (isTrigger(KEY_P)) {
 			game()->fade()->outTrigger();
 			delibe = 3;
+		}
+		if (game()->fade()->outEndFlag() && (delibe == 1)) {
+			game()->setCurScene(game()->stage());
+		}
+		if (game()->fade()->outEndFlag() && (delibe == 2)) {
+			game()->setCurScene(game()->volume());
 		}
 		if (game()->fade()->outEndFlag() && (delibe == 3)) {
 			game()->setCurScene(game()->operation());

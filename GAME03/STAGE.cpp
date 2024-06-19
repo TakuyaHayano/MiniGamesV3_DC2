@@ -49,7 +49,7 @@ namespace GAME03 {
 		fill(0);
 		game()->fade()->draw();
 	}
-	void STAGE::BackGround() {
+	void STAGE::BackGround() const {
 		clear();
 		rectMode(CORNER);
 		imageColor(Stage.backColor);
