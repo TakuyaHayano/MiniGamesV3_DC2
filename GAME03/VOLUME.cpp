@@ -193,10 +193,11 @@ namespace GAME03 {
 	void VOLUME::nextScene() {
 		if (isTrigger(KEY_ENTER)) {
 			fopen_s(&fp, "assets/game03/data/volume.txt", "w");
-			if (fp == NULL)return;
-			fprintf_s(fp, "%d\n", (int)Volume.volume1);
-			fprintf_s(fp, "%d\n", (int)Volume.volume2);
-			fclose(fp);
+			if (fp != NULL) {
+				fprintf_s(fp, "%d\n", (int)Volume.volume1);
+				fprintf_s(fp, "%d\n", (int)Volume.volume2);
+				fclose(fp);
+			}
 			game()->fade()->outTrigger();
 		}
 		if (game()->fade()->outEndFlag()) {
