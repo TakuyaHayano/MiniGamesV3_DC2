@@ -27,6 +27,7 @@ namespace GAME03 {
 		void update();
 		void draw();
 		void nextScene();
+		int loopBgm = true;
 	};
 }
 

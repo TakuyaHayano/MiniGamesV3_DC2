@@ -13,7 +13,7 @@ namespace GAME03 {
 	void TITLE::init() {
 		game()->fade()->inTrigger();
 		delibe = 0;
-		//loopBgm = true;
+		loopBgm = true;
 	}
 	void TITLE::draw() {
 		clear();
@@ -76,12 +76,15 @@ namespace GAME03 {
 			delibe = 3;
 		}
 		if (game()->fade()->outEndFlag() && (delibe == 1)) {
+			stopSound(game()->container()->data().volume.Snd_A);
 			game()->setCurScene(game()->stage());
 		}
 		if (game()->fade()->outEndFlag() && (delibe == 2)) {
+			stopSound(game()->container()->data().volume.Snd_A);
 			game()->setCurScene(game()->volume());
 		}
 		if (game()->fade()->outEndFlag() && (delibe == 3)) {
+			stopSound(game()->container()->data().volume.Snd_A);
 			game()->setCurScene(game()->operation());
 		}
 		if (isTrigger(KEY_ENTER)) {

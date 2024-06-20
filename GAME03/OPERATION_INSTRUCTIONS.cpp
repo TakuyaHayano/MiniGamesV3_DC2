@@ -13,8 +13,13 @@ namespace GAME03 {
 	}
 	void OPERATION_INSTRUCTIONS::init() {
 		game()->fade()->inTrigger();
+		loopBgm = true;
 	}
 	void OPERATION_INSTRUCTIONS::draw() {
+		if (loopBgm) {
+			playLoopSound(game()->container()->data().volume.Snd_D);
+			loopBgm = false;
+		}
 		clear(255);
 		//image(OpInstructions.backimg, 0, 0);
 		//textSize(90);
@@ -27,6 +32,7 @@ namespace GAME03 {
 	}
 	void OPERATION_INSTRUCTIONS::nextScene() {
 		if (isTrigger(KEY_ENTER)) {
+			stopSound(game()->container()->data().volume.Snd_D);
 			game()->fade()->outTrigger();
 		}
 		if (game()->fade()->outEndFlag()) {

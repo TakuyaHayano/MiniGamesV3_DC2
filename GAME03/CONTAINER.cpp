@@ -75,14 +75,17 @@ namespace GAME03 {
 
     void CONTAINER::LoadBgms() {
         Data.volume.Snd_A = loadSound("..\\main\\assets\\game03\\sounds\\BGM_A.wav");
-        //Data.volume.Snd_B = loadSound("..\\main\\assets\\game03\\sounds\\BGM_B.wav");
+        Data.volume.Snd_B = loadSound("..\\main\\assets\\game03\\sounds\\BGM_B.wav");
+        Data.volume.Snd_C = loadSound("..\\main\\assets\\game03\\sounds\\BGM_C.wav");
+        Data.volume.Snd_D = loadSound("..\\main\\assets\\game03\\sounds\\BGM_D.wav");
         Data.volume.Se_A = loadSound("..\\main\\assets\\game03\\sounds\\ÉWÉÉÉìÉv.wav");
         Data.volume.Se_B = loadSound("..\\main\\assets\\game03\\sounds\\äΩê∫Ç∆îèéË.wav");
         Data.volume.Se_C = loadSound("..\\main\\assets\\game03\\sounds\\ä‘î≤ÇØ7.wav");
         Data.volume.volume1 = 80.0f;
         Data.volume.volume2 = 80.0f;
         setVolume(Data.volume.Snd_A, -(100 - (int)Data.volume.volume1) * (100 - (int)Data.volume.volume1));
-        //setVolume(Data.volume.Snd_B, -(100 - Data.volume.volume1) * (100 - Data.volume.volume1));
+        setVolume(Data.volume.Snd_B, -(100 - (int)Data.volume.volume1) * (100 - (int)Data.volume.volume1));
+        setVolume(Data.volume.Snd_C, -(100 - (int)Data.volume.volume1) * (100 - (int)Data.volume.volume1));
         setVolume(Data.volume.Se_A, -(100 - (int)Data.volume.volume2) * (100 - (int)Data.volume.volume2));
         setVolume(Data.volume.Se_B, -(100 - (int)Data.volume.volume2) * (100 - (int)Data.volume.volume2));
         setVolume(Data.volume.Se_C, -(100 - (int)Data.volume.volume2) * (100 - (int)Data.volume.volume2));

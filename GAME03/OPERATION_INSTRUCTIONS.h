@@ -15,6 +15,7 @@ namespace GAME03 {
 		void init();
 		void draw();
 		void nextScene();
+		int loopBgm = true;
 	};
 }
 

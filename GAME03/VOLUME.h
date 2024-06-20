@@ -7,6 +7,8 @@ namespace GAME03 {
 			int backImg = 0;
 			int Snd_A = 0;
 			int Snd_B = 0;
+			int Snd_C = 0;
+			int Snd_D = 0;
 			int Se_A = 0;
 			int Se_B = 0;
 			int Se_C = 0;

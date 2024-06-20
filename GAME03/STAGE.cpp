@@ -21,12 +21,17 @@ namespace GAME03 {
 		time(&Stage.s_time);
 		Stage.e_time = Stage.s_time + 100;
 		time(&Stage.n_time);
+		loopBgm = true;
 	}
 	void STAGE::update() {
 		game()->characterManager()->update();
 		game()->map()->update();
 	}
 	void STAGE::draw() {
+		if (loopBgm) {
+			playLoopSound(game()->container()->data().volume.Snd_B);
+			loopBgm = false;
+		}
 		BackGround();
 		game()->map()->draw();
 		game()->characterManager()->draw(); 
@@ -62,6 +67,7 @@ namespace GAME03 {
 	}
 	void STAGE::nextScene() {
 		if (Stage.backToTitleTime <= 0) {
+			stopSound(game()->container()->data().volume.Snd_B);
 			game()->fade()->outTrigger();
 		}
 		if (game()->fade()->outEndFlag()) {

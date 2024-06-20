@@ -27,6 +27,7 @@ namespace GAME03 {
 				fscanf_s(fp, "%f\n%f\n", &Volume.volume1, &Volume.volume2);
 				fclose(fp);
 			}
+			playLoopSound(Volume.Snd_C);
 			Volume.fileOnce = false;
 		}
 		if (isPress(KEY_W) || (isPress(MOUSE_LBUTTON) && mouseY > 290 && mouseY < 377)) {
@@ -166,6 +167,9 @@ namespace GAME03 {
 		}
 
 		setVolume(Volume.Snd_A, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
+		setVolume(Volume.Snd_B, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
+		setVolume(Volume.Snd_C, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
+		setVolume(Volume.Snd_D, -(100 - (int)Volume.volume1) * (100 - (int)Volume.volume1));
 		setVolume(Volume.Se_A, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_B, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_C, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
@@ -198,6 +202,7 @@ namespace GAME03 {
 				fprintf_s(fp, "%d\n", (int)Volume.volume2);
 				fclose(fp);
 			}
+			stopSound(Volume.Snd_C);
 			game()->fade()->outTrigger();
 		}
 		if (game()->fade()->outEndFlag()) {
