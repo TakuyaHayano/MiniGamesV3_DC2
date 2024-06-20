@@ -70,7 +70,7 @@ namespace GAME03 {
 
         //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\data\\.png");
         
-        //Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\data\\‘€ìà–¾.png");
+        Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\data\\‘€ìà–¾.png");
     }
 
     void CONTAINER::LoadBgms() {

@@ -21,13 +21,19 @@ namespace GAME03 {
 			loopBgm = false;
 		}
 		clear(255);
-		//image(OpInstructions.backimg, 0, 0);
-		//textSize(90);
-		//fill(0);
-		//text("操作説明", width / 2.3f, height / 1.5f);
-		textSize(40);
-		fill(0);
-		text("Enterキーでタイトルに戻る", width / 1.5f, height / 1.00625f);
+		image(OpInstructions.backimg, 0, 0);
+		for (int i = 0; i < 10; i++) {
+			if (i == 8) {
+				fill(255, 255, 255, 150);
+				textSize(40);
+				text("Enterキーでメニューに戻る", width / 1.5f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
+			}
+			else {
+				textSize(40);
+				fill(50.0f + (float)i * 10.0f, 30, 100, (float)i * 10.0f);
+				text("Enterキーでメニューに戻る", width / 1.5f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
+			}
+		}
 		game()->fade()->draw();
 	}
 	void OPERATION_INSTRUCTIONS::nextScene() {
