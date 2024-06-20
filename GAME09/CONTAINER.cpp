@@ -219,8 +219,8 @@ namespace GAME09
 		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.166f, VECTOR2(960, 540), VECTOR2(960, 540), 200, 0, 1, 1.3f });
 		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.2f, VECTOR2(960, 540), VECTOR2(960, 540), 200, 0, 1, 1.5f });
 
-		Data.cracker.pos = VECTOR2(1550, 200);
-		Data.cracker.startWidth = 550;
+		Data.cracker.pos = VECTOR2(1550, 150);
+		Data.cracker.startWidth = 500;
 		Data.cracker.size = VECTOR2(12, 12);
 		Data.cracker.speed = 650;
 		Data.cracker.colors[CRACKER::SKY]    = COLOR(0, 255, 255);
@@ -236,6 +236,7 @@ namespace GAME09
 		Data.stage.operationImg = loadImage("..\\main\\assets\\game09\\operation_stage.png");
 		Data.pause.pauseImg = loadImage("..\\main\\assets\\game09\\pause_back.png");
 		Data.result.resultImg = loadImage("..\\main\\assets\\game09\\result_back.png");
+		Data.result.resultScoreImg = loadImage("..\\main\\assets\\game09\\result_score.png");
 		Data.result.operationImg = loadImage("..\\main\\assets\\game09\\operation_result.png");
 		Data.help.Imgs[HELP::OPERATION] = loadImage("..\\main\\assets\\game09\\help_operation.png");
 		Data.help.Imgs[HELP::RULE] = loadImage("..\\main\\assets\\game09\\help_rule.png");

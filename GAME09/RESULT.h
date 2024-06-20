@@ -27,6 +27,7 @@ namespace GAME09
         };
         struct DATA {
             int resultImg;
+            int resultScoreImg;
             VECTOR2 imgPos;
             float imgSize;
             VECTOR2 finalFieldPos;

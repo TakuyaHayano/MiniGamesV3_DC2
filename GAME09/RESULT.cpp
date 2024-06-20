@@ -90,6 +90,7 @@ namespace GAME09
 		}
 		game()->drawNum()->draw(game()->score()->getCurScore(), Result.scorePos, Result.scoreSize);
 		game()->cracker()->draw();
+		image(Result.resultScoreImg, Result.imgPos.x, Result.imgPos.y, 0, Result.imgSize);
 		addCornerPos(Result.finalFieldPos);
 		setMagnification(Result.finalFieldSize);
 		game()->getScene(GAME::STAGE_ID)->draw();
