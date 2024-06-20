@@ -218,6 +218,18 @@ namespace GAME09
 		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 1.586f, VECTOR2(0, 0), VECTOR2(0, 0), 0, 0 });
 		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.166f, VECTOR2(960, 540), VECTOR2(960, 540), 200, 0, 1, 1.3f });
 		Data.readyGo.effectAnim.data().emplace_back(ANIM::MOVE_DATA{ 0.2f, VECTOR2(960, 540), VECTOR2(960, 540), 200, 0, 1, 1.5f });
+
+		Data.cracker.pos = VECTOR2(1550, 200);
+		Data.cracker.startWidth = 550;
+		Data.cracker.size = VECTOR2(12, 12);
+		Data.cracker.speed = 650;
+		Data.cracker.colors[CRACKER::SKY]    = COLOR(0, 255, 255);
+		Data.cracker.colors[CRACKER::PURPLE] = COLOR(255, 0, 255);
+		Data.cracker.colors[CRACKER::RED]    = COLOR(255, 0, 0);
+		Data.cracker.colors[CRACKER::GREEN]  = COLOR(0, 255, 0);
+		Data.cracker.colors[CRACKER::YELLOW] = COLOR(255, 255, 0);
+		Data.cracker.interval = 0.06f;
+		Data.cracker.angSpeed = 160;
 	}
 	void CONTAINER::loadGraphic() {
 		Data.title.titleImg = loadImage("..\\main\\assets\\game09\\title.png");

@@ -22,6 +22,7 @@
 #include "EVOLUTIONARY_CIRCLE.h"
 #include "READYGO.h"
 #include "ANIM.h"
+#include "CRACKER.h"
 
 namespace GAME09
 {
@@ -57,6 +58,7 @@ namespace GAME09
 			COMMAND::DATA command;
 			EVOLUTIONARY_CIRCLE::DATA eCircle;
 			READYGO::DATA readyGo;
+			CRACKER::DATA cracker;
 		};
 		DATA Data;
 	public:

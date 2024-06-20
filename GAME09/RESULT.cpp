@@ -36,6 +36,7 @@ namespace GAME09
 		Buttons[SelectButton]->setSelect(true, false);
 		State = START;
 		AnimeTime = 0;
+		game()->cracker()->init();
 	}
 	void RESULT::update() {
 		if (!game()->transition()->inEndFlag()) {
@@ -61,6 +62,7 @@ namespace GAME09
 			for (int i = 0; i < NUM_BUTTONS; i++) {
 				Buttons[i]->update();
 			}
+			game()->cracker()->update();
 		}
 		else {
 			angleMode(DEGREES);
@@ -87,6 +89,7 @@ namespace GAME09
 			Buttons[i]->draw();
 		}
 		game()->drawNum()->draw(game()->score()->getCurScore(), Result.scorePos, Result.scoreSize);
+		game()->cracker()->draw();
 		addCornerPos(Result.finalFieldPos);
 		setMagnification(Result.finalFieldSize);
 		game()->getScene(GAME::STAGE_ID)->draw();

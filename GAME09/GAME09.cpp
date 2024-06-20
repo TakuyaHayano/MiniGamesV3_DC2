@@ -30,6 +30,7 @@ namespace GAME09
 		Command = new COMMAND(this);
 		ECircle = new EVOLUTIONARY_CIRCLE(this);
 		ReadyGo = new READYGO(this);
+		Cracker = new CRACKER(this);
 
 		//load
 		Container->load();
@@ -53,17 +54,19 @@ namespace GAME09
 		Command->create();
 		ECircle->create();
 		ReadyGo->create();
+		Cracker->create();
 
 		//init
 		changeScene(TITLE_ID);
-		//changeScene(STAGE_ID);
-		//changeScene(RESULT_ID);
+		changeScene(STAGE_ID);
+		changeScene(RESULT_ID);
 
 		return 0;
 	}
 
 	void GAME::destroy()
 	{
+		delete Cracker;
 		delete ReadyGo;
 		delete ECircle;
 		delete Command;

@@ -152,6 +152,7 @@
     <ClCompile Include="CLOUD.cpp" />
     <ClCompile Include="COMMAND.cpp" />
     <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="CRACKER.cpp" />
     <ClCompile Include="CURTAIN.cpp" />
     <ClCompile Include="DRAW_NUM.cpp" />
     <ClCompile Include="EVOLUTIONARY_CIRCLE.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="CLOUD.h" />
     <ClInclude Include="COMMAND.h" />
     <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="CRACKER.h" />
     <ClInclude Include="CURTAIN.h" />
     <ClInclude Include="DRAW_NUM.h" />
     <ClInclude Include="EVOLUTIONARY_CIRCLE.h" />
