@@ -26,6 +26,9 @@ namespace GAME03 {
 				fscanf_s(fp, "%d\n%d\n", &f1, &f2);
 				fclose(fp);
 				setVolume(game()->container()->data().volume.Snd_A, -(100 - f1) * (100 - f1));
+				setVolume(game()->container()->data().volume.Snd_B, -(100 - f1) * (100 - f1));
+				setVolume(game()->container()->data().volume.Snd_C, -(100 - f1) * (100 - f1));
+				setVolume(game()->container()->data().volume.Snd_D, -(100 - f1) * (100 - f1));
 				setVolume(game()->container()->data().volume.Se_A, -(100 - f2) * (100 - f2));
 				setVolume(game()->container()->data().volume.Se_B, -(100 - f2) * (100 - f2));
 				setVolume(game()->container()->data().volume.Se_C, -(100 - f2) * (100 - f2));

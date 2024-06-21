@@ -24,6 +24,7 @@ namespace GAME03 {
 		Player.e_time = Player.s_time + 100;
 		time(&Player.n_time);
 		State = STATE::STRUGGLING;
+		timeCnt = 0;
 	}
 	void PLAYER::update() {
 		Move();
@@ -31,35 +32,37 @@ namespace GAME03 {
 		CheckState();
 	}
 	void PLAYER::Move() {
-		if (Player.jumpFlag == 0 && isTrigger(KEY_SPACE)) {
-			Chara.vy = Player.initVecUp;
-			Player.jumpFlag = 1;
-			playSound(game()->container()->data().volume.Se_A);
-		}
-		if (Player.jumpFlag == 1) {
-			Chara.vy += Player.gravity * delta;
-			Chara.wy += Chara.vy * 60 * delta;;
-		}
-		if (Player.jumpFlag == 1 && isTrigger(KEY_SPACE)) {
-			Chara.vy = Player.initVecUp;
-			Player.jumpFlag = 1;
-			playSound(game()->container()->data().volume.Se_A);
-		}
-		Chara.vx = 0.0f;
-		if (isPress(KEY_A)) {
-			Chara.vx = -Chara.speed * delta;
-			Chara.animId = Player.leftAnimId;
-			if (isPress(MOUSE_LBUTTON)) {
-				Chara.vx += -Chara.speed * delta;
-				Chara.animId += Player.leftAnimId;
+		if (State != STATE::DIED) {
+			if (Player.jumpFlag == 0 && isTrigger(KEY_SPACE)) {
+				Chara.vy = Player.initVecUp;
+				Player.jumpFlag = 1;
+				playSound(game()->container()->data().volume.Se_A);
 			}
-		}
-		if (isPress(KEY_D)) {
-			Chara.vx = Chara.speed * delta;
-			Chara.animId = Player.rightAnimId;
-			if (isPress(MOUSE_LBUTTON)) {
-				Chara.vx += Chara.speed * delta;
-				Chara.animId += Player.rightAnimId;
+			if (Player.jumpFlag == 1) {
+				Chara.vy += Player.gravity * delta;
+				Chara.wy += Chara.vy * 60 * delta;;
+			}
+			if (Player.jumpFlag == 1 && isTrigger(KEY_SPACE)) {
+				Chara.vy = Player.initVecUp;
+				Player.jumpFlag = 1;
+				playSound(game()->container()->data().volume.Se_A);
+			}
+			Chara.vx = 0.0f;
+			if (isPress(KEY_A)) {
+				Chara.vx = -Chara.speed * delta;
+				Chara.animId = Player.leftAnimId;
+				if (isPress(MOUSE_LBUTTON)) {
+					Chara.vx += -Chara.speed * delta;
+					Chara.animId += Player.leftAnimId;
+				}
+			}
+			if (isPress(KEY_D)) {
+				Chara.vx = Chara.speed * delta;
+				Chara.animId = Player.rightAnimId;
+				if (isPress(MOUSE_LBUTTON)) {
+					Chara.vx += Chara.speed * delta;
+					Chara.animId += Player.rightAnimId;
+				}
 			}
 		}
 		Player.curWx = Chara.wx;
@@ -104,7 +107,11 @@ namespace GAME03 {
 	}
 	void PLAYER::CheckState() {
 		time(&Player.n_time);
-		if (Player.e_time <= Player.n_time) {
+		if (isTrigger(KEY_SHIFT) && timeCnt == 0) {
+			Player.e_time = Player.n_time;
+			timeCnt++;
+		}
+		if (Player.e_time == Player.n_time) {
 			State = STATE::DIED;
 			playSound(game()->container()->data().volume.Se_C);
 		}
