@@ -20,7 +20,7 @@ namespace GAME03 {
 	void VOLUME::draw() {
 
 		clear(250);
-		//image(Volume.backImg, 0, 0);
+		image(Volume.backImg, 0, 0);
 		if (Volume.fileOnce) {
 			fopen_s(&fp, "assets/game03/data/volume.txt", "r");
 			if (fp != NULL) {

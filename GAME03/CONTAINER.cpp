@@ -68,7 +68,7 @@ namespace GAME03 {
         Data.playerChara.shadowImg = loadImage("..\\main\\assets\\game03\\data\\shadow.png");
         Data.playerChara.animData.interval = 0.1f;
 
-        //Data.volume.backImg = loadImage("..\\main\\assets\\game03\\data\\.png");
+        Data.volume.backImg = loadImage("..\\main\\assets\\game03\\data\\‰¹—Êİ’è_”wŒi.png");
         
         Data.operationInstructions.backimg = loadImage("..\\main\\assets\\game03\\data\\‘€ìà–¾.png");
     }
