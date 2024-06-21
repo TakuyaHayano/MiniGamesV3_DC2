@@ -75,6 +75,9 @@ namespace GAME03 {
 			game()->fade()->outTrigger();
 			delibe = 3;
 		}
+		if (isTrigger(KEY_ENTER) && (delibe == 0)) {
+			game()->backToMenu();
+		}
 		if (game()->fade()->outEndFlag() && (delibe == 1)) {
 			stopSound(game()->container()->data().volume.Snd_A);
 			game()->setCurScene(game()->stage());
@@ -86,9 +89,6 @@ namespace GAME03 {
 		if (game()->fade()->outEndFlag() && (delibe == 3)) {
 			stopSound(game()->container()->data().volume.Snd_A);
 			game()->setCurScene(game()->operation());
-		}
-		if (isTrigger(KEY_ENTER)) {
-			game()->backToMenu();
 		}
 	}
 }
