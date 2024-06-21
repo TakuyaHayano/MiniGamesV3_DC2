@@ -28,12 +28,17 @@ namespace GAME09
         struct DATA {
             int resultImg;
             int resultScoreImg;
+            int resultHiScoreImg;
             VECTOR2 imgPos;
             float imgSize;
+            VECTOR2 hiScoreImgPos;
+            float hiScoreImgSize;
             VECTOR2 finalFieldPos;
             float finalFieldSize;
             VECTOR2 scorePos;
             float scoreSize;
+            VECTOR2 hiScorePos;
+            float hiScoreSize;
             STATE_MOVE_DATA moveDatas[NUM_STATE];
 
             int operationImg;

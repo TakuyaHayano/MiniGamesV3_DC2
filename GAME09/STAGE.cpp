@@ -72,6 +72,7 @@ namespace GAME09
 	}
 	void STAGE::nextScene() {
 		if (State == WAIT && AnimeTime > Stage.waitTime) {
+			game()->score()->setHiScore();
 			game()->changeScene(GAME::RESULT_ID);
 		}
 		if (State == PLAY && game()->transition()->inEndFlag()) {

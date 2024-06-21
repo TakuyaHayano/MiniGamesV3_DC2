@@ -89,6 +89,8 @@ namespace GAME09
 			Buttons[i]->draw();
 		}
 		game()->drawNum()->draw(game()->score()->getCurScore(), Result.scorePos, Result.scoreSize);
+		image(Result.resultHiScoreImg, Result.hiScoreImgPos.x, Result.hiScoreImgPos.y, 0, Result.hiScoreImgSize);
+		game()->drawNum()->draw(game()->score()->getHiScore(), Result.hiScorePos, Result.hiScoreSize);
 		game()->cracker()->draw();
 		image(Result.resultScoreImg, Result.imgPos.x, Result.imgPos.y, 0, Result.imgSize);
 		addCornerPos(Result.finalFieldPos);

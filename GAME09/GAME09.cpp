@@ -58,8 +58,8 @@ namespace GAME09
 
 		//init
 		changeScene(TITLE_ID);
-		changeScene(STAGE_ID);
-		changeScene(RESULT_ID);
+		//changeScene(STAGE_ID);
+		//changeScene(RESULT_ID);
 
 		return 0;
 	}

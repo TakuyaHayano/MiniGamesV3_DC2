@@ -32,10 +32,14 @@ namespace GAME09
 
 		Data.result.imgPos = VECTOR2(width / 2, height / 2);
 		Data.result.imgSize = 1.5f;
+		Data.result.hiScoreImgPos = VECTOR2(1550, 650);
+		Data.result.hiScoreImgSize = 0.6f;
 		Data.result.finalFieldPos = VECTOR2(130, 280);
 		Data.result.finalFieldSize = 0.477f;
 		Data.result.scorePos = VECTOR2(1550, 420);
 		Data.result.scoreSize = 0.9f;
+		Data.result.hiScorePos = VECTOR2(1550, 750);
+		Data.result.hiScoreSize = 0.7f;
 		Data.result.moveDatas[RESULT::START].animeTime = 0.3f;
 		Data.result.moveDatas[RESULT::START].startOfst = -height;
 		Data.result.moveDatas[RESULT::START].endOfst = 100;
@@ -123,6 +127,7 @@ namespace GAME09
 		Data.next.useFruitsNumSecret = 10;
 
 		Data.score.strOfst = VECTOR2(0, -160);
+		Data.score.hiScoreStrOfst = VECTOR2(0, 40);
 		Data.score.bubbleSize = 0.9f;
 		Data.score.bubblePos = VECTOR2(290, 240);
 		Data.score.fruitsScores[FRUITS::CHERRY]     = 1;
@@ -138,6 +143,9 @@ namespace GAME09
 		Data.score.fruitsScores[FRUITS::WATERMELON] = 66;
 		Data.score.scoreOfst = VECTOR2(0, -20);
 		Data.score.scoreSize = 0.6f;
+		Data.score.hiScoreOfst = VECTOR2(0, 80);
+		Data.score.hiScoreSize = 0.4f;
+		Data.score.fileName = "..\\main\\assets\\game09\\hi_score.txt";
 
 		Data.drawNum.numSize = 0.31f;
 		Data.drawNum.digitSpace = 80;
@@ -237,6 +245,7 @@ namespace GAME09
 		Data.pause.pauseImg = loadImage("..\\main\\assets\\game09\\pause_back.png");
 		Data.result.resultImg = loadImage("..\\main\\assets\\game09\\result_back.png");
 		Data.result.resultScoreImg = loadImage("..\\main\\assets\\game09\\result_score.png");
+		Data.result.resultHiScoreImg = loadImage("..\\main\\assets\\game09\\hi_score_str.png");
 		Data.result.operationImg = loadImage("..\\main\\assets\\game09\\operation_result.png");
 		Data.help.Imgs[HELP::OPERATION] = loadImage("..\\main\\assets\\game09\\help_operation.png");
 		Data.help.Imgs[HELP::RULE] = loadImage("..\\main\\assets\\game09\\help_rule.png");
@@ -271,6 +280,7 @@ namespace GAME09
 		Data.bubble.img = loadImage("..\\main\\assets\\game09\\bubble.png");
 		Data.next.strImg = loadImage("..\\main\\assets\\game09\\next_str.png");
 		Data.score.strImg = loadImage("..\\main\\assets\\game09\\score_str.png");
+		Data.score.hiScoreStrImg = loadImage("..\\main\\assets\\game09\\hi_score_str.png");
 		Data.drawNum.numImg = loadImage("..\\main\\assets\\game09\\num.png");
 		divideImage(Data.drawNum.numImg, 10, 1, 260, 512, Data.drawNum.numImgs);
 		Data.fruitsBubble.imgs = Data.fruits.imgs;

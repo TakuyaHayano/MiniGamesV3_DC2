@@ -6,6 +6,7 @@
 #include "../../libOne/inc/window.h"
 #include "../../libOne/inc/mathUtil.h"
 #include "../../libOne/inc/rand.h"
+#include <fstream>
 
 namespace GAME09
 {
@@ -21,6 +22,7 @@ namespace GAME09
 		Score = game()->container()->data().score;
 		Bubble = new BUBBLE(game());
 		Bubble->create();
+		loadHiScore();
 	}
 
 	void SCORE::init() {
@@ -41,9 +43,28 @@ namespace GAME09
 		VECTOR2 pos = Bubble->getPos() + Score.strOfst;
 		float size = game()->container()->data().bubble.imgSize * Score.bubbleSize;
 		image(Score.strImg, pos.x, pos.y, 0, size);
+		game()->drawNum()->draw(HiScore, Bubble->getPos() + Score.hiScoreOfst, Score.hiScoreSize);
+		pos = Bubble->getPos() + Score.hiScoreStrOfst;
+		image(Score.hiScoreStrImg, pos.x, pos.y, 0, size);
 	}
 
 	void SCORE::addScore(FRUITS::FRUITS_KINDS kinds){
 		CurScore += Score.fruitsScores[kinds];
+	}
+
+	void SCORE::loadHiScore(){
+		std::ifstream ifs(Score.fileName);
+		std::string buf;
+		std::getline(ifs, buf);
+		HiScore = atoi(buf.c_str());
+		ifs.close();
+	}
+	void SCORE::setHiScore(){
+		if (CurScore > HiScore) {
+			HiScore = CurScore;
+			std::ofstream ofs(Score.fileName);
+			ofs << HiScore;
+			ofs.close();
+		}
 	}
 }
