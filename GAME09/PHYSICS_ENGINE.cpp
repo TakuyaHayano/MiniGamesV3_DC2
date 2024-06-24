@@ -2,6 +2,7 @@
 #include "GAME09.h"
 #include "CONTAINER.h"
 #include "BOX.h"
+#include "SOUNDMNG.h"
 #include "../../libOne/inc/graphic.h"
 #include "../../libOne/inc/window.h"
 #include "../../libOne/inc/input.h"
@@ -148,6 +149,8 @@ namespace GAME09
 							VECTOR2 pos = (fruits1->getPosC() + fruits2->getPosC()) / 2;
 							TempEvolution.emplace_back(new FRUITS(game(), pos, (FRUITS::FRUITS_KINDS)(fruits1->getKinds() + 1)));
 						}
+						//Œø‰Ê‰¹
+						game()->soundMNG()->playSE(SOUNDMNG::STICK);
 						delete (*it2);
 						Fruits.erase(it2);
 						delete (*it);

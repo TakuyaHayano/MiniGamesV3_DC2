@@ -31,6 +31,7 @@ namespace GAME09
 		ECircle = new EVOLUTIONARY_CIRCLE(this);
 		ReadyGo = new READYGO(this);
 		Cracker = new CRACKER(this);
+		SoundMNG = new SOUNDMNG(this);
 
 		//load
 		Container->load();
@@ -55,6 +56,7 @@ namespace GAME09
 		ECircle->create();
 		ReadyGo->create();
 		Cracker->create();
+		SoundMNG->create();
 
 		//init
 		changeScene(TITLE_ID);
@@ -66,6 +68,7 @@ namespace GAME09
 
 	void GAME::destroy()
 	{
+		delete SoundMNG;
 		delete Cracker;
 		delete ReadyGo;
 		delete ECircle;

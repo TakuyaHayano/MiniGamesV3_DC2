@@ -23,6 +23,7 @@
 #include "READYGO.h"
 #include "ANIM.h"
 #include "CRACKER.h"
+#include "SOUNDMNG.h"
 
 namespace GAME09
 {
@@ -59,12 +60,14 @@ namespace GAME09
 			EVOLUTIONARY_CIRCLE::DATA eCircle;
 			READYGO::DATA readyGo;
 			CRACKER::DATA cracker;
+			SOUNDMNG::DATA soundMNG;
 		};
 		DATA Data;
 	public:
 		void load();
 		void setData();
 		void loadGraphic();
+		void loadSounds();
 		const DATA& data() {
 			return Data;
 		}

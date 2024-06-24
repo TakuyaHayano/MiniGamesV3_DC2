@@ -169,6 +169,7 @@
     <ClCompile Include="RESULT.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="SCORE.cpp" />
+    <ClCompile Include="SOUNDMNG.cpp" />
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="TITLE.cpp" />
     <ClCompile Include="TRANSITION.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="RESULT.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="SCORE.h" />
+    <ClInclude Include="SOUNDMNG.h" />
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="TITLE.h" />
     <ClInclude Include="TRANSITION.h" />

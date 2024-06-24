@@ -1,6 +1,7 @@
 #include "CLOUD.h"
 #include "GAME09.h"
 #include "CONTAINER.h"
+#include "SOUNDMNG.h"
 #include "../../libOne/inc/graphic.h"
 #include "../../libOne/inc/window.h"
 #include "../../libOne/inc/input.h"
@@ -49,6 +50,7 @@ namespace GAME09
 			setFruitsPos();
 			if (isTrigger(KEY_SPACE) || isTrigger(KEY_ENTER)) {
 				game()->physics()->addFruits(Fruits);
+				game()->soundMNG()->playSE(SOUNDMNG::DROP);
 				Fruits = nullptr;
 				State = FALL;
 			}

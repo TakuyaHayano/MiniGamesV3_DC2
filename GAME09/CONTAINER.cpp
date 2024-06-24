@@ -1,12 +1,14 @@
 #include "CONTAINER.h"
 #include <string>
 #include "../../libOne/inc/graphic.h"
+#include "../../libOne/inc/sound.h"
 
 namespace GAME09
 {
 	void CONTAINER::load() {
 		setData();
 		loadGraphic();
+		loadSounds();
 	}
 	void CONTAINER::setData() {
 		Data.title.titlePos = VECTOR2(width / 2, height / 2);
@@ -290,5 +292,9 @@ namespace GAME09
 		Data.eCircle.img = loadImage("..\\main\\assets\\game09\\evolutionary_circle.png");
 		Data.readyGo.imgReady = loadImage("..\\main\\assets\\game09\\ready.png");
 		Data.readyGo.imgGo = loadImage("..\\main\\assets\\game09\\go.png");
+	}
+	void CONTAINER::loadSounds() {
+		Data.soundMNG.soundEffects[SOUNDMNG::DROP] = loadSound("..\\main\\assets\\game09\\drop.wav");
+		Data.soundMNG.soundEffects[SOUNDMNG::STICK] = loadSound("..\\main\\assets\\game09\\stick.wav");
 	}
 }
