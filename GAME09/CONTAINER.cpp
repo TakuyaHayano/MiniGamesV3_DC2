@@ -296,5 +296,6 @@ namespace GAME09
 	void CONTAINER::loadSounds() {
 		Data.soundMNG.soundEffects[SOUNDMNG::DROP] = loadSound("..\\main\\assets\\game09\\drop.wav");
 		Data.soundMNG.soundEffects[SOUNDMNG::STICK] = loadSound("..\\main\\assets\\game09\\stick.wav");
+		Data.soundMNG.bgm = loadSound("..\\main\\assets\\game09\\BGM.wav");
 	}
 }

@@ -62,6 +62,7 @@ namespace GAME09
 		changeScene(TITLE_ID);
 		//changeScene(STAGE_ID);
 		//changeScene(RESULT_ID);
+		SoundMNG->loopBGM();
 
 		return 0;
 	}

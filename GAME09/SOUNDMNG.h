@@ -15,6 +15,7 @@ namespace GAME09
         };
         struct DATA {
             int soundEffects[NUM_SOUND_EFFECT];
+            int bgm;
         };
     private:
         DATA SoundMNG;
@@ -24,5 +25,6 @@ namespace GAME09
         void create();
 
         void playSE(SOUND_EFFECT id);
+        void loopBGM();
     };
 }

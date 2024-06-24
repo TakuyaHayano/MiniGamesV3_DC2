@@ -20,4 +20,7 @@ namespace GAME09
 	void SOUNDMNG::playSE(SOUND_EFFECT id) {
 		playSound(SoundMNG.soundEffects[id]);
 	}
+	void SOUNDMNG::loopBGM(){
+		playLoopSound(SoundMNG.bgm);
+	}
 }
