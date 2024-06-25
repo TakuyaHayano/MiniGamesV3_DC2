@@ -12,13 +12,13 @@ namespace GAME01
 
 		gekihaSnd = loadSound("..\\main\\assets\\game01\\wap.wav");
 
-		//playSnd = loadSound("..\\main\\assets\\game01\\.wav");
+		playSnd = loadSound("..\\main\\assets\\game01\\play.wav");
 		// プレイを選択後のサウンド
 	
-		// overSnd = loadSound("..\\main\\assets\\game01\\.wav");
+		 overSnd = loadSound("..\\main\\assets\\game01\\over.wav");
 		//ゲームオーバーになった時の音
 
-		//clearSnd = loadSound("..\\main\\assets\\game01\\.wav");
+		clearSnd = loadSound("..\\main\\assets\\game01\\clear.wav");
 		//クリア画面の時のBGM
 
 		//画像
@@ -26,7 +26,7 @@ namespace GAME01
 		  bonImg = loadImage("..\\main\\assets\\game01\\teki.png");
 		  haikeiImg = loadImage("..\\main\\assets\\game01\\haikei3.jpg");
 		  //clearImg = loadImage("..\\main\\assets\\game01\\clear.jpg");
-		  //overImg = loadImage("..\\main\\assets\\game01\\over.jpg");
+		  overImg = loadImage("..\\main\\assets\\game01\\over.jpg");
 
 		return 0;
 	}
@@ -64,6 +64,7 @@ namespace GAME01
 
 		if (isTrigger(MOUSE_LBUTTON)) {
 			Init();
+			playSound(playSnd);
 			State = RULE;
 			return;
 		}
@@ -85,7 +86,7 @@ namespace GAME01
 
 		if (isTrigger(MOUSE_LBUTTON)) {
 			Init();
-			//playSound(playSnd);
+			playSound(playSnd);
 			State = PLAY;
 			return;
 		}
@@ -102,7 +103,7 @@ namespace GAME01
 		score = 0;
 		level = 1;
 		nextLevelScore = 5;
-		timer = 60.0f;
+		timer = 10.0f;
 		
 		ClearFlag = false;
 		OverFlag = false;
@@ -126,7 +127,7 @@ namespace GAME01
 		if ( score >= nextLevelScore) {
 			level++;
 			nextLevelScore += 5;
-			CVx *= 1.2f;        
+			CVx *= 1.5f;        
 
 			if (level >= 5) {
 				ClearFlag = true;
@@ -147,14 +148,16 @@ namespace GAME01
 			if (dx * dx + dy * dy < CR * CR) {
 				score++;
 
-				//playSound(gekihaSnd);
+				playSound(gekihaSnd);
+
 				
 				CY = rand() % 1000 + 100.0f;
 				CX = -CR;
 			}
 
+
 			
-			if (score >= 55) {   
+			if (score >= 5) {   
 				ClearFlag = true;
 
 			}
@@ -179,10 +182,12 @@ namespace GAME01
 			
 			 if (ClearFlag) {
 				State = CLEAR;
+				playSound(clearSnd);
 			 }
 
 			 if (OverFlag) {
 				 State = OVER;
+				 playSound(overSnd);
 			 }
 
 	}
@@ -191,6 +196,8 @@ namespace GAME01
 	void GAME::Over() {
 		clear(0, 0, 255);
 		fill(255, 255, 0);
+		rectMode(CENTER);
+		image(overImg, 960, 540);
 		text("GAME OVER ざんねん", 640, 540);
 		text("　クリックで再プレイ", 0, 1080);
 		if (isTrigger(MOUSE_LBUTTON)) {
@@ -202,8 +209,11 @@ namespace GAME01
 
 	void GAME::Clear() {
 		clear(0, 0, 255);
+
+		//rectMode(CENTER);
+		//image(clearImg, 960, 540);
 			
-		//playSound(clearSnd);
+		
 
 		fill(255, 255, 0);
 		textSize(50);
