@@ -45,6 +45,8 @@ namespace GAME03 {
         Data.player.initVecUp = -16.0f;
         Data.player.initVecDown = 3.0f;
         Data.player.gravity = 48;
+        Data.player.score = 0;
+        Data.player.newscore = 0;
         time(&Data.player.s_time);
         Data.player.e_time = Data.player.s_time + 100;
         time(&Data.player.n_time);

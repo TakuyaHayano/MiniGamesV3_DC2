@@ -14,5 +14,7 @@ namespace GAME03 {
 		void nextScene();
 		int loopBgm = true;
 		int delibe = 0;
+		int f1 = 0, f2 = 0, f3 = 0;
+		int reset = false;
 	};
 }

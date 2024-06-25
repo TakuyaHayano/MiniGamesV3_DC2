@@ -8,6 +8,8 @@ namespace GAME03 {
             int rightAnimId = 0;
             int leftAnimId = 1;
             int jumpFlag = 0;
+            int score = 0;
+            int newscore = 0;
             float curWx = 0;
             float initVecUp = 0;
             float initVecDown = 0;
@@ -18,6 +20,7 @@ namespace GAME03 {
         DATA Player;
         enum class STATE { STRUGGLING,SURVIVED,DIED };
         STATE State = STATE::STRUGGLING;
+        FILE* fp;
     public:
         PLAYER(class GAME* game) :CHARACTER(game) {}
         void create();

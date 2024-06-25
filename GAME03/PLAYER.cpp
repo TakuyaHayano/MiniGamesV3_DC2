@@ -116,6 +116,20 @@ namespace GAME03 {
 			playSound(game()->container()->data().volume.Se_C);
 		}
 		if (Chara.wx < 0.0f && Chara.wy >= 250.0f) {
+			Player.newscore = (int)(Player.e_time - Player.n_time) * 10000;
+			fopen_s(&fp, "assets/game03/data/score.txt", "r");
+			if (fp != NULL) {
+				fscanf_s(fp,"%d",&Player.score);
+				fclose(fp);
+				if (Player.score < Player.newscore) {
+					Player.score = Player.newscore;
+				}
+			}
+			fopen_s(&fp, "assets/game03/data/score.txt", "w");
+			if (fp != NULL) {
+				fprintf_s(fp,"%d",Player.score);
+				fclose(fp);
+			}
 			State = STATE::SURVIVED;
 			playSound(game()->container()->data().volume.Se_B);
 			Chara.hp = 0;
