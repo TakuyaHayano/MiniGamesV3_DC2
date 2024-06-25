@@ -20,7 +20,7 @@ namespace GAME03 {
         DATA Player;
         enum class STATE { STRUGGLING,SURVIVED,DIED };
         STATE State = STATE::STRUGGLING;
-        FILE* fp;
+        FILE* fp{};
     public:
         PLAYER(class GAME* game) :CHARACTER(game) {}
         void create();
