@@ -87,6 +87,11 @@ namespace GAME03 {
 					fprintf_s(fp,"0");
 					fclose(fp);
 				}
+				fopen_s(&fp, "assets/game03/data/volume.txt", "w");
+				if (fp != NULL) {
+					fprintf_s(fp, "80\n80\n");
+					fclose(fp);
+				}
 				reset = false;
 			}
 			else if (isTrigger(KEY_N)) {
