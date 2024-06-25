@@ -40,7 +40,7 @@ namespace GAME03 {
 			}
 			if (Player.jumpFlag == 1) {
 				Chara.vy += Player.gravity * delta;
-				Chara.wy += Chara.vy * 60 * delta;;
+				Chara.wy += Chara.vy * 60 * delta;
 			}
 			if (Player.jumpFlag == 1 && isTrigger(KEY_SPACE)) {
 				Chara.vy = Player.initVecUp;
@@ -107,10 +107,10 @@ namespace GAME03 {
 	}
 	void PLAYER::CheckState() {
 		time(&Player.n_time);
-		if (isTrigger(KEY_SHIFT) && timeCnt == 0) {
+		if (isPress(KEY_SHIFT) && isPress(KEY_ENTER) && timeCnt == 0) {
 			Player.e_time = Player.n_time;
 			timeCnt++;
-		}
+		}//debug
 		if (Player.e_time == Player.n_time) {
 			State = STATE::DIED;
 			playSound(game()->container()->data().volume.Se_C);
