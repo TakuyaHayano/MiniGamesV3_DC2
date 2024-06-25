@@ -39,7 +39,7 @@ namespace GAME03 {
 			fscanf_s(fp, "%d", &f3);
 			fclose(fp);
 		}
-		if (reset == false) {
+		if (!reset) {
 			imageColor(240);
 			image(game()->container()->data().stage.backImg, 0, 0);
 			float size;
@@ -96,7 +96,7 @@ namespace GAME03 {
 		game()->fade()->draw();
 	}
 	void TITLE::nextScene() {
-		if (reset == false) {
+		if (!reset) {
 			if (isTrigger(KEY_SPACE)) {
 				game()->fade()->outTrigger();
 				delibe = 1;
