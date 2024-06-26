@@ -134,9 +134,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GAME15.cpp" />
+    <ClCompile Include="MYCLASS001.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME15.h" />
+    <ClInclude Include="MYCLASS001.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game15\title.txt" />
