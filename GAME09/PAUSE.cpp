@@ -51,6 +51,7 @@ namespace GAME09
 					Buttons[SelectButton]->setSelect(false);
 					SelectButton = (BUTTON_KINDS)(SelectButton - 1);
 					Buttons[SelectButton]->setSelect(true);
+					game()->soundMNG()->playSE(SOUNDMNG::STICK);
 				}
 			}
 			else if (isTrigger(KEY_S) || isTrigger(KEY_DOWN)) {
@@ -58,6 +59,7 @@ namespace GAME09
 					Buttons[SelectButton]->setSelect(false);
 					SelectButton = (BUTTON_KINDS)(SelectButton + 1);
 					Buttons[SelectButton]->setSelect(true);
+					game()->soundMNG()->playSE(SOUNDMNG::STICK);
 				}
 			}
 			for (int i = 0; i < NUM_BUTTONS; i++) {
@@ -108,6 +110,7 @@ namespace GAME09
 					default:
 						break;
 					}
+					game()->soundMNG()->playSE(SOUNDMNG::DROP);
 				}
 			}
 		}

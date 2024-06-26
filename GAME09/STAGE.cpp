@@ -78,6 +78,7 @@ namespace GAME09
 		if (State == PLAY && game()->transition()->inEndFlag()) {
 			if (isTrigger(KEY_X)) {
 				game()->changeScene(GAME::PAUSE_ID);
+				game()->soundMNG()->playSE(SOUNDMNG::DROP);
 			}
 		}
 	}

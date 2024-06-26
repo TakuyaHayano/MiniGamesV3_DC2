@@ -22,11 +22,13 @@ namespace GAME09
 		if (isTrigger(KEY_D) || isTrigger(KEY_RIGHT)) {
 			if (CurPage < NUM_PAGES - 1) {
 				CurPage = (PAGES)(CurPage + 1);
+				game()->soundMNG()->playSE(SOUNDMNG::STICK);
 			}
 		}
 		if (isTrigger(KEY_A) || isTrigger(KEY_LEFT)) {
 			if (CurPage > OPERATION) {
 				CurPage = (PAGES)(CurPage - 1);
+				game()->soundMNG()->playSE(SOUNDMNG::STICK);
 			}
 		}
 	}
