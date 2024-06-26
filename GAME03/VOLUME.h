@@ -12,6 +12,8 @@ namespace GAME03 {
 			int Se_A = 0;
 			int Se_B = 0;
 			int Se_C = 0;
+			int Se_D = 0;
+			int Se_E = 0;
 			float volume1 = 0.0f;
 			float volume2 = 0.0f;
 			int cntVolume = 0;

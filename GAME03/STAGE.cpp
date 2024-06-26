@@ -19,7 +19,7 @@ namespace GAME03 {
 		game()->characterManager()->init();
 		game()->fade()->inTrigger();
 		time(&Stage.s_time);
-		Stage.e_time = Stage.s_time + 100;
+		Stage.e_time = Stage.s_time + 200;
 		time(&Stage.n_time);
 		loopBgm = true;
 	}
@@ -41,6 +41,10 @@ namespace GAME03 {
 		else if (game()->characterManager()->player()->survived()) {
 			image(game()->container()->data().playerChara.shadowImg,-2500,-1800);
 			Logo(Stage.stageClearImg, Stage.stageClearColor);
+			if (game()->container()->data().player.upDate) {
+				fill(255);
+				text("HIGH SCOREXV!!!!!", width / 3, height / 2);
+			}
 		}
 		else {
 			time(&Stage.n_time);

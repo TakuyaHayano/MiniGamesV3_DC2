@@ -173,6 +173,8 @@ namespace GAME03 {
 		setVolume(Volume.Se_A, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_B, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 		setVolume(Volume.Se_C, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
+		setVolume(Volume.Se_D, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
+		setVolume(Volume.Se_E, -(100 - (int)Volume.volume2) * (100 - (int)Volume.volume2));
 
 		if (isPress(KEY_SPACE)|| (isPress(MOUSE_LBUTTON) && mouseY < 971 && mouseX > 871 && mouseY > 931 && mouseX < 1011)) {
 			fill(255, 155, 0);
@@ -204,6 +206,7 @@ namespace GAME03 {
 			}
 			stopSound(Volume.Snd_C);
 			game()->fade()->outTrigger();
+			playSound(game()->container()->data().volume.Se_E);
 		}
 		if (game()->fade()->outEndFlag()) {
 			game()->setCurScene(game()->title());

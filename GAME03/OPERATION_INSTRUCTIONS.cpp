@@ -40,6 +40,7 @@ namespace GAME03 {
 		if (isTrigger(KEY_ENTER)) {
 			stopSound(game()->container()->data().volume.Snd_D);
 			game()->fade()->outTrigger();
+			playSound(game()->container()->data().volume.Se_E);
 		}
 		if (game()->fade()->outEndFlag()) {
 			game()->setCurScene(game()->title());

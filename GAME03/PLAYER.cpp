@@ -21,7 +21,7 @@ namespace GAME03 {
 		Chara.speed = 3.4f * 60;
 		Player.jumpFlag = 0;
 		time(&Player.s_time);
-		Player.e_time = Player.s_time + 100;
+		Player.e_time = Player.s_time + 200;
 		time(&Player.n_time);
 		State = STATE::STRUGGLING;
 		timeCnt = 0;
@@ -116,13 +116,14 @@ namespace GAME03 {
 			playSound(game()->container()->data().volume.Se_C);
 		}
 		if (Chara.wx < 0.0f && Chara.wy >= 250.0f) {
-			Player.newscore = (int)(Player.e_time - Player.n_time) * 10000;
+			Player.newscore = (int)(Player.e_time - Player.n_time) * 5000;
 			fopen_s(&fp, "assets/game03/data/score.txt", "r");
 			if (fp != NULL) {
 				fscanf_s(fp,"%d",&Player.score);
 				fclose(fp);
 				if (Player.score < Player.newscore) {
 					Player.score = Player.newscore;
+					Player.upDate = true;
 				}
 			}
 			fopen_s(&fp, "assets/game03/data/score.txt", "w");

@@ -47,8 +47,9 @@ namespace GAME03 {
         Data.player.gravity = 48;
         Data.player.score = 0;
         Data.player.newscore = 0;
+        Data.player.upDate = 0;
         time(&Data.player.s_time);
-        Data.player.e_time = Data.player.s_time + 100;
+        Data.player.e_time = Data.player.s_time + 200;
         time(&Data.player.n_time);
 
         Data.charaMng.numPlayers = 1;
@@ -83,6 +84,8 @@ namespace GAME03 {
         Data.volume.Se_A = loadSound("..\\main\\assets\\game03\\sounds\\ジャンプ.wav");
         Data.volume.Se_B = loadSound("..\\main\\assets\\game03\\sounds\\歓声と拍手.wav");
         Data.volume.Se_C = loadSound("..\\main\\assets\\game03\\sounds\\間抜け7.wav");
+        Data.volume.Se_D = loadSound("..\\main\\assets\\game03\\sounds\\決定ボタンを押す50.wav");
+        Data.volume.Se_E = loadSound("..\\main\\assets\\game03\\sounds\\キャンセル9.wav");
         Data.volume.volume1 = 80.0f;
         Data.volume.volume2 = 80.0f;
         setVolume(Data.volume.Snd_A, -(100 - (int)Data.volume.volume1) * (100 - (int)Data.volume.volume1));

@@ -31,6 +31,8 @@ namespace GAME03 {
 				setVolume(game()->container()->data().volume.Se_A, -(100 - f2) * (100 - f2));
 				setVolume(game()->container()->data().volume.Se_B, -(100 - f2) * (100 - f2));
 				setVolume(game()->container()->data().volume.Se_C, -(100 - f2) * (100 - f2));
+				setVolume(game()->container()->data().volume.Se_D, -(100 - f2) * (100 - f2));
+				setVolume(game()->container()->data().volume.Se_E, -(100 - f2) * (100 - f2));
 			}
 			loopBgm = false;
 		}
@@ -60,7 +62,7 @@ namespace GAME03 {
 					text("Enterキーでメニューに戻る", width / 1.5f - 2.0f, height / 1.00625f - (float)i * 1.0f - 0.1f);
 				}
 				else {
-					fill(50.0f + (float)i * 10.0f, 100, 30, (float)i * 10.0f);
+					fill(100, 30, 50.0f + (float)i * 10.0f, (float)i * 10.0f);
 					text("大迷路", width / 2.3f, height / 2.0f - (float)i * 1.0f);
 					size = 40;
 					textSize(size);
@@ -74,6 +76,7 @@ namespace GAME03 {
 			}
 		}
 		if (isTrigger(KEY_R)) {
+			playSound(game()->container()->data().volume.Se_D);
 			reset = true;
 		}
 		if (reset) {
@@ -82,6 +85,7 @@ namespace GAME03 {
 			textSize(100);
 			text("本当にリセットしますか？Y / N", width / 5.0f - 20.0f, height / 2.0f);
 			if (isTrigger(KEY_Y)) {
+				playSound(game()->container()->data().volume.Se_D);
 				fopen_s(&fp,"assets/game03/data/score.txt", "w");
 				if (fp != NULL) {
 					fprintf_s(fp,"0");
@@ -95,6 +99,7 @@ namespace GAME03 {
 				reset = false;
 			}
 			else if (isTrigger(KEY_N)) {
+				playSound(game()->container()->data().volume.Se_E);
 				reset = false;
 			}
 		}
@@ -104,18 +109,22 @@ namespace GAME03 {
 		if (!reset) {
 			if (isTrigger(KEY_SPACE)) {
 				game()->fade()->outTrigger();
+				playSound(game()->container()->data().volume.Se_D);
 				delibe = 1;
 			}
 			if (isTrigger(KEY_O)) {
 				game()->fade()->outTrigger();
+				playSound(game()->container()->data().volume.Se_D);
 				delibe = 2;
 			}
 			if (isTrigger(KEY_P)) {
 				game()->fade()->outTrigger();
+				playSound(game()->container()->data().volume.Se_D);
 				delibe = 3;
 			}
 			if (isTrigger(KEY_ENTER) && (delibe == 0)) {
 				game()->backToMenu();
+				playSound(game()->container()->data().volume.Se_E);
 			}
 			if (game()->fade()->outEndFlag() && (delibe == 1)) {
 				stopSound(game()->container()->data().volume.Snd_A);

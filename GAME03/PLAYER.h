@@ -10,6 +10,7 @@ namespace GAME03 {
             int jumpFlag = 0;
             int score = 0;
             int newscore = 0;
+            int upDate = false;
             float curWx = 0;
             float initVecUp = 0;
             float initVecDown = 0;
