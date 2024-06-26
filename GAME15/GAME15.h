@@ -11,5 +11,7 @@ namespace GAME15
         int create();
         void proc();
         void destroy();
+    private:
+        class MYCLASS001* MyClass001{};
     };
 }
