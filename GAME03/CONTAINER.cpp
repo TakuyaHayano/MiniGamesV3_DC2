@@ -22,7 +22,7 @@ namespace GAME03 {
         Data.stage.backToTitleTime = 2;
         Data.stage.time = 0;
         time(&Data.stage.s_time);
-        Data.stage.e_time = Data.stage.s_time + 100;
+        Data.stage.e_time = Data.stage.s_time + 200;
         time(&Data.stage.n_time);
 
         Data.fade.color = COLOR(60, 60, 60);
@@ -54,7 +54,7 @@ namespace GAME03 {
 
         Data.charaMng.numPlayers = 1;
 
-        Data.volume.backColor = COLOR(255);
+        Data.volume.backColor = COLOR(255, 255, 255, 255);
 
         Data.operationInstructions.backColor = COLOR(255, 255, 255, 255);
 
