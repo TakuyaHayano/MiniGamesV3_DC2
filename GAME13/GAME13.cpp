@@ -177,7 +177,7 @@ namespace GAME13
 		fill(255, 255, 0);
 		text("CLEAR!", 0, 100);
 		fill(255);
-		text("ENTERキーでメニューに戻る", 0, 1080);
+		text("ENTERキーでタイトルに戻る", 0, 1080);
 
 		if (isTrigger(KEY_ENTER))
 		{
