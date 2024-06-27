@@ -34,23 +34,20 @@ namespace GAME01
 		int nextLevelScore = 0;
 		float timer = 0;
 
-
 		char scoreText[50];
 		char levelText[32];
 		char timerText[32];
-
-	
+		//‰æ‘œ
 		int bonImg = 0;
 		int haikeiImg = 0;
 		int clearImg = 0;
 		int overImg = 0;
-		
-
-
+		//ƒTƒEƒ“ƒh
 		int gekihaSnd = 0;
 		int playSnd = 0;
 		int clearSnd = 0;
 		int overSnd = 0;
+		int bgmSnd = 0;
 
 
 	};

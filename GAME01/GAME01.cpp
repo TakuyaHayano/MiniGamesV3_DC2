@@ -9,24 +9,22 @@ namespace GAME01
 		State = TITLE;
 
 		//サウンド
-
 		gekihaSnd = loadSound("..\\main\\assets\\game01\\wap.wav");
-
 		playSnd = loadSound("..\\main\\assets\\game01\\play.wav");
-		// プレイを選択後のサウンド
-	
 		 overSnd = loadSound("..\\main\\assets\\game01\\over.wav");
-		//ゲームオーバーになった時の音
-
 		clearSnd = loadSound("..\\main\\assets\\game01\\clear.wav");
-		//クリア画面の時のBGM
+		bgmSnd = loadSound("..\\main\\assets\\game01\\bgm.wav");
+
 
 		//画像
-
 		  bonImg = loadImage("..\\main\\assets\\game01\\teki.png");
 		  haikeiImg = loadImage("..\\main\\assets\\game01\\haikei3.jpg");
-		  //clearImg = loadImage("..\\main\\assets\\game01\\clear.jpg");
+		  clearImg = loadImage("..\\main\\assets\\game01\\clear.jpg");
 		  overImg = loadImage("..\\main\\assets\\game01\\over.jpg");
+		
+
+
+
 
 		return 0;
 	}
@@ -60,8 +58,6 @@ namespace GAME01
 
 		text("ENTERキーでメニューに戻る", 0, 1080);
 
-
-
 		if (isTrigger(MOUSE_LBUTTON)) {
 			Init();
 			playSound(playSnd);
@@ -79,8 +75,9 @@ namespace GAME01
 		fill(255, 200, 0);
 		textSize(50);
 		text("左クリックで左からの出てくる敵を倒せ",450,540);
-		text("制限時間は６０秒", 450, 600);
+		text("制限時間は５０秒", 450, 600);
 		text("敵を5体倒すと難易度が１上がる。levelは１０まであります", 450, 660);
+
 
 		text("左クリックでPLAY", 0, 1080);
 
@@ -103,7 +100,7 @@ namespace GAME01
 		score = 0;
 		level = 1;
 		nextLevelScore = 5;
-		timer = 10.0f;
+		timer =50.0f;
 		
 		ClearFlag = false;
 		OverFlag = false;
@@ -127,7 +124,7 @@ namespace GAME01
 		if ( score >= nextLevelScore) {
 			level++;
 			nextLevelScore += 5;
-			CVx *= 1.5f;        
+			CVx *= 1.4f;        
 
 			if (level >= 5) {
 				ClearFlag = true;
@@ -155,9 +152,7 @@ namespace GAME01
 				CX = -CR;
 			}
 
-
-			
-			if (score >= 5) {   
+			if (score >= 1) {   
 				ClearFlag = true;
 
 			}
@@ -167,6 +162,8 @@ namespace GAME01
 		    rectMode(CENTER);
 			image(bonImg, CX, CY);
 			fill(255, 255, 255);
+
+			playLoopSound(bgmSnd);
 
 			print("Play");
 			print("　敵を右クリックで倒せ");
@@ -192,32 +189,25 @@ namespace GAME01
 
 	}
 
-
+	//ゲームオーバー
 	void GAME::Over() {
 		clear(0, 0, 255);
-		fill(255, 255, 0);
 		rectMode(CENTER);
 		image(overImg, 960, 540);
-		text("GAME OVER ざんねん", 640, 540);
+		fill(255, 255, 0);
 		text("　クリックで再プレイ", 0, 1080);
 		if (isTrigger(MOUSE_LBUTTON)) {
 			State = TITLE;
 		}
 	}
 
-
-
+     //クリア
 	void GAME::Clear() {
 		clear(0, 0, 255);
-
-		//rectMode(CENTER);
-		//image(clearImg, 960, 540);
-			
-		
-
+		rectMode(CENTER);
+		image(clearImg, 960, 540);
 		fill(255, 255, 0);
 		textSize(50);
-		text("GAME CLEAR おめでとう！",640,540 );
 		text("　クリックで再プレイ",0,1080);
 		if (isTrigger(MOUSE_LBUTTON)) {
 			State = TITLE;
