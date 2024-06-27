@@ -9,7 +9,7 @@ namespace GAME14 {
 		setBgm();
 	}
 	void CONTAINER::setData(){
-		Data.map.fileName = "../GAME14\\assets\\map1.txt";
+		Data.map.fileName = "assets\\game14\\map1.txt";
 		Data.map.backPosX = (width - 1500) / 2;
 		Data.map.backPosOffsetY = 765.0f;
 		Data.map.blockSizeX = 120.0f;
@@ -110,20 +110,20 @@ namespace GAME14 {
 		Data.charaMng.numSalmons = 1;
 	}
 	void CONTAINER::setImage(){
-		Data.map.blockImg = loadImage("../GAME14\\assets\\jimen.png");
-		Data.map.goalImg = loadImage("../GAME14\\assets\\goal.png");
-		Data.map.backImg = loadImage("../GAME14\\assets\\haikei.png");
-		Data.stage.img = loadImage("../GAME14\\assets\\sakuramasu_0.png");
-		Data.player.img[0] = loadImage("../GAME14\\assets\\mukuge_0.png");
-		Data.player.img[1] = loadImage("../GAME14\\assets\\mukuge_1.png");
-		Data.player.img[2] = loadImage("../GAME14\\assets\\mukuge_2.png");
-		Data.player.img[3] = loadImage("../GAME14\\assets\\mukuge_3.png");
-		Data.player.img[4] = loadImage("../GAME14\\assets\\mukuge_4.png");
-		Data.player.img[5] = loadImage("../GAME14\\assets\\mukuge_5.png");
+		Data.map.blockImg = loadImage("assets\\game14\\jimen.png");
+		Data.map.goalImg = loadImage("assets\\game14\\goal.png");
+		Data.map.backImg = loadImage("assets\\game14\\haikei.png");
+		Data.stage.img = loadImage("assets\\game14\\sakuramasu_0.png");
+		Data.player.img[0] = loadImage("assets\\game14\\mukuge_0.png");
+		Data.player.img[1] = loadImage("assets\\game14\\mukuge_1.png");
+		Data.player.img[2] = loadImage("assets\\game14\\mukuge_2.png");
+		Data.player.img[3] = loadImage("assets\\game14\\mukuge_3.png");
+		Data.player.img[4] = loadImage("assets\\game14\\mukuge_4.png");
+		Data.player.img[5] = loadImage("assets\\game14\\mukuge_5.png");
 		Data.salmon.img[0] = Data.stage.img;
-		Data.salmon.img[1] = loadImage("../GAME14\\assets\\sakuramasu_1.png");
+		Data.salmon.img[1] = loadImage("assets\\game14\\sakuramasu_1.png");
 	}
 	void CONTAINER::setBgm() {
-		Data.title.bgm = loadSound("../GAME14\\assets\\bgm.wav");
+		Data.title.bgm = loadSound("assets\\game14\\bgm.wav");
 	}
 }
