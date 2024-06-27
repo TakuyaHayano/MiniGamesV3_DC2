@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GAME11.h" />
+    <ClInclude Include="TRAMP.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game11\title.txt" />
