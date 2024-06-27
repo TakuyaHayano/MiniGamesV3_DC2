@@ -58,6 +58,7 @@ namespace GAME10
         //画像
             //タイトル画面・リザルト画面
             int TitleImg = 0;
+            int TutorialClearImg = 0;
             int PageCnt = 0;
             int PageImg[2] = {0,0};
             int TutorialPage[2] = { 0,0 };
@@ -142,6 +143,7 @@ namespace GAME10
         bool pauseFlag = true;
         int GetFlagCnt = 0;
         const int GetFlagLimit = 5;
+        bool TutorialClearFlag = false;
         int Ftemp = 0;
         //当たり判定関係
         HITBOX HitBox;

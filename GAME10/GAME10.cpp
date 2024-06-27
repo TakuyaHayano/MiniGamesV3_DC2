@@ -20,6 +20,7 @@ namespace GAME10
 		CfileName = "..\\main\\assets\\game10\\tutorial.txt";
 		//画像スキャン
 		TitleImg = loadImage("..\\main\\assets\\game10\\title.png");
+		TutorialClearImg = loadImage("..\\main\\assets\\game10\\tutorialClear.png");
 		PageImg[0] = loadImage("..\\main\\assets\\game10\\sousa1.png");
 		PageImg[1] = loadImage("..\\main\\assets\\game10\\sousa2.png");
 		TutorialPage[0] = loadImage("..\\main\\assets\\game10\\tutorialPage1.png");
@@ -267,6 +268,7 @@ namespace GAME10
 			int Gcnt = 0;
 			int WCcnt = 0;
 			int Fcnt = 0;
+			TutorialClearFlag = false;
 			pauseFlag = true;
 			GetFlagCnt = 0;
 			TutorialMap.Wmap.worldX = 0;
@@ -526,6 +528,9 @@ namespace GAME10
 			draw();
 			Pmove();
 			collision();
+			if (TutorialClearFlag == true && isTrigger(KEY_SPACE)) {
+				STATE = TITLE;
+			}
 		}
 	}
 	
@@ -695,8 +700,7 @@ namespace GAME10
 						&& PlayerBox.up.y <= TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY + TutorialMap.Wmap.Ysize
 						&& PlayerBox.under.y >= TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY
 						&& player.KeyFlag == true) {
-						STATE = PLAY;
-						init();
+						TutorialClearFlag = true;
 					}
 					else if (PlayerBox.right.x >= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX
 						&& PlayerBox.right.x <= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX + TutorialMap.Wmap.Xsize
@@ -1129,9 +1133,10 @@ namespace GAME10
 			}
 		}
 		if (STATE == TUTORIAL) {
-			clear(255);
-			//それぞれの座標にイメージを書き込んでいる
-			for (int c = 0; c < Tutorial.col; c++) {
+			if (TutorialClearFlag == false) {
+				clear(255);
+				//それぞれの座標にイメージを書き込んでいる
+				for (int c = 0; c < Tutorial.col; c++) {
 				TutorialMap.Wmap.px = TutorialMap.Wmap.worldX + c * TutorialMap.Wmap.Xsize;
 				for (int r = 0; r < Tutorial.row; r++) {
 					TutorialMap.Wmap.py = TutorialMap.Wmap.worldY + r * TutorialMap.Wmap.Ysize;
@@ -1151,26 +1156,29 @@ namespace GAME10
 					}
 				}
 			}
-			if (GetFlagCnt >= GetFlagLimit) {
-				for (int Icnt = 0; Icnt < Tutorial.KeyCnt; Icnt++) {
+				if (GetFlagCnt >= GetFlagLimit) {
+					for (int Icnt = 0; Icnt < Tutorial.KeyCnt; Icnt++) {
 				if (TutorialMap.Key[Icnt].Substance == true) {
 					image(KeyImg, TutorialMap.Key[Icnt].ItemCore.x + TutorialMap.Wmap.worldX - TutorialMap.Wmap.XharfSize, TutorialMap.Key[Icnt].ItemCore.y + TutorialMap.Wmap.worldY - TutorialMap.Wmap.YharfSize);
 				}
 			}
-			}
-			if (GetFlagCnt < GetFlagLimit) {
+				}
+				if (GetFlagCnt < GetFlagLimit) {
 				for (int Fcnt = 0; Fcnt < Tutorial.FlagCnt; Fcnt++) {
 				if (TutorialMap.Flag[Fcnt].Substance == true) {
 					image(FlagImg,TutorialMap.Flag[Fcnt].ItemCore.x + TutorialMap.Wmap.worldX - TutorialMap.Wmap.XharfSize, TutorialMap.Flag[Fcnt].ItemCore.y + TutorialMap.Wmap.worldY - TutorialMap.Wmap.YharfSize);
 				}
 			}
 			}
-			fill(0);
-			text(GetFlagCnt, width / 2, height / 2);
-			circle(player.Cpx, player.Cpy, player.radius);
-			if (player.KeyFlag == true) {
+				fill(0);
+				circle(player.Cpx, player.Cpy, player.radius);
+				if (player.KeyFlag == true) {
 				fill(255, 255, 0);
 				circle(player.Cpx, player.Cpy, TutorialMap.Key->Iradius / 2);
+			}
+			}
+			else {
+				image(TutorialClearImg, 0, 0);
 			}
 		}
 		if (STATE == OPERATER) {
