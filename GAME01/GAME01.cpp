@@ -151,7 +151,7 @@ namespace GAME01
 				CX = -CR;
 			}
 
-			if (score >= 1) {   
+			if (score >= 55) {   
 				ClearFlag = true;
 
 			}
