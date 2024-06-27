@@ -11,5 +11,16 @@ namespace GAME13
         int create();
         void proc();
         void destroy();
+          
+    private:
+        //ÉVÅ[ÉìëJà⁄
+        enum STATE { TITLE, PLAY, CLEAR};
+        STATE State = TITLE;
+        void Title();
+        void Init();
+        void Play();
+        void Clear();
+        int Img = 0;
+          
     };
 }
