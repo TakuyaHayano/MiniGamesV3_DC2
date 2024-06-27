@@ -10,10 +10,27 @@ namespace GAME10
         enum {
             TITLE,
             TUTORIAL,
+            OPERATER,
             PLAY,
             RESULT
         };
         int STATE;
+        struct button {
+            VECTOR2 core;
+            float radius = 100;
+            float Hradius = radius / 2;
+            bool SelectFlag = false;
+        };
+        struct button TutorialButton;
+        struct button ProductionButton;
+        struct button OperationButton;
+        int buttonCnt = 0;
+        enum ButtonState {
+            STutorial,
+            SProduction,
+            SOperation,
+            SButtonSum
+        };
         //本番用マップ
         const char* fileName;
         FILE* fp;
@@ -39,6 +56,22 @@ namespace GAME10
         matrix Production;
         matrix Tutorial;
         //画像
+            //タイトル画面・リザルト画面
+            int TitleImg = 0;
+            int PageCnt = 0;
+            int PageImg[2] = {0,0};
+            int TutorialPage[2] = { 0,0 };
+            const int PageSum = 2;
+            int ClearImg = 0;
+            int OverImg = 0;
+            //button関連
+            int TButtonImg = 0;
+            int PbuttonImg = 0;
+            int ObuttonImg = 0;
+            //陰に隠れた画像
+            int STButtonImg = 0;
+            int SPbuttonImg = 0;
+            int SObuttonImg = 0;
             //壁関連
             int WallImg = 0;
             int WallLeftImg = 0;
@@ -106,6 +139,10 @@ namespace GAME10
             int ItemKind = 0;
             bool Substance = false;
         };
+        bool pauseFlag = true;
+        int GetFlagCnt = 0;
+        const int GetFlagLimit = 5;
+        int Ftemp = 0;
         //当たり判定関係
         HITBOX HitBox;
         HITBOX WallBox;
@@ -113,9 +150,12 @@ namespace GAME10
         HITBOX EnemyBox;
         DISTANCE PDist;
         DISTANCE EDist;
+        int Cmx = 0;//もし動いていた場合、引き戻す値（ｘ）
+        int Cmy = 0;//もし動いていた場合、引き戻す値（ｙ）
         //goal関連
         bool GoalFlag = false;
         struct character {
+            //移動関連
             float Cpx = 0;
             float Cpy = 0;
             float Mx = 5;
@@ -180,8 +220,10 @@ namespace GAME10
         int create();
         void proc();
         void title();
+        void buttonCol();
         void init();
         void tutorial();
+        void operater();
         void play();
         void result();
             void Pmove();

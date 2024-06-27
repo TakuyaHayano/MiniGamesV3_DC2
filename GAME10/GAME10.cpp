@@ -7,9 +7,32 @@ namespace GAME10
 	{
 
 		STATE = TITLE;
+		buttonCnt = STutorial;
+		TutorialButton.SelectFlag = true;
+		TutorialButton.core.x = 360 - 175;
+		TutorialButton.core.y = Height / 2 + 100;
+		ProductionButton.core.x = width / 2 - 175;
+		ProductionButton.core.y = Height / 2 + 100;
+		OperationButton.core.x = 1620 - 175;
+		OperationButton.core.y = Height / 2 + 100;
 		//fileスキャン
 		fileName = "..\\main\\assets\\game10\\map.txt";
 		CfileName = "..\\main\\assets\\game10\\tutorial.txt";
+		//画像スキャン
+		TitleImg = loadImage("..\\main\\assets\\game10\\title.png");
+		PageImg[0] = loadImage("..\\main\\assets\\game10\\sousa1.png");
+		PageImg[1] = loadImage("..\\main\\assets\\game10\\sousa2.png");
+		TutorialPage[0] = loadImage("..\\main\\assets\\game10\\tutorialPage1.png");
+		TutorialPage[1] = loadImage("..\\main\\assets\\game10\\tutorialPage2.png");
+		ClearImg = loadImage("..\\main\\assets\\game10\\Clear.png");
+		OverImg = loadImage("..\\main\\assets\\game10\\Over.png");
+		TButtonImg = loadImage("..\\main\\assets\\game10\\tutorialButton.png");
+		PbuttonImg = loadImage("..\\main\\assets\\game10\\playButton.png");
+		ObuttonImg = loadImage("..\\main\\assets\\game10\\operationButton.png");
+		STButtonImg = loadImage("..\\main\\assets\\game10\\shadeTutorial.png");
+		SPbuttonImg = loadImage("..\\main\\assets\\game10\\shadePlay.png");
+		SObuttonImg = loadImage("..\\main\\assets\\game10\\shadeOperation.png");
+		//壁の情報
 		WallImg = loadImage("..\\main\\assets\\game10\\wall.png");
 		goalImg = loadImage("..\\main\\assets\\game10\\goal.png");
 		LockImg = loadImage("..\\main\\assets\\game10\\LockGoal.png");
@@ -148,20 +171,92 @@ namespace GAME10
 	{	
 		if (STATE == TITLE) { title(); }
 		else if (STATE == TUTORIAL) { tutorial(); }
+		else if (STATE == OPERATER) { operater(); }
 		else if (STATE == PLAY) { play(); }
 		else if (STATE == RESULT) { result(); }
 
 	}
 
 	void GAME::title() {
-		clear(0);
+		draw();
+		buttonCol();
 		text("ENTERキーでメニューに戻る", 0, 1080);
 		if (isTrigger(KEY_ENTER)) {
 			main()->backToMenu();
 		}
-		if (isTrigger(KEY_K)) {
- 			STATE = TUTORIAL;
-			init();
+		if (isTrigger(KEY_SPACE)) {
+			if (TutorialButton.SelectFlag == true) {
+				STATE = TUTORIAL;
+				init();
+			}
+			if (ProductionButton.SelectFlag == true) {
+				STATE = PLAY;
+				init();
+			}
+			if (OperationButton.SelectFlag == true) {
+				STATE = OPERATER;
+				init();
+			}
+		}
+	}
+
+	void GAME::buttonCol() {
+		if (isTrigger(KEY_D)) {
+			switch (buttonCnt)
+			{
+			case STutorial:
+				TutorialButton.SelectFlag = false;
+				break;
+			case SProduction:
+				ProductionButton.SelectFlag = false;
+				break;
+			case SOperation:
+				OperationButton.SelectFlag = false;
+				break;
+			}
+			buttonCnt = (buttonCnt + 1)% SButtonSum;
+			switch (buttonCnt)
+			{
+			case STutorial:
+				TutorialButton.SelectFlag = true;
+				break;
+			case SProduction:
+				ProductionButton.SelectFlag = true;
+				break;
+			case SOperation:
+				OperationButton.SelectFlag = true;
+				break;
+			}
+		}
+		if (isTrigger(KEY_A)) {
+			switch (buttonCnt)
+			{
+			case STutorial:
+				TutorialButton.SelectFlag = false;
+				break;
+			case SProduction:
+				ProductionButton.SelectFlag = false;
+				break;
+			case SOperation:
+				OperationButton.SelectFlag = false;
+				break;
+			}
+			buttonCnt = buttonCnt - 1;
+			if (buttonCnt < 0) {
+				buttonCnt = SButtonSum - 1;
+			}
+			switch (buttonCnt)
+			{
+			case STutorial:
+				TutorialButton.SelectFlag = true;
+				break;
+			case SProduction:
+				ProductionButton.SelectFlag = true;
+				break;
+			case SOperation:
+				OperationButton.SelectFlag = true;
+				break;
+			}
 		}
 	}
 
@@ -172,6 +267,8 @@ namespace GAME10
 			int Gcnt = 0;
 			int WCcnt = 0;
 			int Fcnt = 0;
+			pauseFlag = true;
+			GetFlagCnt = 0;
 			TutorialMap.Wmap.worldX = 0;
 			TutorialMap.Wmap.worldY = 0;
 			Tutorial.KeyCnt = 0;
@@ -236,12 +333,15 @@ namespace GAME10
 			while (notQuit) {
 				if (random() % Tutorial.FlagCnt == 1) {
 					TutorialMap.Flag[cnt].Substance = true;
+					Ftemp = cnt;
 					break;
 				}
 				cnt = (cnt + 1) % Tutorial.FlagCnt;
 			}
 		}
-
+		if(STATE == OPERATER){
+			PageCnt = 0;
+		}
 		if (STATE == PLAY) {
 			//配列の数を抑制するための数
 			int Wcnt = 0;
@@ -256,10 +356,12 @@ namespace GAME10
 			for (int g = 0; g < Production.GoalCnt; g++) {
 				ProductionMap.Goal[g].LockFlag = true;
 			}
-			//ムーブの初期化
+			//ムーブの初期化と視界の初期化
 			for (int e = 0; e < Production.EnemyCnt; e++) {
 				Enemys[e].Mx = 5;
 				Enemys[e].My = 5;
+				Enemys[e].FindLen = 400;
+				Enemys[e].WallHitFlag = false;
 			}
 			//プレイヤーと敵の初期位置設定・壁の情報の保存
 			for (int c = 0; c < Production.col; c++) {
@@ -404,9 +506,40 @@ namespace GAME10
 	}
 
 	void GAME::tutorial() {
+		if(pauseFlag == true){
+			if (GetFlagCnt < GetFlagLimit) {
+				draw();
+				if (isTrigger(KEY_SPACE)) {
+					pauseFlag = false;
+				}
+				image(TutorialPage[0], 0, 0);
+			}
+			else {
+				draw();
+				if (isTrigger(KEY_SPACE)) {
+					pauseFlag = false;
+				}
+				image(TutorialPage[1], 0, 0);
+			}
+		}
+		else {
+			draw();
+			Pmove();
+			collision();
+		}
+	}
+	
+	void GAME::operater() {
+		if (PageCnt >= PageSum) {
+			STATE = TITLE;
+		}
+		if (isTrigger(KEY_D)) {
+			PageCnt++;
+		}
+		if (isTrigger(KEY_A) && PageCnt != 0) {
+			PageCnt--;
+		}
 		draw();
-		Pmove();
-		collision();
 	}
 
 	void GAME::play() {
@@ -425,15 +558,26 @@ namespace GAME10
 	void GAME::Pmove() {
 		if (isPress(KEY_D)) {
 			player.Cpx += player.Mx;
+			Cmx = -player.Mx;
 		}
 		if (isPress(KEY_A)) {
 			player.Cpx -= player.Mx;
+			Cmx = player.Mx;
 		}
+		if (isPress(KEY_A) == false && isPress(KEY_D) == false) {
+			Cmx = 0;
+		}
+
 		if (isPress(KEY_S)) {
 			player.Cpy += player.My;
+			Cmy = -player.My;
 		}
 		if (isPress(KEY_W)) {
 			player.Cpy -= player.My;
+			Cmy = player.My;
+		}
+		if (isPress(KEY_S) == false && isPress(KEY_W) == false) {
+			Cmy = 0;
 		}
 	}
 
@@ -527,7 +671,9 @@ namespace GAME10
 					hitbox(w);
 				}
 			}
-			for (int k = 0; k < Production.KeyCnt; k++) {
+
+			if (GetFlagCnt > GetFlagLimit) {
+				for (int k = 0; k < Production.KeyCnt; k++) {
 				if (TutorialMap.Key[k].Substance == true) {
 					float KDist = sqrt(abs((player.Cpx - (TutorialMap.Key[k].ItemCore.x + TutorialMap.Wmap.worldX)) * abs(player.Cpx - (TutorialMap.Key[k].ItemCore.x + TutorialMap.Wmap.worldX))) + abs((player.Cpy - (TutorialMap.Key[k].ItemCore.y + TutorialMap.Wmap.worldY)) * abs(player.Cpy - (TutorialMap.Key[k].ItemCore.y + TutorialMap.Wmap.worldY))));
 					if (KDist < player.Hradius + TutorialMap.Key[k].Iradius) {
@@ -536,22 +682,24 @@ namespace GAME10
 					}
 				}
 			}
+			}
+
 			for (int g = 0; g < Tutorial.GoalCnt; g++) {
 				if (TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX >= 0
 					&& TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX < width
 					&& TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY >= 0
 					&& TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY < height) {
 					playerHitBox();
-					if (PlayerBox.left.x >= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX
-						&& PlayerBox.left.x <= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX + TutorialMap.Wmap.Xsize
+					if (PlayerBox.right.x >= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX
+						&& PlayerBox.right.x <= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX + TutorialMap.Wmap.Xsize
 						&& PlayerBox.up.y <= TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY + TutorialMap.Wmap.Ysize
 						&& PlayerBox.under.y >= TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY
 						&& player.KeyFlag == true) {
 						STATE = PLAY;
 						init();
 					}
-					else if (PlayerBox.left.x >= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX
-						&& PlayerBox.left.x <= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX + TutorialMap.Wmap.Xsize
+					else if (PlayerBox.right.x >= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX
+						&& PlayerBox.right.x <= TutorialMap.Goal[g].WaPx + TutorialMap.Wmap.worldX + TutorialMap.Wmap.Xsize
 						&& PlayerBox.up.y <= TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY + TutorialMap.Wmap.Ysize
 						&& PlayerBox.under.y >= TutorialMap.Goal[g].WaPy + TutorialMap.Wmap.worldY
 						&& player.KeyFlag == false) {
@@ -559,22 +707,23 @@ namespace GAME10
 					}
 				}
 			}
-
-			for (int f = 0; f < Tutorial.FlagCnt; f++) {
-				if (TutorialMap.Flag[f].Substance == true) {
-					float FDist = sqrt(abs((player.Cpx - (TutorialMap.Flag[f].ItemCore.x + TutorialMap.Wmap.worldX)) * abs(player.Cpx - (TutorialMap.Flag[f].ItemCore.x + TutorialMap.Wmap.worldX))) + abs((player.Cpy - (TutorialMap.Flag[f].ItemCore.y + TutorialMap.Wmap.worldY)) * abs(player.Cpy - (TutorialMap.Flag[f].ItemCore.y + TutorialMap.Wmap.worldY))));
-					if (FDist < player.Hradius + TutorialMap.Flag[f].Iradius) {
-						TutorialMap.Flag[f].Substance = false;
-						int cnt = 0;
-						while (notQuit) {
-							if (random() % Tutorial.FlagCnt == 1) {
-								TutorialMap.Flag[cnt].Substance = true;
-								break;
-							}
-							cnt = (cnt + 1) % Tutorial.FlagCnt;
+			//旗の判定（最大まで取ったら消える）
+			if (GetFlagCnt < GetFlagLimit) {
+				for (int f = 0; f < Tutorial.FlagCnt; f++) {
+					if (TutorialMap.Flag[f].Substance == true) {
+						float FDist = sqrt(abs((player.Cpx - (TutorialMap.Flag[f].ItemCore.x + TutorialMap.Wmap.worldX)) * abs(player.Cpx - (TutorialMap.Flag[f].ItemCore.x + TutorialMap.Wmap.worldX))) + abs((player.Cpy - (TutorialMap.Flag[f].ItemCore.y + TutorialMap.Wmap.worldY)) * abs(player.Cpy - (TutorialMap.Flag[f].ItemCore.y + TutorialMap.Wmap.worldY))));
+						if (FDist < player.Hradius + TutorialMap.Flag[f].Iradius) {
+							TutorialMap.Flag[f].Substance = false;
+							TutorialMap.Flag[(f + 1) % Tutorial.FlagCnt].Substance = true;
+							GetFlagCnt++;
 						}
 					}
 				}
+			}
+			else if(GetFlagCnt == GetFlagLimit){
+				
+				pauseFlag = true;
+				GetFlagCnt++;
 			}
 		}
 
@@ -745,32 +894,32 @@ namespace GAME10
 		case PDist.Up://壁から見て上側の判定
 			if (WallBox.up.y <= PlayerBox.under.y
 				&& WallBox.under.y >= PlayerBox.under.y
-				&& WallBox.right.x >= PlayerBox.left.x
-				&& WallBox.left.x <= PlayerBox.right.x) {
+				&& WallBox.right.x >= PlayerBox.left.x + Cmx
+				&& WallBox.left.x <= PlayerBox.right.x + Cmx) {
 				player.Cpy -= player.My;
 			}
 			break;
 		case PDist.Under://壁から見て下側の判定
 			if (WallBox.under.y >= PlayerBox.up.y
 				&& WallBox.up.y <= PlayerBox.up.y
-				&& WallBox.right.x >= PlayerBox.left.x
-				&& WallBox.left.x <= PlayerBox.right.x) {
+				&& WallBox.right.x >= PlayerBox.left.x + Cmx
+				&& WallBox.left.x <= PlayerBox.right.x + Cmx) {
 				player.Cpy += player.My;
 			}
 			break;
 		case PDist.Left://壁から見て左側の判定
 			if (WallBox.left.x <= PlayerBox.right.x
 				&& WallBox.right.x >= PlayerBox.right.x
-				&& WallBox.up.y <= PlayerBox.under.y
-				&& WallBox.under.y >= PlayerBox.up.y) {
+				&& WallBox.up.y <= PlayerBox.under.y + Cmy
+				&& WallBox.under.y >= PlayerBox.up.y + Cmy) {
 				player.Cpx -= player.Mx;
 			}
 			break;
 		case PDist.Right://壁から見て右側の判定
 			if (WallBox.left.x <= PlayerBox.left.x
 				&& WallBox.right.x >= PlayerBox.left.x
-				&& WallBox.up.y <= PlayerBox.under.y
-				&& WallBox.under.y >= PlayerBox.up.y) {
+				&& WallBox.up.y <= PlayerBox.under.y + Cmy
+				&& WallBox.under.y >= PlayerBox.up.y + Cmy) {
 				player.Cpx += player.Mx;
 			}
 			break;
@@ -821,8 +970,6 @@ namespace GAME10
 				&& WallBox.left.x <= EnemyBox.right.x
 				&& Enemys[e].View == Under) {
 				Enemys[e].My *= -1;
-				//Enemys[e].FindLen = 400;
-				//Enemys[e].View = (Enemys[e].View + 2) % 4;
 				Enemys[e].Cpy += Enemys[e].My;
 				Enemys[e].WallHitFlag = true;
 			}
@@ -843,8 +990,6 @@ namespace GAME10
 					&& WallBox.left.x <= EnemyBox.right.x
 					&& Enemys[e].View == Up) {
 					Enemys[e].My *= -1;
-					//Enemys[e].FindLen = 400;
-					//Enemys[e].View = (Enemys[e].View + 2) % 4;
 					Enemys[e].Cpy += Enemys[e].My;
 					Enemys[e].WallHitFlag = true;
 				}
@@ -864,9 +1009,7 @@ namespace GAME10
 					&& WallBox.up.y <= EnemyBox.under.y
 					&& WallBox.under.y >= EnemyBox.up.y
 					&& Enemys[e].View == Right) {
-					//Enemys[e].FindLen = 400;
 					Enemys[e].Mx *= -1;
-					//Enemys[e].View = (Enemys[e].View + 2) % 4;
 					Enemys[e].Cpx += Enemys[e].Mx;
 					Enemys[e].WallHitFlag = true;
 				}
@@ -886,9 +1029,7 @@ namespace GAME10
 					&& WallBox.up.y <= EnemyBox.under.y
 					&& WallBox.under.y >= EnemyBox.up.y
 					&& Enemys[e].View == Left) {
-					//Enemys[e].FindLen = 400;
 					Enemys[e].Mx *= -1;
-					//Enemys[e].View = (Enemys[e].View + 2) % 4;
 					Enemys[e].Cpx += Enemys[e].Mx;
 					Enemys[e].WallHitFlag = true;
 				}
@@ -963,6 +1104,30 @@ namespace GAME10
 	}
 
 	void GAME::draw() {
+		if (STATE == TITLE) {
+			fill(255);
+			clear(255);
+			image(TitleImg, 0, 0);
+			if(TutorialButton.SelectFlag == true){
+				image(TButtonImg, TutorialButton.core.x, TutorialButton.core.y);
+			}
+			else if (ProductionButton.SelectFlag == true) {
+				image(PbuttonImg, ProductionButton.core.x, ProductionButton.core.y);
+			}
+			else if (OperationButton.SelectFlag == true) {
+				image(ObuttonImg, OperationButton.core.x, OperationButton.core.y);
+			}
+
+			if (TutorialButton.SelectFlag == false) {
+				image(STButtonImg, TutorialButton.core.x, TutorialButton.core.y);
+			}
+			if (ProductionButton.SelectFlag == false) {
+				image(SPbuttonImg, ProductionButton.core.x, ProductionButton.core.y);
+			}
+			if (OperationButton.SelectFlag == false) {
+				image(SObuttonImg, OperationButton.core.x, OperationButton.core.y);
+			}
+		}
 		if (STATE == TUTORIAL) {
 			clear(255);
 			//それぞれの座標にイメージを書き込んでいる
@@ -986,28 +1151,36 @@ namespace GAME10
 					}
 				}
 			}
-			for (int Icnt = 0; Icnt < Tutorial.KeyCnt; Icnt++) {
+			if (GetFlagCnt >= GetFlagLimit) {
+				for (int Icnt = 0; Icnt < Tutorial.KeyCnt; Icnt++) {
 				if (TutorialMap.Key[Icnt].Substance == true) {
 					image(KeyImg, TutorialMap.Key[Icnt].ItemCore.x + TutorialMap.Wmap.worldX - TutorialMap.Wmap.XharfSize, TutorialMap.Key[Icnt].ItemCore.y + TutorialMap.Wmap.worldY - TutorialMap.Wmap.YharfSize);
 				}
 			}
-			for (int Fcnt = 0; Fcnt < Tutorial.FlagCnt; Fcnt++) {
+			}
+			if (GetFlagCnt < GetFlagLimit) {
+				for (int Fcnt = 0; Fcnt < Tutorial.FlagCnt; Fcnt++) {
 				if (TutorialMap.Flag[Fcnt].Substance == true) {
 					image(FlagImg,TutorialMap.Flag[Fcnt].ItemCore.x + TutorialMap.Wmap.worldX - TutorialMap.Wmap.XharfSize, TutorialMap.Flag[Fcnt].ItemCore.y + TutorialMap.Wmap.worldY - TutorialMap.Wmap.YharfSize);
 				}
 			}
+			}
 			fill(0);
+			text(GetFlagCnt, width / 2, height / 2);
 			circle(player.Cpx, player.Cpy, player.radius);
 			if (player.KeyFlag == true) {
 				fill(255, 255, 0);
 				circle(player.Cpx, player.Cpy, TutorialMap.Key->Iradius / 2);
 			}
 		}
+		if (STATE == OPERATER) {
+			clear(255);
+			image(PageImg[PageCnt], 0, 0);
+		}
 		if (STATE == PLAY) {
 			rectMode(CORNER);
 			clear(255);
 			fill(0);
-			text(Enemys[0].My, 1000, 700);
 			for (int enemy = 0; enemy < Ecnt; enemy++) {
 				fill(0, 0, 255);
 				circle(Enemys[enemy].Cpx + ProductionMap.Wmap.worldX, Enemys[enemy].Cpy + ProductionMap.Wmap.worldY, Enemys[enemy].radius);
@@ -1091,15 +1264,16 @@ namespace GAME10
 			}
 		}
 		if (STATE == RESULT) {
+			fill(0);
 			if (GoalFlag == true) {
-				text("GAME CLEAR", Width / 2, Height / 2);
-				if (isTrigger(KEY_SPACE)) {
+				image(ClearImg, 0, 0);
+				if (isTrigger(KEY_K)){
 					STATE = TITLE;
 				}
 			}
 			else {
-				text("GAME OVER", Width / 2, Height / 2);
-				if (isTrigger(KEY_SPACE)) {
+				image(OverImg, 0, 0);
+				if (isTrigger(KEY_K)) {
 					STATE = TITLE;
 				}
 			}
