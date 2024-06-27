@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -107,6 +107,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ForcedIncludeFiles>canvasResize.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -123,6 +124,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ForcedIncludeFiles>canvasResize.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -133,10 +135,85 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ANIM.cpp" />
+    <ClCompile Include="BACKGROUND.cpp" />
+    <ClCompile Include="BOX.cpp" />
+    <ClCompile Include="BUBBLE.cpp" />
+    <ClCompile Include="BUTTON.cpp" />
+    <ClCompile Include="BUTTON_BACK_PAUSE.cpp" />
+    <ClCompile Include="BUTTON_BACK_RESULT.cpp" />
+    <ClCompile Include="BUTTON_CONTINUE.cpp" />
+    <ClCompile Include="BUTTON_END.cpp" />
+    <ClCompile Include="BUTTON_HELP.cpp" />
+    <ClCompile Include="BUTTON_RETRY_PAUSE.cpp" />
+    <ClCompile Include="BUTTON_RETRY_RESULT.cpp" />
+    <ClCompile Include="BUTTON_START.cpp" />
+    <ClCompile Include="canvasResize.cpp" />
+    <ClCompile Include="CLOUD.cpp" />
+    <ClCompile Include="COMMAND.cpp" />
+    <ClCompile Include="CONTAINER.cpp" />
+    <ClCompile Include="CRACKER.cpp" />
+    <ClCompile Include="CURTAIN.cpp" />
+    <ClCompile Include="DRAW_NUM.cpp" />
+    <ClCompile Include="EVOLUTIONARY_CIRCLE.cpp" />
+    <ClCompile Include="FRUITS.cpp" />
+    <ClCompile Include="FRUITS_BUBBLE.cpp" />
+    <ClCompile Include="FRUITS_BUBBLES.cpp" />
     <ClCompile Include="GAME09.cpp" />
+    <ClCompile Include="GAME_OBJECT.cpp" />
+    <ClCompile Include="HELP.cpp" />
+    <ClCompile Include="NEXT.cpp" />
+    <ClCompile Include="PAUSE.cpp" />
+    <ClCompile Include="PHYSICS_ENGINE.cpp" />
+    <ClCompile Include="READYGO.cpp" />
+    <ClCompile Include="RESULT.cpp" />
+    <ClCompile Include="SCENE.cpp" />
+    <ClCompile Include="SCORE.cpp" />
+    <ClCompile Include="SOUNDMNG.cpp" />
+    <ClCompile Include="STAGE.cpp" />
+    <ClCompile Include="TITLE.cpp" />
+    <ClCompile Include="TRANSITION.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ANIM.h" />
+    <ClInclude Include="BACKGROUND.h" />
+    <ClInclude Include="BOX.h" />
+    <ClInclude Include="BUBBLE.h" />
+    <ClInclude Include="BUTTON.h" />
+    <ClInclude Include="BUTTON_BACK_PAUSE.h" />
+    <ClInclude Include="BUTTON_BACK_RESULT.h" />
+    <ClInclude Include="BUTTON_CONTINUE.h" />
+    <ClInclude Include="BUTTON_END.h" />
+    <ClInclude Include="BUTTON_HELP.h" />
+    <ClInclude Include="BUTTON_RETRY_PAUSE.h" />
+    <ClInclude Include="BUTTON_RETRY_RESULT.h" />
+    <ClInclude Include="BUTTON_START.h" />
+    <ClInclude Include="canvasResize.h" />
+    <ClInclude Include="CLOUD.h" />
+    <ClInclude Include="COMMAND.h" />
+    <ClInclude Include="CONTAINER.h" />
+    <ClInclude Include="CRACKER.h" />
+    <ClInclude Include="CURTAIN.h" />
+    <ClInclude Include="DRAW_NUM.h" />
+    <ClInclude Include="EVOLUTIONARY_CIRCLE.h" />
+    <ClInclude Include="FRUITS.h" />
+    <ClInclude Include="FRUITS_BUBBLE.h" />
+    <ClInclude Include="FRUITS_BUBBLES.h" />
     <ClInclude Include="GAME09.h" />
+    <ClInclude Include="GAME_OBJECT.h" />
+    <ClInclude Include="HELP.h" />
+    <ClInclude Include="myFunc.h" />
+    <ClInclude Include="NEXT.h" />
+    <ClInclude Include="PAUSE.h" />
+    <ClInclude Include="PHYSICS_ENGINE.h" />
+    <ClInclude Include="READYGO.h" />
+    <ClInclude Include="RESULT.h" />
+    <ClInclude Include="SCENE.h" />
+    <ClInclude Include="SCORE.h" />
+    <ClInclude Include="SOUNDMNG.h" />
+    <ClInclude Include="STAGE.h" />
+    <ClInclude Include="TITLE.h" />
+    <ClInclude Include="TRANSITION.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game09\title.txt" />
