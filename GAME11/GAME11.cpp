@@ -30,10 +30,10 @@ namespace GAME11
 		RitireImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Ritire.png");
 		GameOverImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\GameOver.png");
 
-		EasyImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Easy.png");//560*280
-		NormalImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Normal.png");//770*260
-		HardImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Hard.png");//570*260
-		ExpertImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Expert.png");//710*280
+		EasyImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Easy.png");
+		NormalImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Normal.png");
+		HardImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Hard.png");
+		ExpertImg = loadImage("..\\main\\assets\\game11\\Tramp素材\\Expert.png");
 
 		return 0;
 	}
@@ -88,7 +88,6 @@ namespace GAME11
 		text("・難易度Expertは制限時間内にデッキとカードを0枚にしたらゲームクリア。", 50, 150 * 5 + 100);
 		text("・ゲームプレイ中は、Xキーを押すとリタイアできる。", 50, 150 * 6 + 100);
 		text("B：タイトル", 1400, 1040);
-
 		if (isTrigger(KEY_B)) {
 			State = TITLE;
 			return;
@@ -140,7 +139,6 @@ namespace GAME11
 				return;
 			}
 		}
-		
 	}
 	void GAME::initializeDeck(TrampSync* sync) {
 		int index = 0;
@@ -229,16 +227,9 @@ namespace GAME11
 
 		LfieldClearCnt = 0;
 		RfieldClearCnt = 0;
+
 	}
-	int GAME::CheckField(int LNum, int RNum,int setINum[4]) {
-		for (int i = 0; i < 4; i++) {
-			if ((LfieldNum == setImgNum[i] + 1 || LfieldNum == setImgNum[i] - 1) ||
-				(RfieldNum == setImgNum[i] + 1 || RfieldNum == setImgNum[i] - 1)) {
-				FieldCheckCnt++;
-			}
-		}
-		return FieldCheckCnt;
-	}
+
 	void GAME::Play(TrampSync* sync) {
 		rectMode(CENTER);
 
@@ -272,17 +263,22 @@ namespace GAME11
 			//text(setImgNum[j], width / 2 + j * 50, 100);
 		}
 		text(FieldCheckCnt, width / 2, height / 2);
-		text(TrampCnt, 1850, 50);
 
 		for (int i = 0; i < 4; i++) {
 			//text(setImgNum[i] + 1, 10, 100 + i * 50);
 			//text(setImgNum[i] - 1, 10, 800 + i * 50);
 		}
 		*/
-
+		
+		if (LevelFlag == 0) {
+			text(46 - DeckPrintCnt, 1800, 100);
+		}
+		else {
+			text(50 - (LfieldClearCnt + RfieldClearCnt), 1800, 100);
+		}
 		
 		
-		for (int i = 0; i < 4; i++) {//場のカードの判定
+		for (int i = 0; i < 4; i++) {//カードを出せるかの判定
 			if ((LfieldNum == setImgNum[i] + 1 || LfieldNum == setImgNum[i] - 1) || (RfieldNum == setImgNum[i] + 1 || RfieldNum == setImgNum[i] - 1) ||
 				((LfieldNum == 13 && PickNum == 1) || (LfieldNum == 1 && PickNum == 13)) ||
 				((RfieldNum == 13 && PickNum == 1) || (RfieldNum == 1 && PickNum == 13))) {
@@ -308,12 +304,37 @@ namespace GAME11
 					DeckPrintCnt = TrampCnt;
 					FieldCheckCnt = 0;
 				}
-
+			}
+		}
+		else if(TrampCnt == 45){//デッキが残り一枚の時用
+			if (FieldCheckCnt == 1) {
+				if (mouseX < deckPx + cX && mouseX > deckPx - cX &&
+					mouseY < fieldPy + cY && mouseY > fieldPy - cY &&
+					isTrigger(MOUSE_RBUTTON)) {
+					FieldFlag = random() % 2;
+					
+					if (FieldFlag == 0) {
+						LfieldImg = sync->Deck[TrampCnt + 6].img;
+						LfieldNum = sync->Deck[TrampCnt + 6].num;
+						LfieldClearCnt++;
+						TrampCnt++;
+						DeckPrintCnt = TrampCnt;
+						FieldCheckCnt = 0;
+					}
+					else  {
+						RfieldImg = sync->Deck[TrampCnt + 6].img;
+						RfieldNum = sync->Deck[TrampCnt + 6].num;
+						RfieldClearCnt++;
+						TrampCnt++;
+						DeckPrintCnt = TrampCnt;
+						FieldCheckCnt = 0;
+					}
+				}
 			}
 		}
 
 		if (mouseX < setPx1 + cX && mouseX > setPx1 - cX
-			&& mouseY < setPy + cY && mouseY > setPy - cY) {
+			&& mouseY < setPy + cY && mouseY > setPy - cY) {//一番左のカード選択
 			if (setCnt[0] == 0) {
 				if (isTrigger(MOUSE_LBUTTON)) {
 					ArraysetPy[0] = PickPy;
@@ -335,7 +356,7 @@ namespace GAME11
 
 		}
 		else if (mouseX <setPx2 + cX && mouseX > setPx2 - cX
-			&& mouseY < setPy + cY && mouseY > setPy - cY) {
+			&& mouseY < setPy + cY && mouseY > setPy - cY) {//左から二枚目
 			if (setCnt[1] == 0) {
 				if (isTrigger(MOUSE_LBUTTON)) {
 					ArraysetPy[1] = PickPy;
@@ -356,7 +377,7 @@ namespace GAME11
 			}
 		}
 		else if (mouseX <setPx3 + cX && mouseX > setPx3 - cX
-			&& mouseY <setPy + cY && mouseY > setPy - cY) {
+			&& mouseY <setPy + cY && mouseY > setPy - cY) {//３枚目
 			if (setCnt[2] == 0) {
 				if (isTrigger(MOUSE_LBUTTON)) {
 					ArraysetPy[2] = PickPy;
@@ -378,7 +399,7 @@ namespace GAME11
 
 		}
 		else if (mouseX <setPx4 + cX && mouseX > setPx4 - cX
-			&& mouseY <setPy + cY && mouseY > setPy - cY) {
+			&& mouseY <setPy + cY && mouseY > setPy - cY) {//一番右
 			if (setCnt[3] == 0) {
 				if (isTrigger(MOUSE_LBUTTON)) {
 					ArraysetPy[3] = PickPy;
@@ -399,15 +420,15 @@ namespace GAME11
 			}
 		}
 
-		if (ArraysetPy[0] == PickPy || ArraysetPy[1] == PickPy || ArraysetPy[2] == PickPy || ArraysetPy[3] == PickPy) {
-			if (PickNum == LfieldNum - 1 || PickNum == LfieldNum + 1 ||
-				((LfieldNum == 13 && PickNum == 1) || (LfieldNum == 1 && PickNum == 13))) {
+		if (ArraysetPy[0] == PickPy || ArraysetPy[1] == PickPy || ArraysetPy[2] == PickPy || ArraysetPy[3] == PickPy) {//カードを選択している判定
+			if (PickNum == LfieldNum - 1 || PickNum == LfieldNum + 1 ||//場の左のカードに置けるかの判定
+				((LfieldNum == 13 && PickNum == 1) || (LfieldNum == 1 && PickNum == 13))) {//カードのナンバーが１と１３の時の判定
 				if (mouseX < LfieldPx + cX && mouseX > LfieldPx - cX &&
 					mouseY < fieldPy + cY && mouseY > fieldPy - cY) {
 					if (isTrigger(MOUSE_LBUTTON)) {
 						for (int i = 0; i < 4; i++) {
 							if (setCnt[i] == 1) {
-								setImg[i] = DeleteImg;
+								setImg[i] = DeleteImg;	
 							}
 						}
 
@@ -420,14 +441,14 @@ namespace GAME11
 						LfieldNum = PickNum;
 						PickNum = 0;
 						BackImg = nextImage;
-
+						LfieldClearCnt++;
 						TrampCnt++;
 					}
 				}
 			}
 
 			if (PickNum == RfieldNum + 1 || PickNum == RfieldNum - 1 || 
-				((RfieldNum == 13 && PickNum == 1) || (RfieldNum == 1 && PickNum == 13))) {
+				((RfieldNum == 13 && PickNum == 1) || (RfieldNum == 1 && PickNum == 13))) {//場の右のカード
 				if (mouseX < RfieldPx + cX && mouseX > RfieldPx - cX &&
 					mouseY < fieldPy + cY && mouseY > fieldPy - cY) {
 					if (isTrigger(MOUSE_LBUTTON)) {
@@ -447,12 +468,12 @@ namespace GAME11
 						RfieldNum = PickNum;
 						PickNum = 0;
 						BackImg = nextImage;
-
+						RfieldClearCnt++;
 						TrampCnt++;
 					}
 				}
 			}
-			if (TrampCnt < 46) {
+			if (TrampCnt < 47) {//カードを置いた後にデッキから補充する
 				if (mouseX < deckPx + cX && mouseX > deckPx - cX &&
 					mouseY < fieldPy + cY && mouseY > fieldPy - cY) {
 					if (isTrigger(MOUSE_LBUTTON)) {
@@ -472,21 +493,21 @@ namespace GAME11
 				}
 			}
 		}
-		if (LevelFlag == 0) {
+		if (LevelFlag == 0) {//EASY、NORMAL、HARDのクリア判定
 			if (DeckPrintCnt == 46) {
 				State = CLEAR;
 			}
 		}
-		if (LevelFlag == 1) {
+		if (LevelFlag == 1) {//Expertのクリア判定
 			if (LfieldClearCnt + RfieldClearCnt + 2 == 51) {
 				State == CLEAR;
 			}
 		}
-		if (isTrigger(KEY_X)) {
+		if (isTrigger(KEY_X)) {//リタイア
 			RitireFlag = 1;
 			State = OVER;
 		}
-		if (CountDownCnt == 0) {
+		if (CountDownCnt == 0) {//ゲームオーバー
 			State = OVER;
 		}
 	}
@@ -509,10 +530,10 @@ namespace GAME11
 		textSize(50);
 		text("ENTERキーを押してタイトルに戻る", 20, 1050);
 		textSize(200);
-		if (RitireFlag == 1) {
+		if (RitireFlag == 1) {//リタイア画像
 			image(RitireImg, width / 2, height / 2);
 		}
-		else {
+		else {//ゲームオーバー画像
 			image(GameOverImg, width / 2, height / 2);
 		}
 

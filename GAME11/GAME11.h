@@ -35,16 +35,15 @@ namespace GAME11
         void initializeDeck(TrampSync *sync);
         void shuffleDeck(TrampSync *sync);
         void Play(TrampSync *sync);
-        int CheckField(int LNum,int RNum, int setINum[4]);
         void Clear();
         void Over();
 
         //struct TrampSync* T = 0;
         
         int TitleImg = 0, BackImg = 0, DeleteImg = 0, GameclearImg = 0 ,GameOverImg = 0, RitireImg = 0, LfieldImg = 0, RfieldImg = 0, EasyImg =0,NormalImg = 0,HardImg = 0,ExpertImg = 0,
-            LfieldNum = 0, RfieldNum = 0, LfieldClearCnt = 0, RfieldClearCnt = 0,RitireFlag = 0,
+            LfieldNum = 0, RfieldNum = 0, LfieldClearCnt = 0, RfieldClearCnt = 0,
             setImg1 = 0, setImg2 = 0, setImg3 = 0, setImg4 = 0,  PickCnt = 0,DeckPrintCnt = 0, PickImage = 0, nextImage = 0,
-            TrampCnt = 0, PickNum = 0, setNextImgNum = 0, FieldCheckCnt = 0, CountDownCnt = 0, FreamCnt = 0,LevelFlag = 0,
+            TrampCnt = 0, PickNum = 0, setNextImgNum = 0, FieldCheckCnt = 0, CountDownCnt = 0, FreamCnt = 0,LevelFlag = 0, RitireFlag = 0, FieldFlag = 0,
             HImg[ONETYPE_NUM] = { 0 }, DImg[ONETYPE_NUM] = { 0 }, 
             SImg[ONETYPE_NUM] = { 0 }, CImg[ONETYPE_NUM] = { 0 };
         
