@@ -6,7 +6,7 @@ namespace GAME07
         public GAME_BASE
     {
     public:
-        GAME(class MAIN* main) :GAME_BASE(main) {};
+		GAME(class MAIN* main) :GAME_BASE(main) {};
         ~GAME() {};
         int create();
         void proc();
