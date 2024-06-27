@@ -13,7 +13,6 @@ namespace GAME01
 		playSnd = loadSound("..\\main\\assets\\game01\\play.wav");
 		 overSnd = loadSound("..\\main\\assets\\game01\\over.wav");
 		clearSnd = loadSound("..\\main\\assets\\game01\\clear.wav");
-		bgmSnd = loadSound("..\\main\\assets\\game01\\bgm.wav");
 
 
 		//画像
@@ -124,7 +123,7 @@ namespace GAME01
 		if ( score >= nextLevelScore) {
 			level++;
 			nextLevelScore += 5;
-			CVx *= 1.4f;        
+			CVx *= 1.3f;        
 
 			if (level >= 5) {
 				ClearFlag = true;
@@ -163,7 +162,6 @@ namespace GAME01
 			image(bonImg, CX, CY);
 			fill(255, 255, 255);
 
-			playLoopSound(bgmSnd);
 
 			print("Play");
 			print("　敵を右クリックで倒せ");
