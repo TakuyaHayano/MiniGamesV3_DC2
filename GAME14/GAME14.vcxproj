@@ -133,13 +133,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CHARACTER.cpp" />
+    <ClCompile Include="CHARACTER_MANAGER.cpp" />
+    <ClCompile Include="CONTAINER.cpp" />
     <ClCompile Include="GAME14.cpp" />
+    <ClCompile Include="GAME_OBJECT.cpp" />
+    <ClCompile Include="JUMP_POW.cpp" />
+    <ClCompile Include="MAP.cpp" />
+    <ClCompile Include="PLAYER.cpp" />
+    <ClCompile Include="SALMON.cpp" />
+    <ClCompile Include="SCENE.cpp" />
+    <ClCompile Include="STAGE.cpp" />
+    <ClCompile Include="TITLE.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CHARACTER.h" />
+    <ClInclude Include="CHARACTER_MANAGER.h" />
+    <ClInclude Include="CONTAINER.h" />
     <ClInclude Include="GAME14.h" />
+    <ClInclude Include="GAME_OBJECT.h" />
+    <ClInclude Include="JUMP_POW.h" />
+    <ClInclude Include="MAP.h" />
+    <ClInclude Include="PLAYER.h" />
+    <ClInclude Include="SALMON.h" />
+    <ClInclude Include="SCENE.h" />
+    <ClInclude Include="STAGE.h" />
+    <ClInclude Include="TITLE.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game14\title.txt" />
+    <Text Include="assets\map1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

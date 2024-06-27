@@ -1,12 +1,114 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="GAME14.cpp" />
+    <ClCompile Include="GAME14.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME_OBJECT.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="SCENE.cpp">
+      <Filter>scene\bace</Filter>
+    </ClCompile>
+    <ClCompile Include="STAGE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TITLE.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MAP.cpp">
+      <Filter>map</Filter>
+    </ClCompile>
+    <ClCompile Include="CHARACTER.cpp">
+      <Filter>character\bace</Filter>
+    </ClCompile>
+    <ClCompile Include="CHARACTER_MANAGER.cpp">
+      <Filter>character\bace</Filter>
+    </ClCompile>
+    <ClCompile Include="CONTAINER.cpp">
+      <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="JUMP_POW.cpp">
+      <Filter>character\player</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAYER.cpp">
+      <Filter>character\player</Filter>
+    </ClCompile>
+    <ClCompile Include="SALMON.cpp">
+      <Filter>character\salmon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GAME14.h" />
+    <ClInclude Include="GAME14.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME_OBJECT.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="SCENE.h">
+      <Filter>scene\bace</Filter>
+    </ClInclude>
+    <ClInclude Include="STAGE.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TITLE.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MAP.h">
+      <Filter>map</Filter>
+    </ClInclude>
+    <ClInclude Include="CHARACTER.h">
+      <Filter>character\bace</Filter>
+    </ClInclude>
+    <ClInclude Include="CHARACTER_MANAGER.h">
+      <Filter>character\bace</Filter>
+    </ClInclude>
+    <ClInclude Include="CONTAINER.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="JUMP_POW.h">
+      <Filter>character\player</Filter>
+    </ClInclude>
+    <ClInclude Include="PLAYER.h">
+      <Filter>character\player</Filter>
+    </ClInclude>
+    <ClInclude Include="SALMON.h">
+      <Filter>character\salmon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\MAIN\assets\game14\title.txt" />
+    <Text Include="assets\map1.txt">
+      <Filter>map</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="game">
+      <UniqueIdentifier>{21361605-b678-4cf8-8246-513fae450f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{3d4b4f30-2468-4d2a-a36c-43b7ea3a36c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\bace">
+      <UniqueIdentifier>{e2987e50-43ed-42e6-a1cc-49395f90367e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="map">
+      <UniqueIdentifier>{4ddaf5f5-63bb-436f-bff3-a540a80426cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="character">
+      <UniqueIdentifier>{a08835da-aac9-442b-bb3d-03bbee93d08f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="character\bace">
+      <UniqueIdentifier>{0a2ffef8-8032-402c-8989-e85116a5adc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="container">
+      <UniqueIdentifier>{5dedc558-0d70-4def-905d-0710d1d79a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="character\player">
+      <UniqueIdentifier>{087a3acd-ef23-4a4d-be69-4c97553ff0dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="character\salmon">
+      <UniqueIdentifier>{07668f7d-8144-4c88-8441-dd860b047c7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
